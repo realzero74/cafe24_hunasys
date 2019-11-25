@@ -15,120 +15,119 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class FileDownloadController {
-   
-   private static final Logger logger = LoggerFactory.getLogger(FileDownloadController.class);
-   
-   // file.properties ¿¡¼­ filepath¸¦ °¡Á®¿Í »ç¿ë
-   // root-context.xml¿¡ ¼³Á¤ÆÄÀÏ Á¤ÀÇ
-   @Value("#{file['save.filepath']}")
-   private String filePath;
 
-//   @Autowired
-//   private CommonService commonService;
+    private static final Logger logger = LoggerFactory.getLogger(FileDownloadController.class);
 
-   @RequestMapping("/fileDownload")
-   public ModelAndView download(@RequestParam Map<String, String> paramMap, HttpServletRequest request)
-           throws Exception {
+    // file.properties ì—ì„œ filepathë¥¼ ê°€ì ¸ì™€ ì‚¬ìš©
+    // root-context.xmlì— ì„¤ì •íŒŒì¼ ì •ì˜
+    @Value("#{file['save.filepath']}")
+    private String filePath;
 
-       logger.debug("fileDownload request");
-       logger.debug("fileDownload request : ", filePath);
-       logger.debug("fileDownload request : ", request.getParameter("fileId"));
+    // @Autowired
+    // private CommonService commonService;
 
-       String fullPath = "C:/Temp/20180612/20180530_1122.zip";
-       String originalFileName = "20180530_1122.zip";
+    @RequestMapping("/fileDownload")
+    public ModelAndView download(@RequestParam Map<String, String> paramMap, HttpServletRequest request)
+            throws Exception {
 
-       String vFileType = request.getParameter("vFileType");
-       String param1 = request.getParameter("param1"); //emplno
-       String param2 = request.getParameter("param2"); //nSeq
-       String param3 = request.getParameter("param3"); //fileSeq
+        logger.debug("fileDownload request");
+        logger.debug("fileDownload request : ", filePath);
+        logger.debug("fileDownload request : ", request.getParameter("fileId"));
 
-       logger.debug("vFileType : " + vFileType);
+        String fullPath = "C:/Temp/20180612/20180530_1122.zip";
+        String originalFileName = "20180530_1122.zip";
 
-       if (vFileType.equals("hba")) {
-           // param - PK È°¿ë
-           /*logger.debug("param 1 : " + param1);   //±Í¼Ó³â¿ù
-           logger.debug("param 2 : " + param2);   //
-           logger.debug("param 3 : " + param3);   //
-           
-           Map<String, String> aweparam = new HashMap<String, String>();
-           aweparam.put("yymm", param1);
-           
-           Map<String, String> aweFileMap = aweService.getDownLoadFile(aweparam);
-           
-           fullPath = aweFileMap.get("vFilePath");
-           fullPath += "/";
-           fullPath += aweFileMap.get("vTempFileName");
-           
-           originalFileName = aweFileMap.get("vFileName");
-           
-           logger.debug(fullPath);*/
+        String vFileType = request.getParameter("vFileType");
+        String param1 = request.getParameter("param1"); // emplno
+        String param2 = request.getParameter("param2"); // nSeq
+        String param3 = request.getParameter("param3"); // fileSeq
 
-       } else if (vFileType.equals("hba") || vFileType.equals("hbb") || vFileType.equals("hbc")
-           || vFileType.equals("hbd") || vFileType.equals("hbe") || vFileType.equals("hbf") || vFileType.equals("hbg")
-           || vFileType.equals("hbh")) {
-           logger.debug("param 1 : " + param1); //»ç¹ø
-           logger.debug("param 2 : " + param2); //ÀÏ·Ã¹øÈ£
-           logger.debug("param 3 : " + param3); //ÆÄÀÏÀÏ·Ã¹øÈ£
+        logger.debug("vFileType : " + vFileType);
 
-           /*FileVo filevo = new FileVo();
+        if (vFileType.equals("hba")) {
+            // param - PK í™œìš©
+            /*
+             * logger.debug("param 1 : " + param1); //ê·€ì†ë…„ì›” logger.debug("param 2 : " +
+             * param2); // logger.debug("param 3 : " + param3); //
+             * 
+             * Map<String, String> aweparam = new HashMap<String, String>();
+             * aweparam.put("yymm", param1);
+             * 
+             * Map<String, String> aweFileMap = aweService.getDownLoadFile(aweparam);
+             * 
+             * fullPath = aweFileMap.get("vFilePath"); fullPath += "/"; fullPath +=
+             * aweFileMap.get("vTempFileName");
+             * 
+             * originalFileName = aweFileMap.get("vFileName");
+             * 
+             * logger.debug(fullPath);
+             */
 
-           filevo.setvEmplNo(param1);
-           filevo.setvFileType(vFileType);
-           filevo.setnSeq(Integer.parseInt(param2));
-           filevo.setnFileSeq(Integer.parseInt(param3));
+        } else if (vFileType.equals("hba") || vFileType.equals("hbb") || vFileType.equals("hbc")
+                || vFileType.equals("hbd") || vFileType.equals("hbe") || vFileType.equals("hbf")
+                || vFileType.equals("hbg") || vFileType.equals("hbh")) {
+            logger.debug("param 1 : " + param1); // ì‚¬ë²ˆ
+            logger.debug("param 2 : " + param2); // ì¼ë ¨ë²ˆí˜¸
+            logger.debug("param 3 : " + param3); // íŒŒì¼ì¼ë ¨ë²ˆí˜¸
 
-           List<FileVo> fileVoInfo = hbbService.getHrFileList(filevo);
+            /*
+             * FileVo filevo = new FileVo();
+             * 
+             * filevo.setvEmplNo(param1); filevo.setvFileType(vFileType);
+             * filevo.setnSeq(Integer.parseInt(param2));
+             * filevo.setnFileSeq(Integer.parseInt(param3));
+             * 
+             * List<FileVo> fileVoInfo = hbbService.getHrFileList(filevo);
+             * 
+             * fullPath = fileVoInfo.get(0).getvFilePath(); fullPath += "/"; fullPath +=
+             * fileVoInfo.get(0).getvTempFileName();
+             * 
+             * originalFileName = fileVoInfo.get(0).getvFileName();
+             */
 
-           fullPath = fileVoInfo.get(0).getvFilePath();
-           fullPath += "/";
-           fullPath += fileVoInfo.get(0).getvTempFileName();
+            logger.debug(fullPath);
+        } else if (vFileType.equals("spm")) {
+            // //Map í™œìš©ë°©ì‹
+            //
+            // logger.debug("param 1 : " + param1); //ê³¼ì œì½”ë“œ
+            // logger.debug("param 2 : " + param2); //ì¼ë ¨ë²ˆí˜¸
+            // logger.debug("param 3 : " + param3); //íŒŒì¼ì¼ë ¨ë²ˆí˜¸
+            //
+            // Map<String, Object> param = new HashMap<String, Object>();
+            // param.put("vProjectCode", param1);
+            // param.put("nSeqNo", Integer.parseInt(param2));
+            // param.put("nFileSeqNo", Integer.parseInt(param3));
+            //
+            // SpmReportFileVo spmReportFileVo = spmService.selectReportFileInfo(param);
+            //
+            //
+            // fullPath = spmReportFileVo.getvFilePath();
+            // fullPath += "/";
+            // fullPath += spmReportFileVo.getvTempFileName();
+            //
+            // originalFileName = spmReportFileVo.getvFileName();
+            //
+            // logger.debug(fullPath);
+        } else if (vFileType.equals("")) {
+            // íŒŒì¼ ë‹¤ìš´ë¡œë“œ ì •ë³´ ì¡°íšŒ
+            // ì¶”ê°€í•´ì„œ ì‚¬ìš©í•˜ì„¸ìš”~
+            // ì´ë¶€ë¶„ì€ ìˆ˜ì •/ì‚­ì œí•˜ì§€ ë§ˆì„¸ìš”(ê²€ìƒ‰ìš©ë„)
+        }
 
-           originalFileName = fileVoInfo.get(0).getvFileName();*/
+        File renameFile; // ë‹¤ìš´ë¡œë“œë¥¼ ë°›ê¸°ìœ„í•œ íŒŒì¼ ê°ì²´
+        try {
+            renameFile = new File(fullPath);
+            logger.warn(fullPath.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.warn("íŒŒì¼ ì´ë¦„ ë³€ê²½ ì‹¤íŒ¨!!");
+            throw e;
+        }
 
-           logger.debug(fullPath);
-       } else if (vFileType.equals("spm")) {
-           //          //Map È°¿ë¹æ½Ä
-           //          
-           //          logger.debug("param 1 : " + param1);   //°úÁ¦ÄÚµå
-           //          logger.debug("param 2 : " + param2);   //ÀÏ·Ã¹øÈ£
-           //          logger.debug("param 3 : " + param3);   //ÆÄÀÏÀÏ·Ã¹øÈ£
-           //          
-           //          Map<String, Object> param = new HashMap<String, Object>();
-           //          param.put("vProjectCode", param1);
-           //          param.put("nSeqNo", Integer.parseInt(param2));
-           //          param.put("nFileSeqNo", Integer.parseInt(param3));
-           //          
-           //          SpmReportFileVo spmReportFileVo = spmService.selectReportFileInfo(param);
-           //
-           //
-           //          fullPath = spmReportFileVo.getvFilePath();
-           //          fullPath += "/";
-           //          fullPath += spmReportFileVo.getvTempFileName();
-           //          
-           //          originalFileName = spmReportFileVo.getvFileName();
-           //       
-           //          logger.debug(fullPath);
-       } else if (vFileType.equals("")) {
-           // ÆÄÀÏ ´Ù¿î·Îµå Á¤º¸ Á¶È¸
-           // Ãß°¡ÇØ¼­ »ç¿ëÇÏ¼¼¿ä~
-           // ÀÌºÎºĞÀº ¼öÁ¤/»èÁ¦ÇÏÁö ¸¶¼¼¿ä(°Ë»ö¿ëµµ)
-       }
+        ModelAndView mav = new ModelAndView("downloadView");
+        mav.addObject("downloadFile", renameFile); // ì„œë²„ì— ì €ì¥ëœ íŒŒì¼ ê²½ë¡œ
+        mav.addObject("originalFileName", originalFileName); // ì‚¬ìš©ìê°€ ì €ì¥í•œ ì›ë³¸ íŒŒì¼ëª…
 
-       File renameFile; // ´Ù¿î·Îµå¸¦ ¹Ş±âÀ§ÇÑ ÆÄÀÏ °´Ã¼
-       try {
-           renameFile = new File(fullPath);
-           logger.warn(fullPath.toString());
-       } catch (Exception e) {
-           e.printStackTrace();
-           logger.warn("ÆÄÀÏ ÀÌ¸§ º¯°æ ½ÇÆĞ!!");
-           throw e;
-       }
-
-       ModelAndView mav = new ModelAndView("downloadView");
-       mav.addObject("downloadFile", renameFile); //¼­¹ö¿¡ ÀúÀåµÈ ÆÄÀÏ °æ·Î
-       mav.addObject("originalFileName", originalFileName); //»ç¿ëÀÚ°¡ ÀúÀåÇÑ ¿øº» ÆÄÀÏ¸í
-
-       return mav; //¹ÙÀÌÆ®·Î º¸³»ÁØ´Ù
-   }
+        return mav; // ë°”ì´íŠ¸ë¡œ ë³´ë‚´ì¤€ë‹¤
+    }
 }
-

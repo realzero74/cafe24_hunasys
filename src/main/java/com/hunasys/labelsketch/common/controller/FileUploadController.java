@@ -29,90 +29,89 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class FileUploadController {
-   
+
    private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
-   
-   // file.properties ¿¡¼­ filepath¸¦ °¡Á®¿Í »ç¿ë
-   // root-context.xml¿¡ ¼³Á¤ÆÄÀÏ Á¤ÀÇ
+
+   // file.properties ì—ì„œ filepathë¥¼ ê°€ì ¸ì™€ ì‚¬ìš©
+   // root-context.xmlì— ì„¤ì •íŒŒì¼ ì •ì˜
    @Value("#{file['save.filepath']}")
    private String filePath;
 
-//   @Autowired
-//   private CommonService commonService;
+   // @Autowired
+   // private CommonService commonService;
 
    @RequestMapping(value = "/fileUpload/{ordersIdx}/{fileSeq}", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
    @ResponseBody
-  public String fileUpload(
-          @PathVariable long ordersIdx,
-          @PathVariable long fileseq, 
-          HttpServletRequest request, HttpServletResponse response) {
-     String json="";
-      
-     //ÆÄÀÏÀÌ ÀúÀåµÉ path ¼³Á¤
-     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-     Calendar calendar = Calendar.getInstance();
-     String strToday = sdf.format(calendar.getTime());
+   public String fileUpload(@PathVariable long ordersIdx, @PathVariable long fileseq, HttpServletRequest request,
+         HttpServletResponse response) {
+      String json = "";
 
-     String savePath = filePath + "/" + ordersIdx + "/" + fileseq;
+      // íŒŒì¼ì´ ì €ì¥ë  path ì„¤ì •
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+      Calendar calendar = Calendar.getInstance();
+      String strToday = sdf.format(calendar.getTime());
 
-     logger.debug(savePath);
+      String savePath = filePath + "/" + ordersIdx + "/" + fileseq;
 
-     List<Map<String, Object>> returnObject = new ArrayList<Map<String,Object>>();
-     try {
-        // request¿¡¼­ MultipartHttpServletRequest »ı¼º 
-        MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+      logger.debug(savePath);
 
-        //ÆÄÀÏÀÌ¸§ ¸ñ·Ï
-        Iterator<String> iter = multipartHttpServletRequest.getFileNames();
-        MultipartFile multipartFile = null;
-        String itemFileName = "";
+      List<Map<String, Object>> returnObject = new ArrayList<Map<String, Object>>();
+      try {
+         // requestì—ì„œ MultipartHttpServletRequest ìƒì„±
+         MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 
-        // µğ·¹Åä¸®°¡ ¾ø´Ù¸é »ı¼º 
-        File directory = new File(savePath);
-        if (!directory.isDirectory()) {
-           directory.mkdirs();
-        }
+         // íŒŒì¼ì´ë¦„ ëª©ë¡
+         Iterator<String> iter = multipartHttpServletRequest.getFileNames();
+         MultipartFile multipartFile = null;
+         String itemFileName = "";
 
-        // requestÀÇ Iterator¸¦ µ¹¸é¼­ Ã³¸®
-        while (iter.hasNext()) {
+         // ë””ë ˆí† ë¦¬ê°€ ì—†ë‹¤ë©´ ìƒì„±
+         File directory = new File(savePath);
+         if (!directory.isDirectory()) {
+            directory.mkdirs();
+         }
 
-           itemFileName = iter.next();
-           // ³»¿ëÀ» °¡Á®¿Í¼­ 
-           multipartFile = multipartHttpServletRequest.getFile(itemFileName);
-           String originalFileName = new String(multipartFile.getOriginalFilename().getBytes("8859_1"), "UTF-8"); //ÇÑ±ÛƒÆÁü ¹æÁö 
+         // requestì˜ Iteratorë¥¼ ëŒë©´ì„œ ì²˜ë¦¬
+         while (iter.hasNext()) {
 
-           // ÆÄÀÏ¸íÀÌ ¾ø´Ù¸é ´ÙÀ½Ã³¸®·Î
-           if ("".equals(originalFileName)) {
-              continue;
-           }
-           // ÆÄÀÏ È®ÀåÀÚ 
-           String oridianlFileExt = originalFileName.substring(originalFileName.lastIndexOf('.'));
-           
-           // ÀúÀåÇÒ ÆÄÀÏ¸í (ÆÄÀÏ ¸í¸í ±ÔÄ¢¿¡ ¸Â°Ô º¯°æ) 
-           String savedFileName =  ordersIdx+"_"+ fileseq +"_"+ strToday;
-           
-           // ¼³Á¤ÇÑ path¸¦ »ç¿ëÇÑ file °´Ã¼ »ı¼º
-           File savedFile = new File(savePath + File.separator + savedFileName);
-           // multipart·Î ¼ö½ÅÇÑ ÆÄÀÏÀ» savedFile °´Ã¼¿¡ º¹»ç
-           multipartFile.transferTo(savedFile);
+            itemFileName = iter.next();
+            // ë‚´ìš©ì„ ê°€ì ¸ì™€ì„œ
+            multipartFile = multipartHttpServletRequest.getFile(itemFileName);
+            String originalFileName = new String(multipartFile.getOriginalFilename().getBytes("8859_1"), "UTF-8"); // í•œê¸€êº ì§
+                                                                                                                   // ë°©ì§€
 
-           //DB¿¡¼­ »ç¿ëÇÏ´Â ÄÃ·³¸íÀ» »ç¿ëÇØ¼­ return °ª ¼³Á¤
-           Map<String, Object> fileHandleResult = new HashMap<String, Object>();
-           fileHandleResult.put("nFileSeqNo", fileseq);
-           fileHandleResult.put("vFileName", originalFileName);
-           fileHandleResult.put("vFileExtension", oridianlFileExt);
-           fileHandleResult.put("vTempFileName", savedFileName);
-           fileHandleResult.put("vFilePath", savePath);
-           returnObject.add(fileHandleResult);
-        }
-        json = new ObjectMapper().writeValueAsString(returnObject);
-     } catch (UnsupportedEncodingException e) {
-        e.printStackTrace();
-     } catch (IllegalStateException e) {
-        e.printStackTrace();
-     } catch (IOException e) {
-        e.printStackTrace();
-     }
-     return json;
-  }
+            // íŒŒì¼ëª…ì´ ì—†ë‹¤ë©´ ë‹¤ìŒì²˜ë¦¬ë¡œ
+            if ("".equals(originalFileName)) {
+               continue;
+            }
+            // íŒŒì¼ í™•ì¥ì
+            String oridianlFileExt = originalFileName.substring(originalFileName.lastIndexOf('.'));
+
+            // ì €ì¥í•  íŒŒì¼ëª… (íŒŒì¼ ëª…ëª… ê·œì¹™ì— ë§ê²Œ ë³€ê²½)
+            String savedFileName = ordersIdx + "_" + fileseq + "_" + strToday;
+
+            // ì„¤ì •í•œ pathë¥¼ ì‚¬ìš©í•œ file ê°ì²´ ìƒì„±
+            File savedFile = new File(savePath + File.separator + savedFileName);
+            // multipartë¡œ ìˆ˜ì‹ í•œ íŒŒì¼ì„ savedFile ê°ì²´ì— ë³µì‚¬
+            multipartFile.transferTo(savedFile);
+
+            // DBì—ì„œ ì‚¬ìš©í•˜ëŠ” ì»¬ëŸ¼ëª…ì„ ì‚¬ìš©í•´ì„œ return ê°’ ì„¤ì •
+            Map<String, Object> fileHandleResult = new HashMap<String, Object>();
+            fileHandleResult.put("nFileSeqNo", fileseq);
+            fileHandleResult.put("vFileName", originalFileName);
+            fileHandleResult.put("vFileExtension", oridianlFileExt);
+            fileHandleResult.put("vTempFileName", savedFileName);
+            fileHandleResult.put("vFilePath", savePath);
+            returnObject.add(fileHandleResult);
+         }
+         json = new ObjectMapper().writeValueAsString(returnObject);
+      } catch (UnsupportedEncodingException e) {
+         e.printStackTrace();
+      } catch (IllegalStateException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      return json;
+   }
 }
