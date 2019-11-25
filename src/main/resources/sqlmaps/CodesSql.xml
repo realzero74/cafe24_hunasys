@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlmaps.CodesSql">
+	<select id="selectCodesList">
+		SELECT
+			  GROUP_CD as "groupCd"   
+			, GROUP_NM as "groupNm" 
+			, ITEM_CD  as "itemCd" 
+			, ITEM_NM  as "itemNm" 
+			, ORDERED  as "ordered"
+		FROM
+			CODES
+		<where>
+			AND GROUP_CD = #{groupCd}
+		</where>	
+		ORDER BY ORDERED ASC
+	</select>
+	
+	<select id="selectCodesOne">
+		SELECT
+			  GROUP_CD as "groupCd"   
+			, GROUP_NM as "groupNm" 
+			, ITEM_CD  as "itemCd" 
+			, ITEM_NM  as "itemNm" 
+			, ORDERED  as "ordered"
+		FROM
+			CODES
+		<where>
+			AND GROUP_CD = #{groupCd}
+		</where>	
+		ORDER BY ORDERED ASC
+	</select>
+	
+	<insert id="insertCodes">
+		INSERT INTO
+		    TFZ2001
+		    (
+		          VASSETSCLASS      
+				, VASSETSCLASSNAME  
+				, VASSETSCLASSREMARK
+		    )
+		VALUES 
+		    (
+				  #{vAssetsClass,jdbcType=VARCHAR}      
+				, #{vAssetsClassName,jdbcType=VARCHAR}  
+				, #{vAssetsClassRemark,jdbcType=VARCHAR}
+		    )   
+	
+	</insert>
+	
+	<update id="updateCodes">
+		/* 자산관리 자본적지출 수정 */
+	    UPDATE
+	        TFA2002
+	    <set>  
+			<if test="vAssetsCode          != null"> VASSETSCODE          = #{vAssetsCode}           , </if> 
+			<if test="nAssetsSeqNo         != null"> NASSETSSEQNO         = #{nAssetsSeqNo}          , </if> 
+			<if test="vAssetsSeqName       != null"> VASSETSSEQNAME       = #{vAssetsSeqName}        , </if> 
+			<if test="vAssetsSeqReference  != null"> VASSETSSEQREFERENCE  = #{vAssetsSeqReference}   , </if> 
+			<if test="nSeqCost             != null"> NSEQCOST             = #{nSeqCost}              , </if> 
+			<if test="nSeqQuantity         != null"> NSEQQUANTITY         = #{nSeqQuantity}          , </if> 
+			<if test="nSeqAmount           != null"> NSEQAMOUNT           = #{nSeqAmount}            , </if> 
+			<if test="vSeqAcquireClass     != null"> VSEQACQUIRECLASS     = #{vSeqAcquireClass}      , </if> 
+			<if test="vSeqCustom           != null"> VSEQCUSTOM           = #{vSeqCustom}            , </if> 
+			<if test="vSeqAcquire          != null"> VSEQACQUIRE          = #{vSeqAcquire}           , </if> 
+			<if test="vProjectCode         != null"> VPROJECTCODE         = #{vProjectCode}          , </if> 
+			<if test="vAssetsSeqRemark     != null"> VASSETSSEQREMARK     = #{vAssetsSeqRemark}      , </if> 
+	    </set>  
+	    <where>
+	        AND VASSETSCODE = #{vAssetsCode}
+	        AND NASSETSSEQNO = #{nAssetsSeqNo}
+	    </where>
+	</update>
+	
+	<delete id="deleteCodes">
+		/* 자산관리 신규자산 삭제 */
+		DELETE FROM
+			TFA2001
+	    <where>
+	        AND VASSETSCODE = #{vAssetsCode}
+	    </where>
+	</delete>
+</mapper>
