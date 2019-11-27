@@ -2,7 +2,7 @@ package com.hunasys.labelsketch.common.vo;
 
 public class FileVo {
 
-	private Long   idx;
+	private Long idx;
 	private String originalFileName;
 	private String originalFileExt;
 	private String savedFileName;

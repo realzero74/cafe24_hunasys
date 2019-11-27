@@ -1,16 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sqlmaps.FilesSql">
 	<select id="selectFilesList">
-idx;              
-originalFileName; 
-originalFileExt;  
-savedFileName;    
-savedFilePath;    
-	
+		SELECT
+				idx;              
+				originalFileName; 
+				originalFileExt;  
+				savedFileName;    
+				savedFilePath;    
+		FROM
+			FILES
+		<where>
+			AND GROUP_CD = #{groupCd}
+		</where>
+		ORDER BY ORDERED ASC
 	</select>
-	<select id="selectFilesOne"></select>
-	<insert id="insertFiles"></insert>
-	<update id="updateFiles"></update>
-	<delete id="deleteFiles"></delete>
+
+	<select id="selectFilesOne">
+		SELECT
+				  GROUP_CD as "groupCd"   
+				, GROUP_NM as "groupNm" 
+				, ITEM_CD  as "itemCd" 
+				, ITEM_NM  as "itemNm" 
+				, ORDERED  as "ordered"
+			FROM
+				FILES
+		<where>
+			AND GROUP_CD = #{groupCd}
+		</where>
+		ORDER BY ORDERED ASC
+	</select>
+
+	<insert id="insertFiles">
+		INSERT INTO
+			FILES
+			(
+					GROUP_CD
+				, GROUP_NM
+				, ITEM_CD
+				, ITEM_NM
+				, ORDERED
+			)
+		VALUES 
+			(
+					#{groupCd,jdbcType=VARCHAR}   
+				, #{groupNm,jdbcType=VARCHAR} 
+				, #{itemCd,jdbcType=VARCHAR} 
+				, #{itemNm,jdbcType=VARCHAR} 
+				, #{ordered,jdbcType=VARCHAR}				
+			)   
+	</insert>
+
+	<update id="updateFiles">
+		/* 코드 수정 */
+			UPDATE
+			FILES
+		<set>
+			<if test="groupCd != null"> GROUP_CD  = #{groupCd}   ,  </if>
+			<if test="groupNm != null"> GROUP_NM  = #{groupNm}   ,  </if>
+			<if test="itemCd  != null"> ITEM_CD   = #{itemCd}    ,  </if>
+			<if test="itemNm  != null"> ITEM_NM   = #{itemNm}    ,  </if>
+			<if test="ordered != null"> ORDERED   = #{ordered}   ,  </if>
+		</set>
+		<where>
+				AND GROUP_CD = #{groupCd}
+				AND ITEM_CD = #{itemCd}
+			</where>
+	</update>
+
+	<delete id="deleteFiles">
+		/* 코드 삭제 */
+			DELETE FROM
+			FILES
+		<where>
+				AND GROUP_CD = #{groupCd}
+				AND ITEM_CD = #{itemCd}
+			</where>
+	</delete>
+
+
 </mapper>
