@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sqlmaps.CodesSql">
-	<select id="selectCodesList">
+	<select id="selectCodes">
 		SELECT
 			  GROUP_CD as "groupCd"   
 			, GROUP_NM as "groupNm" 
@@ -16,7 +16,7 @@
 		ORDER BY ORDERED ASC
 	</select>
 
-	<select id="selectCodesOne">
+	<select id="selectCode">
 		SELECT
 			  GROUP_CD as "groupCd"   
 			, GROUP_NM as "groupNm" 
@@ -31,7 +31,7 @@
 		ORDER BY ORDERED ASC
 	</select>
 
-	<insert id="insertCodes">
+	<insert id="insertCode">
 		INSERT INTO
 			CODES
 		    (
@@ -51,7 +51,7 @@
 		    )   
 	</insert>
 
-	<update id="updateCodes">
+	<update id="updateCode">
 		/* 코드 관리 수정 */
 	    UPDATE
 		CODES
@@ -68,7 +68,7 @@
 	    </where>
 	</update>
 
-	<delete id="deleteCodes">
+	<delete id="deleteCode">
 		/* 코드 삭제 */
 		DELETE FROM
 		CODES

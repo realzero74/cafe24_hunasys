@@ -1,81 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sqlmaps.FilesSql">
-	<select id="selectFilesList">
+	<select id="selectFiles">
+		/* 파일 목록 조회 */
 		SELECT
-				idx;              
-				originalFileName; 
-				originalFileExt;  
-				savedFileName;    
-				savedFilePath;    
+			  IDX                as "idx"
+			, ORIGINAL_FILE_NAME as "originalFileName"
+			, ORIGINAL_FILE_EXT  as "originalFileExt" 
+			, SAVED_FILE_NAME    as "savedFileName"    
+			, SAVED_FILE_PATH    as "savedFilePath"   
 		FROM
 			FILES
 		<where>
-			AND GROUP_CD = #{groupCd}
+			AND IDX = #{idx}
 		</where>
 		ORDER BY ORDERED ASC
 	</select>
 
-	<select id="selectFilesOne">
+	<select id="selectFile">
+		/* 파일 목록 조회 */
 		SELECT
-				  GROUP_CD as "groupCd"   
-				, GROUP_NM as "groupNm" 
-				, ITEM_CD  as "itemCd" 
-				, ITEM_NM  as "itemNm" 
-				, ORDERED  as "ordered"
-			FROM
-				FILES
+			  IDX                as "idx"
+			, ORIGINAL_FILE_NAME as "originalFileName"
+			, ORIGINAL_FILE_EXT  as "originalFileExt" 
+			, SAVED_FILE_NAME    as "savedFileName"    
+			, SAVED_FILE_PATH    as "savedFilePath"   
+		FROM
+			FILES
 		<where>
-			AND GROUP_CD = #{groupCd}
+			AND IDX = #{idx}
 		</where>
 		ORDER BY ORDERED ASC
 	</select>
 
-	<insert id="insertFiles">
+	<insert id="insertFile">
+		/* 파일 입력 */
 		INSERT INTO
 			FILES
 			(
-					GROUP_CD
-				, GROUP_NM
-				, ITEM_CD
-				, ITEM_NM
-				, ORDERED
+				  IDX               
+				, ORIGINAL_FILE_NAME
+				, ORIGINAL_FILE_EXT 
+				, SAVED_FILE_NAME   
+				, SAVED_FILE_PATH   
 			)
 		VALUES 
 			(
-					#{groupCd,jdbcType=VARCHAR}   
-				, #{groupNm,jdbcType=VARCHAR} 
-				, #{itemCd,jdbcType=VARCHAR} 
-				, #{itemNm,jdbcType=VARCHAR} 
-				, #{ordered,jdbcType=VARCHAR}				
+				 #{idx,jdbcType=VARCHAR}   
+				,#{originalFileName,jdbcType=VARCHAR} 
+				,#{originalFileExt,jdbcType=VARCHAR} 
+				,#{savedFileName,jdbcType=VARCHAR} 
+				,#{savedFilePath,jdbcType=VARCHAR}				
 			)   
 	</insert>
 
-	<update id="updateFiles">
-		/* 코드 수정 */
-			UPDATE
+	<update id="updateFile">
+		/* 파일 수정 */
+		UPDATE
 			FILES
 		<set>
-			<if test="groupCd != null"> GROUP_CD  = #{groupCd}   ,  </if>
-			<if test="groupNm != null"> GROUP_NM  = #{groupNm}   ,  </if>
-			<if test="itemCd  != null"> ITEM_CD   = #{itemCd}    ,  </if>
-			<if test="itemNm  != null"> ITEM_NM   = #{itemNm}    ,  </if>
-			<if test="ordered != null"> ORDERED   = #{ordered}   ,  </if>
+			<if test="idx              != null"> IDX                = #{idx}   ,  </if>
+			<if test="originalFileName != null"> ORIGINAL_FILE_NAME = #{originalFileNamem}   ,  </if>
+			<if test="originalFileExt  != null"> ORIGINAL_FILE_EXT  = #{originalFileExt}    ,  </if>
+			<if test="savedFileName    != null"> SAVED_FILE_NAME    = #{savedFileName}    ,  </if>
+			<if test="savedFilePath    != null"> SAVED_FILE_PATH    = #{savedFilePath}   ,  </if>
 		</set>
 		<where>
-				AND GROUP_CD = #{groupCd}
-				AND ITEM_CD = #{itemCd}
-			</where>
+				AND IDX = #{idx}
+		</where>
 	</update>
 
-	<delete id="deleteFiles">
-		/* 코드 삭제 */
-			DELETE FROM
+	<delete id="deleteFile">
+		/* 파일 삭제 */
+		DELETE FROM
 			FILES
 		<where>
-				AND GROUP_CD = #{groupCd}
-				AND ITEM_CD = #{itemCd}
-			</where>
+				AND IDX = #{idx}
+		</where>
 	</delete>
 
 
