@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hunasys.labelsketch.common.service.CommonService;
 import com.hunasys.labelsketch.common.vo.CodeVo;
-import com.hunasys.labelsketch.orders.service.OrdersService;
-import com.hunasys.labelsketch.orders.vo.OrdersVo;
+import com.hunasys.labelsketch.common.vo.FileVo;
 
 @RestController
 public class CommonRestApiController {
@@ -30,25 +29,25 @@ public class CommonRestApiController {
     }
 
     @RequestMapping(value = "/file/getList", method = RequestMethod.GET)
-    public List<OrdersVo> getFileList(@RequestParam Map<String, String> param) {
+    public List<FileVo> getFileList(@RequestParam Map<String, String> param) {
         logger.info("request /file/list");
         return service.getFileList(param);
     }
 
     @RequestMapping(value = "/file/getItem", method = RequestMethod.GET)
-    public OrdersVo getFileItem(@RequestParam long idx) {
+    public FileVo getFileItem(@RequestParam long idx) {
         logger.info("request /file/getItem");
         return service.getFileItem(idx);
     }
 
     @RequestMapping(value = "/file/newItem", method = RequestMethod.GET)
-    public String newFileItem(@RequestParam OrdersVo vo) {
+    public String newFileItem(@RequestParam FileVo vo) {
         logger.info("request /file/newItem");
         return service.newFileItem(vo);
     }
 
     @RequestMapping(value = "/file/modItem", method = RequestMethod.GET)
-    public String modFileItem(@RequestParam OrdersVo vo) {
+    public String modFileItem(@RequestParam FileVo vo) {
         logger.info("request /file/modItem");
         return service.modFileItem(vo);
     }

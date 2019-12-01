@@ -7,7 +7,7 @@ import com.hunasys.labelsketch.users.vo.UsersVo;
 public interface UsersService {
     public List<UsersVo> getList(int page);
 
-    public UsersVo getItem(long idx);
+    public UsersVo getItem(String idx);
 
     public String newItem(UsersVo vo);
 

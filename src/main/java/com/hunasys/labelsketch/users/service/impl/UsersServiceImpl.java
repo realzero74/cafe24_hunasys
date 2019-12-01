@@ -17,7 +17,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersVo getItem(long idx) {
+    public UsersVo getItem(String idx) {
         // TODO Auto-generated method stub
         return null;
     }

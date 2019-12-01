@@ -37,12 +37,12 @@
 											<tbody>
 												<tr>
 													<td rowspan="3"></td>
-													<td><input title="아이디" value="아이디" type="text" class="input02"></td>
-													<td rowspan="2" style="text-align: center;"><a href="html/main.html"><img src="/resources/image/btn/btn_login.jpg" /></a></td>
+													<td><input name="user_id" title="아이디" value="아이디" type="text" class="input02"></td>
+													<td rowspan="2" style="text-align: center;"><button id="login_btn"><img src="/resources/image/btn/btn_login.jpg" /></button></td>
 													<td rowspan="3"></td>
 												</tr>
 												<tr>
-													<td><input title="비밀번호" value="비밀번호" type="text" class="input02"></td>
+													<td><input name="user_pw" title="비밀번호" value="비밀번호" type="password" class="input02"></td>
 												</tr>
 												<tr>
 													<td align="left"><input type="checkbox"><img
