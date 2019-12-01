@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sqlmaps.CodesSql">
-	<select id="selectCodes">
+	<select id="selectCodeList" parameterType="String" resultType="com.hunasys.labelsketch.common.vo.CodeVo">
 		SELECT
 			  GROUP_CD as "groupCd"   
 			, GROUP_NM as "groupNm" 
@@ -11,70 +11,8 @@
 		FROM
 			CODES
 		<where>
-			AND GROUP_CD = #{groupCd}
+			AND GROUP_CD = #{code}
 		</where>
 		ORDER BY ORDERED ASC
 	</select>
-
-	<select id="selectCode">
-		SELECT
-			  GROUP_CD as "groupCd"   
-			, GROUP_NM as "groupNm" 
-			, ITEM_CD  as "itemCd" 
-			, ITEM_NM  as "itemNm" 
-			, ORDERED  as "ordered"
-		FROM
-			CODES
-		<where>
-			AND GROUP_CD = #{groupCd}
-		</where>
-		ORDER BY ORDERED ASC
-	</select>
-
-	<insert id="insertCode">
-		INSERT INTO
-			CODES
-		    (
-				  GROUP_CD
-				, GROUP_NM
-				, ITEM_CD
-				, ITEM_NM
-				, ORDERED
-		    )
-		VALUES 
-		    (
-				  #{groupCd,jdbcType=VARCHAR}   
-				, #{groupNm,jdbcType=VARCHAR} 
-				, #{itemCd,jdbcType=VARCHAR} 
-				, #{itemNm,jdbcType=VARCHAR} 
-				, #{ordered,jdbcType=VARCHAR}				
-		    )   
-	</insert>
-
-	<update id="updateCode">
-		/* 코드 관리 수정 */
-	    UPDATE
-		CODES
-		<set>
-			<if test="groupCd != null"> GROUP_CD  = #{groupCd}   ,  </if>
-			<if test="groupNm != null"> GROUP_NM  = #{groupNm}   ,  </if>
-			<if test="itemCd  != null"> ITEM_CD   = #{itemCd}    ,  </if>
-			<if test="itemNm  != null"> ITEM_NM   = #{itemNm}    ,  </if>
-			<if test="ordered != null"> ORDERED   = #{ordered}   ,  </if>
-		</set>
-		<where>
-	        AND GROUP_CD = #{groupCd}
-	        AND ITEM_CD = #{itemCd}
-	    </where>
-	</update>
-
-	<delete id="deleteCode">
-		/* 코드 삭제 */
-		DELETE FROM
-		CODES
-		<where>
-			AND GROUP_CD = #{groupCd}
-			AND ITEM_CD = #{itemCd}
-		</where>
-	</delete>
 </mapper>

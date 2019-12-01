@@ -3,23 +3,22 @@
 <mapper namespace="sqlmaps.OrdersSql">
 	<select id="selectOrders">
 		SELECT
-		IDX         as "idx"
-		ITEM_NM     as "itemNm"
-		ITEM_CLS    as "itemCls"
-		COMPANY     as "company"
-		SPEC        as "spec"
-		TOTAL_QTY   as "totalQty"
-		PAPER1      as "paper1"
-		PAPER2      as "paper2"
-		PARER_ROLL  as "parerRoll"
-		ROLL_QTY    as "rollQty"
-		DUE_DT      as "dueDt"
-		DELIVERY    as "delivery"
-		DESC        as "desc"
-		FILE1       as "file1"
-		FILE2       as "file2"
-		CREATE_DT   as "createDt"
-
+			IDX         as "idx"
+			ITEM_NM     as "itemNm"
+			ITEM_CLS    as "itemCls"
+			COMPANY     as "company"
+			SPEC        as "spec"
+			TOTAL_QTY   as "totalQty"
+			PAPER1      as "paper1"
+			PAPER2      as "paper2"
+			PARER_ROLL  as "parerRoll"
+			ROLL_QTY    as "rollQty"
+			DUE_DT      as "dueDt"
+			DELIVERY    as "delivery"
+			DESC        as "desc"
+			FILE1       as "file1"
+			FILE2       as "file2"
+			CREATE_DT   as "createDt"
 		FROM
 			ORDERS
 		<where>
@@ -30,20 +29,32 @@
 
 	<select id="selectOrder">
 		SELECT
-			  GROUP_CD as "groupCd"   
-			, GROUP_NM as "groupNm" 
-			, ITEM_CD  as "itemCd" 
-			, ITEM_NM  as "itemNm" 
-			, ORDERED  as "ordered"
+			IDX         as "idx"
+			ITEM_NM     as "itemNm"
+			ITEM_CLS    as "itemCls"
+			COMPANY     as "company"
+			SPEC        as "spec"
+			TOTAL_QTY   as "totalQty"
+			PAPER1      as "paper1"
+			PAPER2      as "paper2"
+			PARER_ROLL  as "parerRoll"
+			ROLL_QTY    as "rollQty"
+			DUE_DT      as "dueDt"
+			DELIVERY    as "delivery"
+			DESC        as "desc"
+			FILE1       as "file1"
+			FILE2       as "file2"
+			CREATE_DT   as "createDt"
 		FROM
 			ORDERS
 		<where>
-			AND GROUP_CD = #{groupCd}
+			AND IDX = #{idx}
 		</where>
 		ORDER BY ORDERED ASC
 	</select>
 
-	<insert id="insertOrder">
+	<insert id="insertOrders">
+		/* 주문 입력 */
 		INSERT INTO
 			ORDERS
 			(
@@ -63,10 +74,10 @@
 			)   
 	</insert>
 
-	<update id="updateOrder">
-		/* 코드 관리 수정 */
+	<update id="updateOrders">
+		/* 주문 수정 */
 		UPDATE
-				ORDERS
+			ORDERS
 		<set>
 			<if test="groupCd != null"> GROUP_CD  = #{groupCd}   ,  </if>
 			<if test="groupNm != null"> GROUP_NM  = #{groupNm}   ,  </if>
@@ -80,9 +91,9 @@
 		</where>
 	</update>
 
-	<delete id="deleteOrder">
-		/* 코드 삭제 */
-				DELETE FROM
+	<delete id="deleteOrders">
+		/* 주문 삭제 */
+		DELETE FROM
 				ORDERS
 		<where>
 			AND GROUP_CD = #{groupCd}

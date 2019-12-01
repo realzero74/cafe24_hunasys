@@ -64,7 +64,7 @@
 	<delete id="deleteUser">
 		/* 코드 삭제 */
 		DELETE FROM
-		ORDERS
+			USERS
 		<where>
 			AND GROUP_CD = #{groupCd}
 			AND ITEM_CD = #{itemCd}

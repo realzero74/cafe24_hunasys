@@ -2,10 +2,10 @@ package com.hunasys.labelsketch.common.vo;
 
 public class CodeVo {
 
-	private String groupCd; /*  */
-	private String groupNm; /*  */
-	private String itemCd; /*  */
-	private String itemNm; /*  */
+	private String  groupCd; /*  */
+	private String  groupNm; /*  */
+	private String  itemCd; /*  */
+	private String  itemNm; /*  */
 	private Integer ordered; /*  */
 
 	public String getGroupCd() {

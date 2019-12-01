@@ -11,31 +11,31 @@ import org.springframework.stereotype.Service;
 public class UsersServiceImpl implements UsersService {
 
     @Override
-    public List<UsersVo> getUserList(int page) {
+    public List<UsersVo> getList(int page) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public UsersVo getUserItem(long idx) {
+    public UsersVo getItem(long idx) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String newUserItem(UsersVo vo) {
+    public String newItem(UsersVo vo) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String modUserItem(UsersVo vo) {
+    public String modItem(UsersVo vo) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String delUserItem(long idx) {
+    public String delItem(long idx) {
         // TODO Auto-generated method stub
         return null;
     }

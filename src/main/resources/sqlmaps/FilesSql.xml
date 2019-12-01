@@ -78,6 +78,4 @@
 				AND IDX = #{idx}
 		</where>
 	</delete>
-
-
 </mapper>

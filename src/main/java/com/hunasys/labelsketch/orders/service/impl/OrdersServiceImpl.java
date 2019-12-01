@@ -1,6 +1,7 @@
 package com.hunasys.labelsketch.orders.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,33 +17,28 @@ public class OrdersServiceImpl implements OrdersService {
     private OrdersDao ordersdao;
     
     @Override
-    public List<OrdersVo> getList(int page) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<OrdersVo> getList(Map<String, String> param) {
+    	return ordersdao.selectOrders(param);
     }
 
     @Override
     public OrdersVo getItem(long idx) {
-        // TODO Auto-generated method stub
-        return null;
+    	return ordersdao.selectOrder(idx);
     }
 
     @Override
     public String newItem(OrdersVo vo) {
-        // TODO Auto-generated method stub
-        return null;
+    	return ordersdao.insertOrder(vo);
     }
 
     @Override
     public String modItem(OrdersVo vo) {
-        // TODO Auto-generated method stub
-        return null;
+    	return ordersdao.updateOrder(vo);
     }
 
     @Override
     public String delItem(long idx) {
-        // TODO Auto-generated method stub
-        return null;
+    	return ordersdao.deleteOrder(idx);
     }
 
 }

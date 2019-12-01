@@ -38,6 +38,18 @@
 		<beans:property name="maxUploadSize" value="100000000" />
 	</beans:bean>
 	
+    <!-- Interceptor bean 생성 -->
+    <beans:bean id="authenticationInterceptor" class="com.hunasys.labelsketch.common.util.AuthenticationInterceptor" />
+    <!-- Interceptor 설정 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/**" />
+            <exclude-mapping path="/resources/**"/>
+            <beans:ref bean="authenticationInterceptor" />
+        </interceptor>
+    </interceptors>	
+	
+	
 	<!--  transaction 설정 -->
 	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<beans:property name="dataSource" ref="dataSource" />
@@ -45,7 +57,5 @@
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 	
 	<context:component-scan base-package="com.hunasys.labelsketch" />
-	
-	
 	
 </beans:beans>

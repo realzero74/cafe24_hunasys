@@ -21,32 +21,42 @@ public class OrdersDaoImpl implements OrdersDao {
     
 
     @Override
-    public List<OrdersVo> selectList(Map<String, Integer> page) {
-        return sqlsession.selectList("sqlmaps.OrdersSql.selectList", page);
+    public List<OrdersVo> selectOrders(Map<String, String> param) {
+        return sqlsession.selectList("sqlmaps.OrdersSql.selectOrders", param);
     }
 
     @Override
-    public OrdersVo selectItem(long idx) {
-        return sqlsession.selectOne("sqlmaps.OrdersSql.selectItem", idx);
+    public OrdersVo selectOrder(long idx) {
+        return sqlsession.selectOne("sqlmaps.OrdersSql.selectOrder", idx);
     }
 
     @Override
-    public String insertItem(OrdersVo vo) {
-        // TODO Auto-generated method stub
-        return null;
+    public String insertOrder(OrdersVo vo) {
+		int count = sqlsession.insert("sqlmaps.OrdersSql.insertOrder", vo);
+		if (count > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
     }
 
     @Override
-    public String updateItem(OrdersVo vo) {
-        // TODO Auto-generated method stub
-        return null;
+    public String updateOrder(OrdersVo vo) {
+    	int count = sqlsession.update("sqlmaps.OrdersSql.updateOrder", vo);
+		if (count > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}    	
     }
 
     @Override
-    public String deleteItem(long idx) {
-        // TODO Auto-generated method stub
-        return null;
+    public String deleteOrder(long idx) {
+        int count = sqlsession.delete("sqlmaps.OrdersSql.deleteOrder", idx);
+		if (count > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}    	
     }
-
-
 }

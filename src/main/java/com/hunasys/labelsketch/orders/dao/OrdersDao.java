@@ -7,14 +7,14 @@ import com.hunasys.labelsketch.orders.vo.OrdersVo;
 
 public interface OrdersDao {
     
-    public List<OrdersVo> selectList(Map<String, Integer> page);
+    public List<OrdersVo> selectOrders(Map<String, String> param);
     
-    public OrdersVo selectItem(long idx);
+    public OrdersVo selectOrder(long idx);
     
-    public String insertItem(OrdersVo vo);
+    public String insertOrder(OrdersVo vo);
     
-    public String updateItem(OrdersVo vo);
+    public String updateOrder(OrdersVo vo);
     
-    public String deleteItem(long idx);
+    public String deleteOrder(long idx);
 
 }
