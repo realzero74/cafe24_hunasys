@@ -29,7 +29,9 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 		if (requestUri.equals("/")) {
 			return true;
 		}
-		
+		if (requestUri.equals("/login_check")) {
+			return true;
+		}
 		// session 객체를 가져옴
 		HttpSession session = request.getSession();
 		// login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴

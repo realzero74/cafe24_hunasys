@@ -1,73 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sqlmaps.UsersSql">
-	<select id="selectUsers">
+	<select id="selectUsers" parameterType="java.util.HashMap" resultType="com.hunasys.labelsketch.users.vo.UsersVo">
 		/* 사용자 목록 조회 */
-		SELECT
-			  IDX     as "idx"
-			, USER_ID as "userId"
-			, USER_PW as "userPw"
-		FROM
-			USERS
-		<where>
-			AND IDX = #{idx}
-		</where>
-		ORDER BY IDX ASC
+		SELECT R1.* FROM(
+			SELECT 
+				  USER_ID   as "userId"    
+				, USER_PW   as "userPw"
+				, USER_COMP as "userComp"  
+				, USER_CLS  as "userCls"   
+				, NEW_DT    as "newDt"     
+				, MOD_DT	as "modDt"     
+			FROM 
+				USERS
+			ORDER BY USER_CLS ASC, USER_ID ASC
+		) R1
+		LIMIT 10 OFFSET #{start}
 	</select>
 
-	<select id="selectUser">
+	<select id="selectUser" parameterType="java.util.HashMap" resultType="com.hunasys.labelsketch.users.vo.UsersVo">
 		/* 사용자 조회 */
-		SELECT
-			  IDX     as "idx"
-			, USER_ID as "userId"
-			, USER_PW as "userPw"
-		FROM
+		SELECT 
+			  USER_ID   as "userId"    
+			, USER_PW   as "userPw"
+			, USER_COMP as "userComp"  
+			, USER_CLS  as "userCls"   
+			, NEW_DT    as "newDt"     
+			, MOD_DT	as "modDt"     
+		FROM 
 			USERS
 		<where>
-			AND IDX = #{idx}
+			AND USER_ID = #{userId}
+			AND USER_PW = #{userPw}
 		</where>
-		ORDER BY IDX ASC
 	</select>
 
-	<insert id="insertUser">
+	<insert id="insertUser" parameterType="com.hunasys.labelsketch.users.vo.UsersVo">
 		/* 사용자 입력 */
 		INSERT INTO
 			USERS
 			(
-				  IDX
-				, USER_ID
-				, USER_PW
+				  USER_ID    
+				, USER_PW  
+				, USER_COMP  
+				, USER_CLS   
+				, NEW_DT     
+				, MOD_DT
 			)
 			VALUES 
 			(
-				  #{idx,jdbcType=VARCHAR}
-				, #{userId,jdbcType=VARCHAR}
+				  #{userId,jdbcType=VARCHAR}    
 				, #{userPw,jdbcType=VARCHAR}
+				, #{userComp,jdbcType=VARCHAR}  
+				, #{userCls,jdbcType=VARCHAR}   
+				, now() 
+				, now()    
 			)
 	</insert>
 
-	<update id="updateUser">
+	<update id="updateUser" parameterType="com.hunasys.labelsketch.users.vo.UsersVo">
 		/* 사용자 수정 */
 		UPDATE
 			USERS
 		<set>
-			<if test="idx    != null">  IDX       = #{idx}       ,  </if>
-			<if test="userId != null">  USER_ID   = #{userId}    ,  </if>
-			<if test="userPw != null">  USER_PW   = #{userPw}    ,  </if>
+			<if test="userPw  != null"> USER_PW   = #{userPw}   ,  </if>
+			<if test="userComp!= null"> USER_COMP = #{userComp} ,  </if> 
+			MOD_DT = now(),
 		</set>
 		<where>
-			AND GROUP_CD = #{groupCd}
-			AND ITEM_CD = #{itemCd}
+			AND USER_ID = #{userId}
 		</where>
 	</update>
 
-	<delete id="deleteUser">
+	<delete id="deleteUser" parameterType="java.util.HashMap">
 		/* 코드 삭제 */
 		DELETE FROM
 			USERS
 		<where>
-			AND GROUP_CD = #{groupCd}
-			AND ITEM_CD = #{itemCd}
+			AND USER_ID = #{userId}
+			AND USER_PW = #{userPw}
 		</where>
 	</delete>
 </mapper>

@@ -1,65 +1,66 @@
 package com.hunasys.labelsketch.users.vo;
 
 public class UsersVo {
-
 	
-	private String user_id; 
-	private String user_pw; 
-	private String user_comp; 
-	private String user_cls; 
-	private String new_dt; 
-	private String mod_dt;
-	public String getUser_id() {
-		return user_id;
+	private String userId; 
+	private String userPw; 
+	private String userComp; 
+	private String userCls; 
+	private String newDt; 
+	private String modDt;
+	
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getUser_pw() {
-		return user_pw;
+	public String getUserPw() {
+		return userPw;
 	}
-	public void setUser_pw(String user_pw) {
-		this.user_pw = user_pw;
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
 	}
-	public String getUser_comp() {
-		return user_comp;
+	public String getUserComp() {
+		return userComp;
 	}
-	public void setUser_comp(String user_comp) {
-		this.user_comp = user_comp;
+	public void setUserComp(String userComp) {
+		this.userComp = userComp;
 	}
-	public String getUser_cls() {
-		return user_cls;
+	public String getUserCls() {
+		return userCls;
 	}
-	public void setUser_cls(String user_cls) {
-		this.user_cls = user_cls;
+	public void setUserCls(String userCls) {
+		this.userCls = userCls;
 	}
-	public String getNew_dt() {
-		return new_dt;
+	public String getNewDt() {
+		return newDt;
 	}
-	public void setNew_dt(String new_dt) {
-		this.new_dt = new_dt;
+	public void setNewDt(String newDt) {
+		this.newDt = newDt;
 	}
-	public String getMod_dt() {
-		return mod_dt;
+	public String getModDt() {
+		return modDt;
 	}
-	public void setMod_dt(String mod_dt) {
-		this.mod_dt = mod_dt;
+	public void setModDt(String modDt) {
+		this.modDt = modDt;
 	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("UsersVo [user_id=");
-		builder.append(user_id);
-		builder.append(", user_pw=");
-		builder.append(user_pw);
-		builder.append(", user_comp=");
-		builder.append(user_comp);
-		builder.append(", user_cls=");
-		builder.append(user_cls);
-		builder.append(", new_dt=");
-		builder.append(new_dt);
-		builder.append(", mod_dt=");
-		builder.append(mod_dt);
+		builder.append("UsersVo [userId=");
+		builder.append(userId);
+		builder.append(", userPw=");
+		builder.append(userPw);
+		builder.append(", userComp=");
+		builder.append(userComp);
+		builder.append(", userCls=");
+		builder.append(userCls);
+		builder.append(", newDt=");
+		builder.append(newDt);
+		builder.append(", modDt=");
+		builder.append(modDt);
 		builder.append("]");
 		return builder.toString();
 	}

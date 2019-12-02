@@ -9,11 +9,11 @@ public interface UsersDao {
 	
     public List<UsersVo> selectUsers(Map<String, String> param);
     
-    public UsersVo selectUser(long idx);
+    public UsersVo selectUser(Map<String, String> param);
     
     public String insertUser(UsersVo vo);
     
     public String updateUser(UsersVo vo);
     
-    public String deleteUser(long idx);
+    public String deleteUser(String idx);
 }

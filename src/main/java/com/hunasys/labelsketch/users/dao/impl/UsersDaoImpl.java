@@ -27,8 +27,8 @@ public class UsersDaoImpl implements UsersDao {
     }
 
     @Override
-    public UsersVo selectUser(long idx) {
-        return sqlsession.selectOne("sqlmaps.UsersSql.selectUser", idx);
+    public UsersVo selectUser(Map<String, String> param) {
+        return sqlsession.selectOne("sqlmaps.UsersSql.selectUser", param);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class UsersDaoImpl implements UsersDao {
     }
 
     @Override
-    public String deleteUser(long idx) {
+    public String deleteUser(String idx) {
         int count = sqlsession.delete("sqlmaps.UsersSql.deleteUser", idx);
 		if (count > 0) {
 			return "success";

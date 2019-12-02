@@ -2,7 +2,9 @@ package com.hunasys.labelsketch.common.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -46,20 +48,19 @@ public class CommonViewController {
 			HttpServletRequest request) {
 		logger.info("Welcome home! 로그인 체크");
 		
-        UsersVo usersvo = usersservice.getItem(userid);
-        if(userid.equals(usersvo.getUser_id()) && userpw.equals(usersvo.getUser_pw())) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("userId", userid);
+		param.put("userPw", userpw);
+		
+        UsersVo usersvo = usersservice.getItem(param);
+        if(usersvo != null && userid.equals(usersvo.getUserId()) && userpw.equals(usersvo.getUserPw())) {
         	
         	logger.info("Welcome home! 로그인 성공");
         	
         	HttpSession session = request.getSession();
         	session.setAttribute("login", usersvo);
 
-        	if ("admin".equals(usersvo.getUser_id())) {
-        		return "manager";
-        	}
-        	else {
-        		return "customer";
-        	}
+        	return "redirect:/orders/list";
         }
         else {
         	logger.info("Welcome home! 로그인 실패");

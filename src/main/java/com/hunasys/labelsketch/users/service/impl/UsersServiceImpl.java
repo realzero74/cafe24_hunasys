@@ -1,43 +1,44 @@
 package com.hunasys.labelsketch.users.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.hunasys.labelsketch.users.dao.UsersDao;
 import com.hunasys.labelsketch.users.service.UsersService;
 import com.hunasys.labelsketch.users.vo.UsersVo;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class UsersServiceImpl implements UsersService {
 
+	@Autowired
+	UsersDao usersdao; 
+	
     @Override
-    public List<UsersVo> getList(int page) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<UsersVo> getList(Map<String, String> param) {
+    	return usersdao.selectUsers(param);
     }
 
     @Override
-    public UsersVo getItem(String idx) {
-        // TODO Auto-generated method stub
-        return null;
+    public UsersVo getItem(Map<String, String> param) {
+        return usersdao.selectUser(param);
     }
 
     @Override
     public String newItem(UsersVo vo) {
-        // TODO Auto-generated method stub
-        return null;
+        return usersdao.insertUser(vo);
     }
 
     @Override
     public String modItem(UsersVo vo) {
-        // TODO Auto-generated method stub
-        return null;
+        return usersdao.updateUser(vo);
     }
 
     @Override
-    public String delItem(long idx) {
-        // TODO Auto-generated method stub
-        return null;
+    public String delItem(String idx) {
+        return usersdao.deleteUser(idx);
     }
 
 }

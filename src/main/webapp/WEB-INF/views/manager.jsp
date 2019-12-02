@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>휴나닉 주문관리 서비스입니다</title>
+	<title>휴나닉 주문관리 서비스 - 관리자</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="../css/common.css" type="text/css">
+	<link rel="stylesheet" href="/resources/css/common.css" type="text/css">
 	<STYLE type="text/css">
 		td.today {
 			color: #ffffff;
@@ -196,9 +196,9 @@
 										주문일
 									</td>
 									<td colspan="3" style=" text-align:left">
-										<input type="text" class="input01"> <img src="../image/layout/icon_cal.gif"
+										<input type="text" class="input01"> <img src="/resources/image/layout/icon_cal.gif"
 											alt="달력" title="납기일" /> - <input type="text" class="input01"> <img
-											src="../image/layout/icon_cal.gif" alt="달력" title="납기일" />
+											src="/resources/image/layout/icon_cal.gif" alt="달력" title="납기일" />
 									</td>
 								</tr>
 								<tr height="40px">
@@ -206,9 +206,9 @@
 										납기일
 									</td>
 									<td colspan="3" style=" text-align:left">
-										<input type="text" class="input01"> <img src="../image/layout/icon_cal.gif"
+										<input type="text" class="input01"> <img src="/resources/image/layout/icon_cal.gif"
 											alt="달력" title="납기일" /> - <input type="text" class="input01"> <img
-											src="../image/layout/icon_cal.gif" alt="달력" title="납기일" />
+											src="/resources/image/layout/icon_cal.gif" alt="달력" title="납기일" />
 									</td>
 								</tr>
 								<tr height="40px">
@@ -257,7 +257,7 @@
 										</SELECT>
 									</td>
 									<td>
-										<img src="../image/btn/btn_sch.gif">
+										<img src="/resources/image/btn/btn_sch.gif">
 									</td>
 
 								</tr>
@@ -268,8 +268,8 @@
 				</div><!-- conts01 끝 -->
 				<div id="conts02">
 					<div class="mpTitle02">
-						<a href="orderReg.html"><img src="../image/btn/btn_reg.gif"></a> <img
-							src="../image/btn/btn_excel.jpg">
+						<a href="orderReg.html"><img src="/resources/image/btn/btn_reg.gif"></a> <img
+							src="/resources/image/btn/btn_excel.jpg">
 
 					</div>
 					<div class="mpResult">
@@ -317,7 +317,7 @@
 														1
 													</td>
 													<td style=" text-align:left">
-														회사명: 개그콘서트 대박 완전 잼 있어요 <img src="../image/btn/icon_new.gif"
+														회사명: 개그콘서트 대박 완전 잼 있어요 <img src="/resources/image/btn/icon_new.gif"
 															alt="새로운글" title="새로운글" />
 														<br>
 														품명:
@@ -337,11 +337,11 @@
 														2012.02.02 11:12:23
 													</td>
 													<td>
-														<img src="../image/btn/btn_finish.jpg"><br><br><img
-															src="../image/btn/btn_cancel.jpg">
+														<img src="/resources/image/btn/btn_finish.jpg"><br><br><img
+															src="/resources/image/btn/btn_cancel.jpg">
 													</td>
 													<td>
-														<img src="../image/btn/btn_print.jpg">
+														<img src="/resources/image/btn/btn_print.jpg">
 													</td>
 												</tr>
 
@@ -356,8 +356,8 @@
 					<div class="paginate">
 						<!-- paginate -->
 
-						<a href="#none" class="none"><img src="../image/btn/btn_front.gif" alt="처음" /></a>
-						<a href="#none" class="none"><img src="../image/btn/btn_pre.gif" alt="이전" /></a>
+						<a href="#none" class="none"><img src="/resources/image/btn/btn_front.gif" alt="처음" /></a>
+						<a href="#none" class="none"><img src="/resources/image/btn/btn_pre.gif" alt="이전" /></a>
 						<a href="#none"><strong>1</strong></a>
 						<a href="#none">2</a>
 						<a href="#none">3</a>
@@ -368,8 +368,8 @@
 						<a href="#none">8</a>
 						<a href="#none">9</a>
 						<a href="#none">10</a>
-						<a href="#none" class="none"><img src="../image/btn/btn_nxt.gif" alt="다음" /></a>
-						<a href="#none" class="none"><img src="../image/btn/btn_end.gif" alt="끝" /></a>
+						<a href="#none" class="none"><img src="/resources/image/btn/btn_nxt.gif" alt="다음" /></a>
+						<a href="#none" class="none"><img src="/resources/image/btn/btn_end.gif" alt="끝" /></a>
 
 					</div>
 					<!--//paginate -->
