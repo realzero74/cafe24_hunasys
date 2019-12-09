@@ -172,7 +172,7 @@
 			</div><!-- header 끝 -->
 
 			<div id="contents">
-
+				<c:if test="${userCls eq 'admin'}">
 				<div id="conts01">
 					<div id="left_conts01">
 						<div id="calendarView"></div>
@@ -266,6 +266,7 @@
 					</div><!-- right_conts01 끝 -->
 
 				</div><!-- conts01 끝 -->
+				</c:if>
 				<div id="conts02">
 					<div class="mpTitle02">
 						<a href="orderReg.html"><img src="/resources/image/btn/btn_reg.gif"></a> <img

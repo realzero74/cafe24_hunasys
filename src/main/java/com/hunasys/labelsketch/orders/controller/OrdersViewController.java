@@ -28,12 +28,10 @@ public class OrdersViewController {
 		HttpSession session = request.getSession();
 		UsersVo uservo = (UsersVo)session.getAttribute("login");
 		
-		if ("admin".equals(uservo.getUserCls())) {
-			return "manager";
-		} 
-		else {
-			return "customer";
-		}
+		model.addAttribute("userId", uservo.getUserId());
+		model.addAttribute("userCls", uservo.getUserCls());
+		
+		return "orderList";
 	}
 
 	@RequestMapping(value = "/orders/form", method = RequestMethod.GET)

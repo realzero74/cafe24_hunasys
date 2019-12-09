@@ -1,5 +1,7 @@
 package com.hunasys.labelsketch.orders.vo;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class OrdersVo {
 
 	private long   order_id; 
@@ -14,13 +16,22 @@ public class OrdersVo {
 	private String paper4; 
 	private String parer_roll; 
 	private int    roll_qty; 
-	private String due_dt; 
+	private String due_date; 
 	private String delivery; 
 	private String description; 
 	private long   file1; 
-	private long   file2; 
-	private String new_dt; 
-	private String mod_dt;
+	private long   file2;
+	
+	private String user_id;
+	
+	private String new_date;
+	private String new_time;
+	private String end_date;
+	private String end_time;
+	private String mod_date;
+	private String mod_time;
+	
+	
 	public long getOrder_id() {
 		return order_id;
 	}
@@ -93,11 +104,11 @@ public class OrdersVo {
 	public void setRoll_qty(int roll_qty) {
 		this.roll_qty = roll_qty;
 	}
-	public String getDue_dt() {
-		return due_dt;
+	public String getDue_date() {
+		return due_date;
 	}
-	public void setDue_dt(String due_dt) {
-		this.due_dt = due_dt;
+	public void setDue_date(String due_date) {
+		this.due_date = due_date;
 	}
 	public String getDelivery() {
 		return delivery;
@@ -123,60 +134,57 @@ public class OrdersVo {
 	public void setFile2(long file2) {
 		this.file2 = file2;
 	}
-	public String getNew_dt() {
-		return new_dt;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setNew_dt(String new_dt) {
-		this.new_dt = new_dt;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getMod_dt() {
-		return mod_dt;
+	public String getNew_date() {
+		return new_date;
 	}
-	public void setMod_dt(String mod_dt) {
-		this.mod_dt = mod_dt;
+	public void setNew_date(String new_date) {
+		this.new_date = new_date;
 	}
+	public String getNew_time() {
+		return new_time;
+	}
+	public void setNew_time(String new_time) {
+		this.new_time = new_time;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
+	public String getEnd_time() {
+		return end_time;
+	}
+	public void setEnd_time(String end_time) {
+		this.end_time = end_time;
+	}
+	public String getMod_date() {
+		return mod_date;
+	}
+	public void setMod_date(String mod_date) {
+		this.mod_date = mod_date;
+	}
+	public String getMod_time() {
+		return mod_time;
+	}
+	public void setMod_time(String mod_time) {
+		this.mod_time = mod_time;
+	}
+	
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("OrdersVo [order_id=");
-		builder.append(order_id);
-		builder.append(", item_cls=");
-		builder.append(item_cls);
-		builder.append(", company=");
-		builder.append(company);
-		builder.append(", item_nm=");
-		builder.append(item_nm);
-		builder.append(", item_spec=");
-		builder.append(item_spec);
-		builder.append(", total_qty=");
-		builder.append(total_qty);
-		builder.append(", paper1=");
-		builder.append(paper1);
-		builder.append(", paper2=");
-		builder.append(paper2);
-		builder.append(", paper3=");
-		builder.append(paper3);
-		builder.append(", paper4=");
-		builder.append(paper4);
-		builder.append(", parer_roll=");
-		builder.append(parer_roll);
-		builder.append(", roll_qty=");
-		builder.append(roll_qty);
-		builder.append(", due_dt=");
-		builder.append(due_dt);
-		builder.append(", delivery=");
-		builder.append(delivery);
-		builder.append(", description=");
-		builder.append(description);
-		builder.append(", file1=");
-		builder.append(file1);
-		builder.append(", file2=");
-		builder.append(file2);
-		builder.append(", new_dt=");
-		builder.append(new_dt);
-		builder.append(", mod_dt=");
-		builder.append(mod_dt);
-		builder.append("]");
-		return builder.toString();
+		String str = "";
+		try {
+			str =  new ObjectMapper().writeValueAsString(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return str;
 	}
 }

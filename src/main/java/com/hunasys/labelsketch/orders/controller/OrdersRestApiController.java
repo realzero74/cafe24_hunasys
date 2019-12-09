@@ -6,6 +6,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,13 +36,13 @@ public class OrdersRestApiController {
     }
 
     @RequestMapping(value = "/order/newItem", method = RequestMethod.GET)
-    public String newItem(@RequestParam OrdersVo vo) {
+    public String newItem(@RequestBody OrdersVo vo) {
         logger.info("request /order/newItem");
         return service.newItem(vo);
     }
 
     @RequestMapping(value = "/order/modItem", method = RequestMethod.GET)
-    public String modItem(@RequestParam OrdersVo vo) {
+    public String modItem(@RequestBody OrdersVo vo) {
         logger.info("request /order/modItem");
         return service.modItem(vo);
     }
