@@ -41,7 +41,7 @@ public class CommonViewController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/login_check", method = RequestMethod.GET)
+	@RequestMapping(value = "/login_check", method = RequestMethod.POST)
 	public String logincheck(
 			@RequestParam(value = "user_id", required = true) String userid,
 			@RequestParam(value = "user_pw", required = true) String userpw,
@@ -73,7 +73,7 @@ public class CommonViewController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	public String logout(Locale locale, Model model) {
 		logger.info("Welcome home! logout()");
 

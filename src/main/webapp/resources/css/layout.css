@@ -23,15 +23,15 @@
 /*-- 메인화면 --*/
 
 #container #header{ margin:0px auto; width:100%; height:132px; border:0px solid #000; }
-#container #header #hdconts01{ margin:0px auto; width:938px; height:132px; border:0px solid #000; background-image: url(../image/layout/main_topImg.jpg)}
-#container #header #hdconts02{ margin:0px auto; width:938px; height:132px; border:0px solid #000; background-image: url(../image/layout/custMain_topImg.jpg)}
-#container #header #hdconts03{ margin:0px auto; width:938px; height:132px; border:0px solid #000; background-image: url(../image/layout/userAdmin_topImg.jpg)}
+#container #header #hdconts01{ margin:0px auto; width:938px; height:132px; border:0px solid #000; background-image: url(/resources/image/layout/main_topImg.jpg)}
+#container #header #hdconts02{ margin:0px auto; width:938px; height:132px; border:0px solid #000; background-image: url(/resources/image/layout/custMain_topImg.jpg)}
+#container #header #hdconts03{ margin:0px auto; width:938px; height:132px; border:0px solid #000; background-image: url(/resources/image/layout/userAdmin_topImg.jpg)}
 
 #container #contents{margin:0px auto; width:100%; height:100%;; margin-bottom:10px; text-align:center; border:0px solid #000;}
 
 
-#container #contents #conts01 { position:relative; text-align:center; width:938px; height:320px; background-image: url( ../image/layout/main_midBg.jpg); border:0px solid #000; margin:10px auto;}
-#container #contents #conts02 { position:relative; text-align:center; width:938px; height:100%; border:0px solid #000; margin:0px auto;}
+#container #contents #conts01 { display:inline-block; position:relative; text-align:center; width:938px; height:320px; background-image: url( /resources/image/layout/main_midBg.jpg); border:0px solid #000; margin-top: 10px; margin-bottom: 10px}
+#container #contents #conts02 { display:inline-block; position:relative; text-align:center; width:938px; height:100%; border:0px solid #000;}
 #container #contents #conts02 .mpTitle01{ float:right; display:inline-block; width:100%; height:30px; text-align:right; padding-top:10px; border:0px solid #e1e1e1;}
 #container #contents #conts02 .mpTitle02{ float:right; display:inline-block; width:100%; height:40px; text-align:right; padding-top:5px; border:0px solid #e1e1e1;}
 
@@ -39,7 +39,7 @@
 #container #contents #conts02 .mpResult .contTxt{ float:left;  position: relative; display:inline-block; width:100%; height:100%; text-align:left; padding:10px 10px 10px 10px; background-color:#eff5e6; border:3px solid #000;}
 
 
-#container #contents #conts01 #left_conts01 { float:left; display:inline-block; position:relative; width:552px; height:100%; background-image:url(../image/layout/totalSchLeftBoxBg.gif); border:0px solid #cecdca;}
+#container #contents #conts01 #left_conts01 { float:left; display:inline-block; position:relative; width:552px; height:100%; background-image:url(/resources/image/layout/totalSchLeftBoxBg.gif); border:0px solid #cecdca;}
 
 #container #contents #conts01 #right_conts01 { float:left; display:inline-block; position:relative; width:370px; height:100%; padding-left:10px; margin-left:0px; border:0px solid #cecdca;}
 
@@ -47,15 +47,14 @@
 
 
 #container #contents #regConts01 { display:inline-block; position:relative; text-align:center; width:932px; height:100%; border:3px solid #6b6f81; margin-top: 10px; margin-bottom: 10px}
-#container #contents #regConts01 .basicRegBox .regTopBar{ text-align:left; position:relative; width:100%; height:31px; border-bottom::1px solid #73b43d; background-image:url( ../image/layout/regTopBarBg.gif);}
-
+#container #contents #regConts01 .basicRegBox .regTopBar{ text-align:left; position:relative; width:100%; height:31px; border-bottom::1px solid #73b43d; background-image:url( /resources/image/layout/regTopBarBg.gif);}
 
 #container #contents #regConts02 { display:inline-block; position:relative; text-align:center; width:938px; height:100%; border:0px solid #000;}
 
-
 #container #contents #regPopup { display:inline-block; position:relative; text-align:center; width:300px; height:200px; border:0px solid #6b6f81; margin-top: 10px; margin-bottom: 10px}
 
-
+.basicRegBox .regTopBar{ text-align:left; position:relative; width:100%; height:31px; border-bottom::1px solid #73b43d; background-image:url( /resources/image/layout/regTopBarBg.gif);}
+.basicRegBox .contBtnSave {margin: 10px, auto;}
 
 
 

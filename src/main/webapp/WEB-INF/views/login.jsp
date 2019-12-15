@@ -6,6 +6,8 @@
 	<title>휴나몰입니다.</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="/resources/css/common.css" type="text/css">
+	<script type="text/javascript" src="/resources/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/resources/js/jquery.blockui.js"></script>
 </head>
 
 <body>
@@ -27,7 +29,7 @@
 							<tbody>
 								<tr>
 									<td>
-									<form action="/login_check" >
+									<form action="/login_check" method="post">
 										<table cellspacing="0" class="tbl_type02">
 											<colgroup>
 												<col width="70px" />
@@ -38,12 +40,12 @@
 											<tbody>
 												<tr>
 													<td rowspan="3"></td>
-													<td><input name="user_id" title="아이디" value="아이디" type="text" class="input02"></td>
+													<td><input name="user_id" type="text" class="input02" placeholder="아이디" tabindex="1"></td>
 													<td rowspan="2" style="text-align: center;"><button type="submit" id="login_btn"><img src="/resources/image/btn/btn_login.jpg" /></button></td>
 													<td rowspan="3"></td>
 												</tr>
 												<tr>
-													<td><input name="user_pw" title="비밀번호" value="비밀번호" type="password" class="input02"></td>
+													<td><input name="user_pw" type="password" class="input02"  placeholder="비밀번호" tabindex="2"></td>
 												</tr>
 											</tbody>
 										</table>

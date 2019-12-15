@@ -8,7 +8,7 @@ body,div,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,
 	margin:0;
 	padding:0;
 }
-body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px}
+body,input,textarea,select,button,table{font-family:'돋움',Dotum,AppleGothic,sans-serif;font-size:12px;border:none;}
 ul,ol,dl {list-style:none}
 img, fieldset {border:0;vertical-align:top;}
 ul {list-style:none; padding:0; margin:0}
