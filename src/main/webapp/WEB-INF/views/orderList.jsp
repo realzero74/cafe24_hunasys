@@ -7,8 +7,9 @@
 <title>휴나닉 주문관리 서비스 - 관리자</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="/resources/css/common.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/jqueryui.css"
-	type="text/css">
+<link rel="stylesheet" href="/resources/css/jqueryui.css" type="text/css">
+<link rel="stylesheet" href="/resources/css/jqueryui.css" type="text/css">
+<link rel="stylesheet" href="/resources/css/inlineCalendar.css" type="text/css">
 <style type="text/css">
 td.today {
 	color: #ffffff;
@@ -59,8 +60,7 @@ td.week {
 <script type="text/javascript" src="/resources/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/resources/js/jqueryui.js"></script>
 <script type="text/javascript" src="/resources/js/jquery.blockui.js"></script>
-<script type="text/javascript"
-	src="/resources/js/orders.js?ver=201912151623"></script>
+<script type="text/javascript" src="/resources/js/orders.js?ver=201912151623"></script>
 </head>
 
 <body>

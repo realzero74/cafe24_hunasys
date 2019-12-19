@@ -8,34 +8,24 @@ var OrderApp = function () {
     var initApp = function (){
     	regEventHandler();
     	view.initDatepicker();
+    	view.initCalendar();
     	
     };
 
     var regEventHandler = function() {
     	// 사용자 등록 페이지로 이동
         $('#btn_userReg').click(function() {
-        	alert("사용자 등록 페이지");
+        	this.href="/users"
         });
         
         // 등록 폼 오픈
         $('#btn_orderReg').click(function() { 
-            $.blockUI({ 
-                message: $('#orderForm'), 
-                css: { 
-                    top:  ($(window).height() - 500) /2 + 'px', 
-                    left: ($(window).width() - 1000) /2 + 'px', 
-                    width: '1000px',
-                    cursor: 'auto' 
-                } 
-            }); 
-            console.log("check")
-        	$(".orderViewPart").hide();
-        	$(".orderCls01").show();
+        	view.orderFormPopup();
         });
         
         // 등록 폼 취소
         $('#btn_cancelOrder').click(function() { 
-            $.unblockUI(); 
+            $.unblockUI();
         });
         
         // excel 다운로드
@@ -102,17 +92,29 @@ var OrderViewHandler = function(transaction){
 	
 	//layer popup : 등록/수정 폼
 	var orderFormPopup = function (){
-		
+        $.blockUI({ 
+            message: $('#orderForm'), 
+            css: { 
+                top:  ($(window).height() - 500) /2 + 'px', 
+                left: ($(window).width() - 1000) /2 + 'px', 
+                width: '1000px',
+                cursor: 'auto' 
+            } 
+        }); 
+        console.log("check")
+    	$(".orderViewPart").hide();
+    	$(".orderCls01").show();
 	};
 	
 	// calendar 핸들러
-	var calendar = function (){
-		
+	var initCalendar = function (){
+		$("#calendarView").datepicker();
 	};
 	
 	
 	return {
-		initDatepicker : initDatepicker
+		initDatepicker : initDatepicker,
+		initCalendar : initCalendar 
 		
 	};
 };

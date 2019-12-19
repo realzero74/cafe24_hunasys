@@ -1,7 +1,5 @@
 package com.hunasys.labelsketch.orders.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +19,9 @@ public class OrdersViewController {
 
 	private static final Logger logger = LoggerFactory.getLogger(OrdersViewController.class);
 
-	@RequestMapping(value = "/orders/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/orders", method = RequestMethod.GET)
 	public String orderlist(Locale locale, Model model, HttpServletRequest request) {
-		logger.info("Welcome home! /orders/list");
+		logger.info("Welcome home! /orders");
 
 		HttpSession session = request.getSession();
 		UsersVo uservo = (UsersVo)session.getAttribute("login");
@@ -32,19 +30,5 @@ public class OrdersViewController {
 		model.addAttribute("userCls", uservo.getUserCls());
 		
 		return "orderList";
-	}
-
-	@RequestMapping(value = "/orders/form", method = RequestMethod.GET)
-	public String orderform(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		return "orderform";
 	}
 }
