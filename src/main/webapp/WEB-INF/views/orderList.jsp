@@ -7,59 +7,12 @@
 <title>휴나닉 주문관리 서비스 - 관리자</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="/resources/css/common.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/jqueryui.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/jqueryui.css" type="text/css">
+<link rel="stylesheet" href="/resources/lib/jqueryui.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/inlineCalendar.css" type="text/css">
-<style type="text/css">
-td.today {
-	color: #ffffff;
-	font-weight: bold;
-	border: solid thin 0pt;
-	font-size: 9pt;
-	background-color: #f4a2a3;
-	cursor: pointer;
-}
 
-td.workday {
-	color: #000099;
-	font-weight: normal;
-	border: solid thin 0pt;
-	font-size: 9pt;
-}
-
-td.sunday {
-	color: #f4a2a3;
-	font-weight: normal;
-	border: solid thin 0pt;
-	font-size: 9pt;
-}
-
-td.satday {
-	color: #0000ff;
-	font-weight: normal;
-	border: solid thin 0pt;
-	font-size: 9pt;
-}
-
-td.week {
-	color: #000000;
-	font-weight: normal;
-	border: solid thin 0pt;
-	font-size: 9pt;
-	background-color: #e6e6e6;
-	width: 50px;
-	height: 30px;
-	text-align: center;
-}
-
-.preNext {
-	color: #000099;
-	text-decoration: none;
-}
-</style>
-<script type="text/javascript" src="/resources/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/js/jqueryui.js"></script>
-<script type="text/javascript" src="/resources/js/jquery.blockui.js"></script>
+<script type="text/javascript" src="/resources/lib/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/resources/lib/jqueryui.js"></script>
+<script type="text/javascript" src="/resources/lib/jquery.blockui.js"></script>
 <script type="text/javascript" src="/resources/js/orders.js?ver=201912151623"></script>
 </head>
 

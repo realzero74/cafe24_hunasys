@@ -4,184 +4,239 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OrdersVo {
 
-	private long   order_id; 
-	private String item_cls; 
-	private String company; 
-	private String item_nm; 
-	private String item_spec; 
-	private int    total_qty; 
-	private String paper1; 
-	private String paper2; 
-	private String paper3; 
-	private String paper4; 
-	private String parer_roll; 
-	private int    roll_qty; 
-	private String due_date; 
-	private String delivery; 
-	private String description; 
-	private long   file1; 
-	private long   file2;
-	
-	private String user_id;
-	
-	private String new_date;
-	private String new_time;
-	private String end_date;
-	private String end_time;
-	private String mod_date;
-	private String mod_time;
-	
-	
-	public long getOrder_id() {
-		return order_id;
+	private long orderId;
+	private String itemCls;
+	private String company;
+	private String itemNm;
+	private String itemSpec;
+	private int totalQty;
+	private String paper1;
+	private String paper2;
+	private String paper3;
+	private String paper4;
+	private String parerRoll;
+	private int rollQty;
+	private String dueDate;
+	private String delivery;
+	private String description;
+	private long file1;
+	private long file2;
+
+	private String setEnd;
+	private String endDate;
+	private String endTime;
+
+	private String userId;
+	private String newDate;
+	private String newTime;
+	private String modDate;
+	private String modTime;
+
+	public long getOrderId() {
+		return orderId;
 	}
-	public void setOrder_id(long order_id) {
-		this.order_id = order_id;
+
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
 	}
-	public String getItem_cls() {
-		return item_cls;
+
+	public String getItemCls() {
+		return itemCls;
 	}
-	public void setItem_cls(String item_cls) {
-		this.item_cls = item_cls;
+
+	public void setItemCls(String itemCls) {
+		this.itemCls = itemCls;
 	}
+
 	public String getCompany() {
 		return company;
 	}
+
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	public String getItem_nm() {
-		return item_nm;
+
+	public String getItemNm() {
+		return itemNm;
 	}
-	public void setItem_nm(String item_nm) {
-		this.item_nm = item_nm;
+
+	public void setItemNm(String itemNm) {
+		this.itemNm = itemNm;
 	}
-	public String getItem_spec() {
-		return item_spec;
+
+	public String getItemSpec() {
+		return itemSpec;
 	}
-	public void setItem_spec(String item_spec) {
-		this.item_spec = item_spec;
+
+	public void setItemSpec(String itemSpec) {
+		this.itemSpec = itemSpec;
 	}
-	public int getTotal_qty() {
-		return total_qty;
+
+	public int getTotalQty() {
+		return totalQty;
 	}
-	public void setTotal_qty(int total_qty) {
-		this.total_qty = total_qty;
+
+	public void setTotalQty(int totalQty) {
+		this.totalQty = totalQty;
 	}
+
 	public String getPaper1() {
 		return paper1;
 	}
+
 	public void setPaper1(String paper1) {
 		this.paper1 = paper1;
 	}
+
 	public String getPaper2() {
 		return paper2;
 	}
+
 	public void setPaper2(String paper2) {
 		this.paper2 = paper2;
 	}
+
 	public String getPaper3() {
 		return paper3;
 	}
+
 	public void setPaper3(String paper3) {
 		this.paper3 = paper3;
 	}
+
 	public String getPaper4() {
 		return paper4;
 	}
+
 	public void setPaper4(String paper4) {
 		this.paper4 = paper4;
 	}
-	public String getParer_roll() {
-		return parer_roll;
+
+	public String getParerRoll() {
+		return parerRoll;
 	}
-	public void setParer_roll(String parer_roll) {
-		this.parer_roll = parer_roll;
+
+	public void setParerRoll(String parerRoll) {
+		this.parerRoll = parerRoll;
 	}
-	public int getRoll_qty() {
-		return roll_qty;
+
+	public int getRollQty() {
+		return rollQty;
 	}
-	public void setRoll_qty(int roll_qty) {
-		this.roll_qty = roll_qty;
+
+	public void setRollQty(int rollQty) {
+		this.rollQty = rollQty;
 	}
-	public String getDue_date() {
-		return due_date;
+
+	public String getDueDate() {
+		return dueDate;
 	}
-	public void setDue_date(String due_date) {
-		this.due_date = due_date;
+
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
 	}
+
 	public String getDelivery() {
 		return delivery;
 	}
+
 	public void setDelivery(String delivery) {
 		this.delivery = delivery;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public long getFile1() {
 		return file1;
 	}
+
 	public void setFile1(long file1) {
 		this.file1 = file1;
 	}
+
 	public long getFile2() {
 		return file2;
 	}
+
 	public void setFile2(long file2) {
 		this.file2 = file2;
 	}
-	public String getUser_id() {
-		return user_id;
+
+	public String getSetEnd() {
+		return setEnd;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+
+	public void setSetEnd(String setEnd) {
+		this.setEnd = setEnd;
 	}
-	public String getNew_date() {
-		return new_date;
+
+	public String getEndDate() {
+		return endDate;
 	}
-	public void setNew_date(String new_date) {
-		this.new_date = new_date;
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
-	public String getNew_time() {
-		return new_time;
+
+	public String getEndTime() {
+		return endTime;
 	}
-	public void setNew_time(String new_time) {
-		this.new_time = new_time;
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
-	public String getEnd_date() {
-		return end_date;
+
+	public String getUserId() {
+		return userId;
 	}
-	public void setEnd_date(String end_date) {
-		this.end_date = end_date;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getEnd_time() {
-		return end_time;
+
+	public String getNewDate() {
+		return newDate;
 	}
-	public void setEnd_time(String end_time) {
-		this.end_time = end_time;
+
+	public void setNewDate(String newDate) {
+		this.newDate = newDate;
 	}
-	public String getMod_date() {
-		return mod_date;
+
+	public String getNewTime() {
+		return newTime;
 	}
-	public void setMod_date(String mod_date) {
-		this.mod_date = mod_date;
+
+	public void setNewTime(String newTime) {
+		this.newTime = newTime;
 	}
-	public String getMod_time() {
-		return mod_time;
+
+	public String getModDate() {
+		return modDate;
 	}
-	public void setMod_time(String mod_time) {
-		this.mod_time = mod_time;
+
+	public void setModDate(String modDate) {
+		this.modDate = modDate;
 	}
-	
+
+	public String getModTime() {
+		return modTime;
+	}
+
+	public void setModTime(String modTime) {
+		this.modTime = modTime;
+	}
+
 	@Override
 	public String toString() {
 		String str = "";
 		try {
-			str =  new ObjectMapper().writeValueAsString(this);
+			str = new ObjectMapper().writeValueAsString(this);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

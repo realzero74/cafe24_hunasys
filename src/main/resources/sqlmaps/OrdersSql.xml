@@ -37,28 +37,35 @@
 
 	<select id="selectOrder">
 		SELECT
-			IDX         as "idx"
-			ITEM_NM     as "itemNm"
-			ITEM_CLS    as "itemCls"
-			COMPANY     as "company"
-			SPEC        as "spec"
-			TOTAL_QTY   as "totalQty"
-			PAPER1      as "paper1"
-			PAPER2      as "paper2"
-			PARER_ROLL  as "parerRoll"
-			ROLL_QTY    as "rollQty"
-			DUE_DT      as "dueDt"
-			DELIVERY    as "delivery"
-			DESC        as "desc"
-			FILE1       as "file1"
-			FILE2       as "file2"
-			CREATE_DT   as "createDt"
+			  ORDER_ID                                      as "orderId"
+			, ITEM_CLS                                      as "itemCls"
+			, COMPANY                                       as "company"
+			, ITEM_NM                                       as "itemNm"
+			, ITEM_SPEC                                     as "itemSpec"
+			, TOTAL_QTY                                     as "totalQty"
+			, PAPER1                                        as "paper1"
+			, PAPER2                                        as "paper2"
+			, PAPER3                                        as "paper3"
+			, PAPER4                                        as "paper4"
+			, PARER_ROLL                                    as "parerRoll"
+			, ROLL_QTY                                      as "rollQty"
+			, DUE_DATE                                      as "dueDate"
+			, DELIVERY                                      as "delivery"
+			, DESCRIPTION                                   as "description"
+			, FILE1                                         as "file1"
+			, FILE2                                         as "file2"
+			, USER_ID                                       as "userId"
+			, STR_TO_DATE(NEW_DATETIME,'%Y-%m-%d') as "newDate"
+			, STR_TO_DATE(NEW_DATETIME,'%H:%i:%S') as "newTime"
+			, STR_TO_DATE(MOD_DATETIME,'%Y-%m-%d') as "modDate"
+			, STR_TO_DATE(MOD_DATETIME,'%H:%i:%S') as "modTime"
+			, STR_TO_DATE(END_DATETIME,'%Y-%m-%d') as "endDate"
+			, STR_TO_DATE(END_DATETIME,'%H:%i:%S') as "endTime"
 		FROM
 			ORDERS
 		<where>
-			AND IDX = #{idx}
+			AND ORDER_ID = #{orderId}A
 		</where>
-		ORDER BY ORDERED ASC
 	</select>
 
 	<insert id="insertOrders">
@@ -66,19 +73,45 @@
 		INSERT INTO
 			ORDERS
 			(
-					GROUP_CD
-				, GROUP_NM
-				, ITEM_CD
-				, ITEM_NM
-				, ORDERED
+				  ITEM_CLS   
+				, COMPANY    
+				, ITEM_NM    
+				, ITEM_SPEC  
+				, TOTAL_QTY  
+				, PAPER1     
+				, PAPER2     
+				, PAPER3     
+				, PAPER4     
+				, PARER_ROLL 
+				, ROLL_QTY   
+				, DUE_DATE   
+				, DELIVERY   
+				, DESCRIPTION
+				, FILE1      
+				, FILE2      
+				, USER_ID    
+				, NEW_DATETIME
 			)
 		VALUES 
 			(
-				  #{groupCd,jdbcType=VARCHAR}   
-				, #{groupNm,jdbcType=VARCHAR} 
-				, #{itemCd,jdbcType=VARCHAR} 
-				, #{itemNm,jdbcType=VARCHAR} 
-				, #{ordered,jdbcType=VARCHAR}				
+				  #{itemCls,jdbcType=VARCHAR}
+				, #{company,jdbcType=VARCHAR}
+				, #{itemNm,jdbcType=VARCHAR}
+				, #{itemSpec,jdbcType=VARCHAR}
+				, #{totalQty,jdbcType=INT}
+				, #{paper1,jdbcType=VARCHAR}
+				, #{paper2,jdbcType=VARCHAR}
+				, #{paper3,jdbcType=VARCHAR}
+				, #{paper4,jdbcType=VARCHAR}
+				, #{parerRoll,jdbcType=VARCHAR}
+				, #{rollQty,jdbcType=INT}
+				, #{dueDate,jdbcType=VARCHAR}
+				, #{delivery,jdbcType=VARCHAR}
+				, #{description,jdbcType=VARCHAR}
+				, #{file1,jdbcType=VARCHAR}
+				, #{file2,jdbcType=VARCHAR}
+				, #{userId,jdbcType=VARCHAR}
+				, now()
 			)   
 	</insert>
 
@@ -87,15 +120,28 @@
 		UPDATE
 			ORDERS
 		<set>
-			<if test="groupCd != null"> GROUP_CD  = #{groupCd}   ,  </if>
-			<if test="groupNm != null"> GROUP_NM  = #{groupNm}   ,  </if>
-			<if test="itemCd  != null"> ITEM_CD   = #{itemCd}    ,  </if>
-			<if test="itemNm  != null"> ITEM_NM   = #{itemNm}    ,  </if>
-			<if test="ordered != null"> ORDERED   = #{ordered}   ,  </if>
+			<if test="itemCls     != null">  ITEM_CLS      = #{itemCls}      , </if>
+			<if test="company     != null">  COMPANY       = #{company}      , </if>
+			<if test="itemNm      != null">  ITEM_NM       = #{itemNm}       , </if>
+			<if test="itemSpec    != null">  ITEM_SPEC     = #{itemSpec}     , </if>
+			<if test="totalQty    != null">  TOTAL_QTY     = #{totalQty}     , </if>
+			<if test="paper1      != null">  PAPER1        = #{paper1}       , </if>
+			<if test="paper2      != null">  PAPER2        = #{paper2}       , </if>
+			<if test="paper3      != null">  PAPER3        = #{paper3}       , </if>
+			<if test="paper4      != null">  PAPER4        = #{paper4}       , </if>
+			<if test="parerRoll   != null">  PARER_ROLL    = #{parerRoll}    , </if>
+			<if test="rollQty     != null">  ROLL_QTY      = #{rollQty}      , </if>
+			<if test="dueDate     != null">  DUE_DATE      = #{dueDate}      , </if>
+			<if test="delivery    != null">  DELIVERY      = #{delivery}     , </if>
+			<if test="description != null">  DESCRIPTION   = #{description}  , </if>
+			<if test="file1       != null">  FILE1         = #{file1}        , </if>
+			<if test="file2       != null">  FILE2         = #{file2}        , </if>
+			<if test="userId      != null">  USER_ID       = #{userId}       , </if>
+			<if test="setEnd      != null">  END_DATETIME  = now()           , </if>
+			MOD_DATETIME  = now(),
 		</set>
 		<where>
-			AND GROUP_CD = #{groupCd}
-			AND ITEM_CD = #{itemCd}
+			AND ORDER_ID = #{orderId}
 		</where>
 	</update>
 
@@ -104,8 +150,7 @@
 		DELETE FROM
 				ORDERS
 		<where>
-			AND GROUP_CD = #{groupCd}
-			AND ITEM_CD = #{itemCd}
+			AND ORDER_ID = #{orderId}
 		</where>
 	</delete>
 </mapper>

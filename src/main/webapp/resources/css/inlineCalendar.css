@@ -35,3 +35,25 @@
     color: #454545;
     height: 35px;
 }
+
+
+#calendarView .ui-state-active,
+#calendarView .ui-widget-content .ui-state-active,
+#calendarView .ui-widget-header .ui-state-active,
+#calendarView a.ui-button:active,
+#calendarView .ui-button:active,
+#calendarView .ui-button.ui-state-active:hover {
+	border: 1px solid #003eff;
+	background: #007fff;
+	font-weight: normal;
+	color: #ffffff;
+}
+
+#calendarView .ui-state-highlight,
+#calendarView .ui-widget-content .ui-state-highlight,
+#calendarView .ui-widget-header .ui-state-highlight {
+	border: 1px solid #dad55e;
+	background: #fffa90;
+	color: #777620;
+}
+

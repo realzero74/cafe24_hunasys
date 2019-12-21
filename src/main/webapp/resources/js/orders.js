@@ -9,13 +9,12 @@ var OrderApp = function () {
     	regEventHandler();
     	view.initDatepicker();
     	view.initCalendar();
-    	
     };
 
     var regEventHandler = function() {
     	// 사용자 등록 페이지로 이동
         $('#btn_userReg').click(function() {
-        	this.href="/users"
+        	location.href="/users"
         });
         
         // 등록 폼 오픈
@@ -39,12 +38,6 @@ var OrderApp = function () {
         	$(".orderViewPart").hide();
         	$(targetView).show();
         });
-    	//
-    	//
-    	//
-    	//
-    	//
-    	//
     };
     
     return {
@@ -96,8 +89,8 @@ var OrderViewHandler = function(transaction){
             message: $('#orderForm'), 
             css: { 
                 top:  ($(window).height() - 500) /2 + 'px', 
-                left: ($(window).width() - 1000) /2 + 'px', 
-                width: '1000px',
+                left: ($(window).width() - 900) /2 + 'px', 
+                width: '900px',
                 cursor: 'auto' 
             } 
         }); 
@@ -114,9 +107,39 @@ var OrderViewHandler = function(transaction){
 	
 	return {
 		initDatepicker : initDatepicker,
-		initCalendar : initCalendar 
+		initCalendar : initCalendar,
+		orderFormPopup : orderFormPopup
 		
 	};
+};
+
+/********************************************************************************
+ * model
+ ********************************************************************************/
+var OrderModel = function (){
+
+	var vo = {
+			
+	};
+	
+	var getOrderType01 = function (){};
+	var setOrderType01 = function (){};
+	
+	var getOrderType02 = function (){};
+	var setOrderType02 = function (){};
+	
+	var getOrderType03 = function (){};
+	var setOrderType03 = function (){};
+	
+	var getOrderType04 = function (){};
+	var setOrderType04 = function (){};
+	
+	var getOrderType05 = function (){};
+	var setOrderType05 = function (){};
+	
+	return {
+		
+	}
 };
 
 
