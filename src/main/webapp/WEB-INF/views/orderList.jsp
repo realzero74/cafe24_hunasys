@@ -111,7 +111,7 @@
 								<col width="5%">
 								<col width="10%">
 							</colgroup>
-							<tbody>
+							<tbody id="orderlist">
 								<tr>
 									<th>번호</th>
 									<th>기본정보</th>
@@ -210,12 +210,12 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<td colspan="6"></td>
+						<td colspan="6"><input id="orderId" type="text" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>구분</th>
 						<td><select name="searchChk" class="select02"
-							id="selectOrderCls">
+							id="itemCls">
 								<option value="01" selected="">라벨</option>
 								<option value="02">장비</option>
 								<option value="03">리본</option>
@@ -223,7 +223,7 @@
 								<option value="05">기타</option>
 						</select></td>
 						<th>발주회사</th>
-						<td colspan="3"><input type="text" class="input03"></td>
+						<td colspan="3"><input id="company" type="text" class="input03"></td>
 					</tr>
 					<tr>
 						<td colspan="6"></td>
@@ -233,15 +233,15 @@
 					<!-- 라벨 -->
 					<tr class="orderViewPart orderCls01" style="display: table-row;">
 						<th>품명</th>
-						<td><input type="text" class="input03"></td>
+						<td><input id="itemNm01" type="text" class="input03"></td>
 						<th>규격</th>
-						<td><input type="text" class="input01"></td>
+						<td><input id="itemSpec01" type="text" class="input01"></td>
 						<th>수량</th>
-						<td><input type="text" class="input01"></td>
+						<td><input id="totalQty01" type="text" class="input01"></td>
 					</tr>
 					<tr class="orderViewPart orderCls01" style="display: table-row;">
 						<th>용지</th>
-						<td><select name="searchChk" class="select02">
+						<td><select id="paper101" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">아트지</option>
 								<option value="03">감열지</option>
@@ -254,14 +254,15 @@
 								<option value="10">PVC(캘지)</option>
 								<option value="11">모조지</option>
 								<option value="12">꼬리표</option>
-						</select> <select name="searchChk" class="select02">
+						</select> 
+						<select id="paper101" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">그라</option>
 								<option value="03">미색(황박)</option>
 								<option value="04">무접</option>
 						</select></td>
 						<th>지관</th>
-						<td><select name="searchChk" class="select02">
+						<td><select id="parerRoll01" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">40지관</option>
 								<option value="03">40지관(플라스틱)</option>
@@ -269,13 +270,13 @@
 								<option value="05">75지관(플라스틱)</option>
 						</select></td>
 						<th>1롤 수량</th>
-						<td><input type="text" class="input01"></td>
+						<td><input id="rollQty01" type="text" class="input01"></td>
 					</tr>
 					<tr class="orderViewPart orderCls01" style="display: table-row;">
 						<th>납기일</th>
-						<td><input type="text" class="input01 usedatepicker"></td>
+						<td><input id="dueDate01" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
-						<td colspan="3"><select name="searchChk" class="select02">
+						<td colspan="3"><select id="delivery01" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">직납</option>
 								<option value="03">방문</option>
@@ -376,7 +377,7 @@
 
 					<tr>
 						<th>기타설명</th>
-						<td colspan="5"><textarea class="textarea02" title="레이블 텍스트"></textarea>
+						<td colspan="5"><textarea id="description" class="textarea02" title="레이블 텍스트"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -384,12 +385,12 @@
 					</tr>
 					<tr>
 						<th>첨부파일1</th>
-						<td colspan="5"><input type="text" class="input05"> <img
+						<td colspan="5"><input id="file1" type="text" class="input05"> <img
 							src="/resources/image/btn/btn_find.gif" alt="파일찾기" title="파일찾기"></td>
 					</tr>
 					<tr>
 						<th>첨부파일2</th>
-						<td colspan="5"><input type="text" class="input05"> <img
+						<td colspan="5"><input id="file2" type="text" class="input05"> <img
 							src="/resources/image/btn/btn_find.gif" alt="파일찾기" title="파일찾기"></td>
 					</tr>
 				</tbody>

@@ -6,8 +6,8 @@
 	<title>휴나몰입니다.</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" href="/resources/css/common.css" type="text/css">
-	<script type="text/javascript" src="/resources/js/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript" src="/resources/js/jquery.blockui.js"></script>
+	<script type="text/javascript" src="/resources/lib/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/resources/lib/jquery.blockui.js"></script>
 </head>
 
 <body>
@@ -71,7 +71,15 @@
 	<script>
 		'use strict';
 
-		$("#login_btn").on("click",function (){
+		$("#user_pw").keydown(function(key) {
+			if (key.keyCode == 13) {
+				ajaxLogin();
+			}
+		});
+		
+		$("#login_btn").on("click", ajaxLogin);
+
+		var ajaxLogin = function(){
 			$.ajax({ 
 				url: "/login_check", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
 				data: { // HTTP 요청과 함께 서버로 보낼 데이터 
@@ -107,7 +115,7 @@
 				console.log("상태: " + status); 
 			}) 
 			// .always(function(xhr, status) { $("#text").html("요청이 완료되었습니다!"); });
-		});
+		};
 	</script>
 </body>
 

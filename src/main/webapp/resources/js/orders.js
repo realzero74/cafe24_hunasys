@@ -4,11 +4,23 @@
 var OrderApp = function () {
     var transaction  = new OrderTransaction();
     var view         = new OrderViewHandler(transaction);
+    var model        = new OrderModel();
     
     var initApp = function (){
     	regEventHandler();
     	view.initDatepicker();
     	view.initCalendar();
+    	
+    	
+    	var param = {
+    		"searchString1" : "",
+    		"searchString2" : "",
+    		"searchString3" : "",
+    		"searchString4" : "",
+    	}
+    	transaction.getList(param).done(function (resultdata) {
+    		view.tableHandler(resultdata);
+        });
     };
 
     var regEventHandler = function() {
@@ -25,6 +37,18 @@ var OrderApp = function () {
         // 등록 폼 취소
         $('#btn_cancelOrder').click(function() { 
             $.unblockUI();
+        });
+        
+        // 등록 폼 저장
+        $('#btn_submitOrder').click(function() { 
+        	console.log(model.getOrderType01());
+        	var param = model.getOrderType01();
+            
+            transaction.regOrder(param).done(function (resultdata) {
+                $.unblockUI();
+            });
+            
+            view.tableHandler
         });
         
         // excel 다운로드
@@ -75,8 +99,74 @@ var OrderViewHandler = function(transaction){
 	};
 	
 	//테이블 핸들러
-	var tableHandler = function(vo){
+	var tableHandler = function(volist){
+		var tr_tag = "";
+		tr_tag = tr_tag + "<tr style='display:table-row'>";
+		tr_tag = tr_tag + "	<th>";
+		tr_tag = tr_tag + "		번호";
+		tr_tag = tr_tag + "	</th>";
+		tr_tag = tr_tag + "	<th>";
+		tr_tag = tr_tag + "		기본정보";
+		tr_tag = tr_tag + "	</th>";
+		tr_tag = tr_tag + "";	
+		tr_tag = tr_tag + "	<th>";
+		tr_tag = tr_tag + "		주문일";
+		tr_tag = tr_tag + "	</th>";
+		tr_tag = tr_tag + "	<th>";
+		tr_tag = tr_tag + "		납기일";
+		tr_tag = tr_tag + "	</th>";
+		tr_tag = tr_tag + "	<th>";
+		tr_tag = tr_tag + "		완료";
+		tr_tag = tr_tag + "	</th>";
+		tr_tag = tr_tag + "	<th>";
+		tr_tag = tr_tag + "		파일";
+		tr_tag = tr_tag + "	</th>";
+		tr_tag = tr_tag + "	<th>";
+		tr_tag = tr_tag + "		인쇄";
+		tr_tag = tr_tag + "	</th>";
+	    tr_tag = tr_tag + "";
+		tr_tag = tr_tag + "</tr>";
 		
+		for ( var vo in volist) {
+//		for (var i = 0; i < 10; i++) {
+			tr_tag = tr_tag + "<tr style='display:table-row'>";
+			tr_tag = tr_tag + "	<td rowspan = '2'>";
+			tr_tag = tr_tag + "		1";
+			tr_tag = tr_tag + "	</td>";
+			tr_tag = tr_tag + "	<td style='text-align:left'>";
+			tr_tag = tr_tag + "		회사명: 개그콘서트 대박 완전 잼 있어요 <img src='../image/btn/icon_new.gif' alt='새로운글' title='새로운글' />";
+			tr_tag = tr_tag + "		<br>";
+			tr_tag = tr_tag + "		품명:";
+			tr_tag = tr_tag + "		<br>";
+			tr_tag = tr_tag + "		규격:";
+			tr_tag = tr_tag + "		<br>";
+			tr_tag = tr_tag + "		용지:";
+			tr_tag = tr_tag + "";		
+			tr_tag = tr_tag + "	</td>";										
+			tr_tag = tr_tag + "	<td>";
+			tr_tag = tr_tag + "		2012.02.02 11:12:23";
+			tr_tag = tr_tag + "	</td>";
+			tr_tag = tr_tag + "	<td>";
+			tr_tag = tr_tag + "		2012.02.02";
+			tr_tag = tr_tag + "	</td>";
+			tr_tag = tr_tag + "	<td>";
+			tr_tag = tr_tag + "		<img src= '../image/btn/icon_modify03.jpg'><br><img src= '../image/btn/btn_cancel.jpg'><br>2012.02.02 11:12:23";
+			tr_tag = tr_tag + "	</td>";
+			tr_tag = tr_tag + "	<td style=' text-align:center'>";
+			tr_tag = tr_tag + "		<img src= '../image/btn/box-closed-blue.png'><br><br><img src= '../image/btn/box-closed-blue.png'>";
+			tr_tag = tr_tag + "	</td>";
+			tr_tag = tr_tag + "	<td>";
+			tr_tag = tr_tag + "		<img src= '../image/btn/btn_print.jpg'>";
+			tr_tag = tr_tag + "	</td>";
+			tr_tag = tr_tag + "</tr>";
+			tr_tag = tr_tag + "<tr>";
+			tr_tag = tr_tag + "	<td colspan='6'  style=' text-align:left'>";
+			tr_tag = tr_tag + "		1";
+			tr_tag = tr_tag + "	</td>";
+			tr_tag = tr_tag + "</tr>";
+		}
+		
+		$("#orderlist").html(tr_tag);
 	};
 	//페이징 핸들러
 	var pagingHandler = function(page){
@@ -108,7 +198,9 @@ var OrderViewHandler = function(transaction){
 	return {
 		initDatepicker : initDatepicker,
 		initCalendar : initCalendar,
-		orderFormPopup : orderFormPopup
+		orderFormPopup : orderFormPopup,
+		tableHandler : tableHandler,
+		pagingHandler : pagingHandler
 	};
 };
 
@@ -143,7 +235,7 @@ var OrderModel = function (){
 			endDate     : $("#endDate").val(),
 			endTime     : $("#endTime").val(),
 
-			userId      : $("#userId").val(),
+			userId      : _loginUser,
 			newDate     : $("#newDate").val(),
 			newTime     : $("#newTime").val(),
 			modDate     : $("#modDate").val(),
@@ -208,7 +300,7 @@ var OrderModel = function (){
 			endDate     : $("#endDate").val(),
 			endTime     : $("#endTime").val(),
 
-			userId      : $("#userId").val(),
+			userId      : _loginUser,
 			newDate     : $("#newDate").val(),
 			newTime     : $("#newTime").val(),
 			modDate     : $("#modDate").val(),
@@ -273,7 +365,7 @@ var OrderModel = function (){
 			endDate     : $("#endDate").val(),
 			endTime     : $("#endTime").val(),
 
-			userId      : $("#userId").val(),
+			userId      : _loginUser,
 			newDate     : $("#newDate").val(),
 			newTime     : $("#newTime").val(),
 			modDate     : $("#modDate").val(),
@@ -338,7 +430,7 @@ var OrderModel = function (){
 			endDate     : $("#endDate").val(),
 			endTime     : $("#endTime").val(),
 
-			userId      : $("#userId").val(),
+			userId      : _loginUser,
 			newDate     : $("#newDate").val(),
 			newTime     : $("#newTime").val(),
 			modDate     : $("#modDate").val(),
@@ -403,7 +495,7 @@ var OrderModel = function (){
 			endDate     : $("#endDate").val(),
 			endTime     : $("#endTime").val(),
 
-			userId      : $("#userId").val(),
+			userId      : _loginUser,
 			newDate     : $("#newDate").val(),
 			newTime     : $("#newTime").val(),
 			modDate     : $("#modDate").val(),
@@ -443,7 +535,20 @@ var OrderModel = function (){
 	};
 	
 	return {
+		setOrderType01 : setOrderType01,
+		getOrderType01 : getOrderType01,
 		
+		setOrderType02 : setOrderType02,
+		getOrderType02 : getOrderType02,
+		
+		setOrderType03 : setOrderType03,
+		getOrderType03 : getOrderType03,
+		
+		setOrderType04 : setOrderType04,
+		getOrderType04 : getOrderType04,
+		
+		setOrderType05 : setOrderType05,
+		getOrderType05 : getOrderType05,
 	}
 };
 
@@ -458,7 +563,7 @@ var OrderTransaction = function(){
         var deferred = $.Deferred();
         try {
             $.ajax({
-                url : '/fac/fca/saveOrder',
+                url : '/order/regItem',
                 method : 'POST',
                 contentType : 'application/json',
                 dataType : 'text',
@@ -522,15 +627,15 @@ var OrderTransaction = function(){
     };
     
     var getList = function (param) {
-        console.log("deleteOrder");
+        console.log("getOrderList");
 
         var deferred = $.Deferred();
         try {
             $.ajax({
-                type : "POST",
-                url : "/fac/fca/deleteOrder",
+                type : "GET",
+                url : "/order/getList",
                 data : param,
-                dataType : "text",
+                dataType : "json",
                 success : function (data) {
                     console.log(data);
                     deferred.resolve(data);

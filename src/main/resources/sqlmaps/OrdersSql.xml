@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sqlmaps.OrdersSql">
-	<select id="selectOrders">
+	<select id="selectOrders" parameterType="java.util.HashMap" resultType="com.hunasys.labelsketch.orders.vo.OrdersVo">
+		SELECT
+			  ORDER_ID                                      as "orderId"
+			, ITEM_CLS                                      as "itemCls"
+			, COMPANY                                       as "company"
+			, ITEM_NM                                       as "itemNm"
+			, ITEM_SPEC                                     as "itemSpec"
+			, TOTAL_QTY                                     as "totalQty"
+			, PAPER1                                        as "paper1"
+			, PAPER2                                        as "paper2"
+			, PAPER3                                        as "paper3"
+			, PAPER4                                        as "paper4"
+			, PARER_ROLL                                    as "parerRoll"
+			, ROLL_QTY                                      as "rollQty"
+			, DUE_DATE                                      as "dueDate"
+			, DELIVERY                                      as "delivery"
+			, DESCRIPTION                                   as "description"
+			, FILE1                                         as "file1"
+			, FILE2                                         as "file2"
+			, USER_ID                                       as "userId"
+			, STR_TO_DATE(NEW_DATETIME,'%Y-%m-%d') as "newDate"
+			, STR_TO_DATE(NEW_DATETIME,'%H:%i:%S') as "newTime"
+			, STR_TO_DATE(MOD_DATETIME,'%Y-%m-%d') as "modDate"
+			, STR_TO_DATE(MOD_DATETIME,'%H:%i:%S') as "modTime"
+			, STR_TO_DATE(END_DATETIME,'%Y-%m-%d') as "endDate"
+			, STR_TO_DATE(END_DATETIME,'%H:%i:%S') as "endTime"
+		FROM
+			ORDERS
+
+		ORDER BY NEW_DATETIME DESC
+		LIMIT 10 OFFSET 0
+	</select>
+
+	<select id="selectOrder" parameterType="long" resultType="com.hunasys.labelsketch.orders.vo.OrdersVo">
 		SELECT
 			  ORDER_ID                                      as "orderId"
 			, ITEM_CLS                                      as "itemCls"
@@ -30,45 +63,15 @@
 		FROM
 			ORDERS
 		<where>
-			AND GROUP_CD = #{groupCd}
-		</where>
-		ORDER BY ORDERED ASC
-	</select>
-
-	<select id="selectOrder">
-		SELECT
-			  ORDER_ID                                      as "orderId"
-			, ITEM_CLS                                      as "itemCls"
-			, COMPANY                                       as "company"
-			, ITEM_NM                                       as "itemNm"
-			, ITEM_SPEC                                     as "itemSpec"
-			, TOTAL_QTY                                     as "totalQty"
-			, PAPER1                                        as "paper1"
-			, PAPER2                                        as "paper2"
-			, PAPER3                                        as "paper3"
-			, PAPER4                                        as "paper4"
-			, PARER_ROLL                                    as "parerRoll"
-			, ROLL_QTY                                      as "rollQty"
-			, DUE_DATE                                      as "dueDate"
-			, DELIVERY                                      as "delivery"
-			, DESCRIPTION                                   as "description"
-			, FILE1                                         as "file1"
-			, FILE2                                         as "file2"
-			, USER_ID                                       as "userId"
-			, STR_TO_DATE(NEW_DATETIME,'%Y-%m-%d') as "newDate"
-			, STR_TO_DATE(NEW_DATETIME,'%H:%i:%S') as "newTime"
-			, STR_TO_DATE(MOD_DATETIME,'%Y-%m-%d') as "modDate"
-			, STR_TO_DATE(MOD_DATETIME,'%H:%i:%S') as "modTime"
-			, STR_TO_DATE(END_DATETIME,'%Y-%m-%d') as "endDate"
-			, STR_TO_DATE(END_DATETIME,'%H:%i:%S') as "endTime"
-		FROM
-			ORDERS
-		<where>
-			AND ORDER_ID = #{orderId}A
+			AND ORDER_ID = #{orderId}
 		</where>
 	</select>
 
-	<insert id="insertOrders">
+	<insert 
+		id="insertOrder" 
+		parameterType="com.hunasys.labelsketch.orders.vo.OrdersVo" 
+		useGeneratedKeys="true"
+		keyProperty="orderId">
 		/* 주문 입력 */
 		INSERT INTO
 			ORDERS
@@ -98,24 +101,24 @@
 				, #{company,jdbcType=VARCHAR}
 				, #{itemNm,jdbcType=VARCHAR}
 				, #{itemSpec,jdbcType=VARCHAR}
-				, #{totalQty,jdbcType=INT}
+				, #{totalQty,jdbcType=INTEGER}
 				, #{paper1,jdbcType=VARCHAR}
 				, #{paper2,jdbcType=VARCHAR}
 				, #{paper3,jdbcType=VARCHAR}
 				, #{paper4,jdbcType=VARCHAR}
 				, #{parerRoll,jdbcType=VARCHAR}
-				, #{rollQty,jdbcType=INT}
+				, #{rollQty,jdbcType=INTEGER}
 				, #{dueDate,jdbcType=VARCHAR}
 				, #{delivery,jdbcType=VARCHAR}
 				, #{description,jdbcType=VARCHAR}
-				, #{file1,jdbcType=VARCHAR}
-				, #{file2,jdbcType=VARCHAR}
+				, #{file1,jdbcType=BIGINT}
+				, #{file2,jdbcType=BIGINT}
 				, #{userId,jdbcType=VARCHAR}
 				, now()
 			)   
 	</insert>
 
-	<update id="updateOrders">
+	<update id="updateOrder" parameterType="com.hunasys.labelsketch.orders.vo.OrdersVo">
 		/* 주문 수정 */
 		UPDATE
 			ORDERS
@@ -145,10 +148,10 @@
 		</where>
 	</update>
 
-	<delete id="deleteOrders">
+	<delete id="deleteOrder\" parameterType="long">
 		/* 주문 삭제 */
 		DELETE FROM
-				ORDERS
+			ORDERS
 		<where>
 			AND ORDER_ID = #{orderId}
 		</where>

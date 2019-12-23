@@ -25,7 +25,8 @@ public class OrdersRestApiController {
 
     @RequestMapping(value = "/order/getList", method = RequestMethod.GET)
     public List<OrdersVo> getList(@RequestParam Map<String, String> param) {
-        logger.info("request /order/list");
+        logger.info("request /order/getList");
+        logger.info(param.toString());
         return service.getList(param);
     }
 
@@ -35,19 +36,21 @@ public class OrdersRestApiController {
         return service.getItem(idx);
     }
 
-    @RequestMapping(value = "/order/newItem", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/regItem", method = RequestMethod.POST)
     public String newItem(@RequestBody OrdersVo vo) {
         logger.info("request /order/newItem");
+        logger.info(vo.toString());
+//        return "";
         return service.newItem(vo);
     }
 
-    @RequestMapping(value = "/order/modItem", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/modItem", method = RequestMethod.POST)
     public String modItem(@RequestBody OrdersVo vo) {
         logger.info("request /order/modItem");
         return service.modItem(vo);
     }
 
-    @RequestMapping(value = "/order/delItem", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/delItem", method = RequestMethod.POST)
     public String delItem(@RequestParam long idx) {
         logger.info("request /order/delItem");
         return service.delItem(idx);

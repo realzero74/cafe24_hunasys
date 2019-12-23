@@ -4,24 +4,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OrdersVo {
 
-	private long orderId;
+	private long   orderId;
 	private String itemCls;
 	private String company;
 	private String itemNm;
 	private String itemSpec;
-	private int totalQty;
+	private int    totalQty;
 	private String paper1;
 	private String paper2;
 	private String paper3;
 	private String paper4;
 	private String parerRoll;
-	private int rollQty;
+	private int    rollQty;
 	private String dueDate;
 	private String delivery;
 	private String description;
-	private long file1;
-	private long file2;
-
+	private long   file1;
+	private String file1Name;
+	private long   file2;
+	private String file2Name;
+	
 	private String setEnd;
 	private String endDate;
 	private String endTime;
@@ -232,6 +234,23 @@ public class OrdersVo {
 		this.modTime = modTime;
 	}
 
+	public String getFile1Name() {
+		return file1Name;
+	}
+
+	public void setFile1Name(String file1Name) {
+		this.file1Name = file1Name;
+	}
+
+	public String getFile2Name() {
+		return file2Name;
+	}
+
+	public void setFile2Name(String file2Name) {
+		this.file2Name = file2Name;
+	}
+
+	
 	@Override
 	public String toString() {
 		String str = "";
