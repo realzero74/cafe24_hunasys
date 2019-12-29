@@ -102,11 +102,16 @@ CREATE TABLE IF NOT EXISTS `ORDERS` (
   `mod_datetime` datetime DEFAULT NULL COMMENT '최근수정일',
   `end_datetime` datetime DEFAULT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 테이블 데이터 hunasys.ORDERS:~0 rows (대략적) 내보내기
+-- 테이블 데이터 hunasys.ORDERS:~2 rows (대략적) 내보내기
 DELETE FROM `ORDERS`;
 /*!40000 ALTER TABLE `ORDERS` DISABLE KEYS */;
+INSERT INTO `ORDERS` (`order_id`, `item_cls`, `company`, `item_nm`, `item_spec`, `total_qty`, `paper1`, `paper2`, `paper3`, `paper4`, `parer_roll`, `roll_qty`, `due_date`, `delivery`, `description`, `file1`, `file2`, `user_id`, `new_datetime`, `mod_datetime`, `end_datetime`) VALUES
+	(3, '01', 'qaweq', 'eqwqweqwe', 'qwe', 12, '02', NULL, NULL, NULL, '02', 1, '2019-12-28', '04', 'esrewsrt\nhjkh\nhu\nuh\nhu\nf6\ntvfgub\njnun\n', 0, 0, 'huna', '2019-12-25 09:27:55', NULL, NULL),
+	(4, '01', 'aaaaaa', '메롱이당....ㅋㅋㅋ', 'ASD', 1, '02', NULL, NULL, NULL, '02', 10, '2019-12-31', '02', 'asd\nasdf\nasdf\n###\nAsdf\nㅁ나어ㅣㅏ허\n', 0, 0, 'huna', '2019-12-29 14:22:28', NULL, NULL),
+	(5, '02', '내맘대로 회사', '', '', 0, '01', NULL, NULL, NULL, '01', 0, '', '01', '장비 입력', 0, 0, 'huna', '2019-12-29 14:34:36', NULL, NULL),
+	(7, '01', '내맘대로 회사', '123ㄴㅁㅇㄹㄴㅇㄹ', 'ㅁㅁㅁㅁ', 11, '02', '02', NULL, NULL, '02', 11, '2019-12-31', '02', 'ㅁㄴㅇㄹ', 0, 0, 'huna', '2019-12-29 14:44:39', NULL, NULL);
 /*!40000 ALTER TABLE `ORDERS` ENABLE KEYS */;
 
 -- 테이블 hunasys.USERS 구조 내보내기
@@ -124,8 +129,8 @@ CREATE TABLE IF NOT EXISTS `USERS` (
 DELETE FROM `USERS`;
 /*!40000 ALTER TABLE `USERS` DISABLE KEYS */;
 INSERT INTO `USERS` (`user_id`, `user_pw`, `user_comp`, `user_cls`, `new_dt`, `mod_dt`) VALUES
-	('huna', 'qwe123', '', 'admin', '2019-11-29 15:19:02', '2019-11-29 15:19:12'),
-	('user01', 'qwe123', '', 'user', '2019-11-29 15:19:02', '2019-11-29 15:19:12');
+	('huna', 'qwe123', '관리자', 'admin', '2019-11-29 15:19:02', '2019-11-29 15:19:12'),
+	('user01', 'qwe123', '내맘대로 회사', 'user', '2019-11-29 15:19:02', '2019-11-29 15:19:12');
 /*!40000 ALTER TABLE `USERS` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
