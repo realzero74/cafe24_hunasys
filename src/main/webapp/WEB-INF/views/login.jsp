@@ -77,7 +77,9 @@
 			}
 		});
 		
-		$("#login_btn").on("click", ajaxLogin);
+		$("#login_btn").on("click", function (){
+			ajaxLogin();
+		});
 
 		var ajaxLogin = function(){
 			$.ajax({ 

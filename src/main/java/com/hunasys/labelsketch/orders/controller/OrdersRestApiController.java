@@ -31,9 +31,10 @@ public class OrdersRestApiController {
     }
 
     @RequestMapping(value = "/order/getItem", method = RequestMethod.GET)
-    public OrdersVo getItem(@RequestParam long idx) {
+    public OrdersVo getItem(@RequestParam long orderId) {
         logger.info("request /order/getItem");
-        return service.getItem(idx);
+        logger.info("orderId : " + orderId);
+        return service.getItem(orderId);
     }
 
     @RequestMapping(value = "/order/regItem", method = RequestMethod.POST)
@@ -47,13 +48,15 @@ public class OrdersRestApiController {
     @RequestMapping(value = "/order/modItem", method = RequestMethod.POST)
     public String modItem(@RequestBody OrdersVo vo) {
         logger.info("request /order/modItem");
+        logger.info(vo.toString());
         return service.modItem(vo);
     }
 
     @RequestMapping(value = "/order/delItem", method = RequestMethod.POST)
-    public String delItem(@RequestParam long idx) {
+    public String delItem(@RequestParam long orderId) {
         logger.info("request /order/delItem");
-        return service.delItem(idx);
+        logger.info("orderId : " + orderId);
+        return service.delItem(orderId);
     }
 
 }

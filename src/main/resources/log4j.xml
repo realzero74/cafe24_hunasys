@@ -34,15 +34,10 @@
 
     <!-- log SQL with timing information, post execution -->
     <logger name="jdbc.sqltiming" additivity="false">
-        <level value="FATAL" />
+        <level value="debug" />
         <appender-ref ref="console" />
     </logger>
     
-    <logger name="jdbc.sqlonly" additivity="false"> 
-		<level value="info"/> 
-		<appender-ref ref="console"/> 
-	</logger>
-
 	<!-- Root Logger -->
 	<root>
 		<priority value="warn" />

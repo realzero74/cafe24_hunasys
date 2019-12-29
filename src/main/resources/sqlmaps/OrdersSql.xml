@@ -21,12 +21,12 @@
 			, FILE1                                         as "file1"
 			, FILE2                                         as "file2"
 			, USER_ID                                       as "userId"
-			, STR_TO_DATE(NEW_DATETIME,'%Y-%m-%d') as "newDate"
-			, STR_TO_DATE(NEW_DATETIME,'%H:%i:%S') as "newTime"
-			, STR_TO_DATE(MOD_DATETIME,'%Y-%m-%d') as "modDate"
-			, STR_TO_DATE(MOD_DATETIME,'%H:%i:%S') as "modTime"
-			, STR_TO_DATE(END_DATETIME,'%Y-%m-%d') as "endDate"
-			, STR_TO_DATE(END_DATETIME,'%H:%i:%S') as "endTime"
+			, date_format(NEW_DATETIME,'%Y-%m-%d') as "newDate"
+			, date_format(NEW_DATETIME,'%H:%i:%S') as "newTime"
+			, date_format(MOD_DATETIME,'%Y-%m-%d') as "modDate"
+			, date_format(MOD_DATETIME,'%H:%i:%S') as "modTime"
+			, date_format(END_DATETIME,'%Y-%m-%d') as "endDate"
+			, date_format(END_DATETIME,'%H:%i:%S') as "endTime"
 		FROM
 			ORDERS
 
@@ -54,12 +54,12 @@
 			, FILE1                                         as "file1"
 			, FILE2                                         as "file2"
 			, USER_ID                                       as "userId"
-			, STR_TO_DATE(NEW_DATETIME,'%Y-%m-%d') as "newDate"
-			, STR_TO_DATE(NEW_DATETIME,'%H:%i:%S') as "newTime"
-			, STR_TO_DATE(MOD_DATETIME,'%Y-%m-%d') as "modDate"
-			, STR_TO_DATE(MOD_DATETIME,'%H:%i:%S') as "modTime"
-			, STR_TO_DATE(END_DATETIME,'%Y-%m-%d') as "endDate"
-			, STR_TO_DATE(END_DATETIME,'%H:%i:%S') as "endTime"
+			, date_format(NEW_DATETIME,'%Y-%m-%d') as "newDate"
+			, date_format(NEW_DATETIME,'%H:%i:%S') as "newTime"
+			, date_format(MOD_DATETIME,'%Y-%m-%d') as "modDate"
+			, date_format(MOD_DATETIME,'%H:%i:%S') as "modTime"
+			, date_format(END_DATETIME,'%Y-%m-%d') as "endDate"
+			, date_format(END_DATETIME,'%H:%i:%S') as "endTime"
 		FROM
 			ORDERS
 		<where>
@@ -148,7 +148,7 @@
 		</where>
 	</update>
 
-	<delete id="deleteOrder\" parameterType="long">
+	<delete id="deleteOrder" parameterType="long">
 		/* 주문 삭제 */
 		DELETE FROM
 			ORDERS

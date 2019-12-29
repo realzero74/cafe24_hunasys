@@ -30,25 +30,78 @@ var OrderApp = function () {
         });
         
         // 등록 폼 오픈
-        $('#btn_orderReg').click(function() { 
+        $('#btn_orderReg').click(function() {
+        	model.setOrderInit();
         	view.orderFormPopup();
         });
+
+        // 수정
+        $(document).on("click",".modbutton",function(){
+        	console.log(this);
+        	console.log($(this).attr("data-orderid"));
+        	var orderid = $(this).attr("data-orderid");
+        });
+        
+        // 삭제
+        $(document).on("click",".delbutton",function(){
+        	console.log(this);
+        	console.log($(this).attr("data-orderid"));
+        	var param = {
+        		"orderId" : $(this).attr("data-orderid")
+        	};
+            transaction.delOrder(param).done(function (resultdata) {
+                $.unblockUI();
+            	var param = {
+            		"searchString1" : "",
+            		"searchString2" : "",
+            		"searchString3" : "",
+            		"searchString4" : "",
+            	}
+            	transaction.getList(param).done(function (resultdata) {
+            		view.tableHandler(resultdata);
+                });
+            });
+        });
+        
         
         // 등록 폼 취소
         $('#btn_cancelOrder').click(function() { 
+        	model.setOrderInit();
             $.unblockUI();
         });
         
         // 등록 폼 저장
         $('#btn_submitOrder').click(function() { 
         	console.log(model.getOrderType01());
-        	var param = model.getOrderType01();
-            
+        	var param = {};
+    		var itemcls = $("#itemCls").val();
+    		if(itemcls == "01") {
+    			param = model.getOrderType01();
+    		}
+    		else if(itemcls == "02") {
+    			param = model.getOrderType02();
+    		}
+			else if(itemcls == "03") {
+				param = model.getOrderType03();
+			}
+			else if(itemcls == "04") {
+				param = model.getOrderType04();
+			}
+			else if(itemcls == "05") {
+				param = model.getOrderType05();
+			}
             transaction.regOrder(param).done(function (resultdata) {
                 $.unblockUI();
+            	var param = {
+            		"searchString1" : "",
+            		"searchString2" : "",
+            		"searchString3" : "",
+            		"searchString4" : "",
+            	}
+            	transaction.getList(param).done(function (resultdata) {
+            		view.tableHandler(resultdata);
+                });
             });
-            
-            view.tableHandler
         });
         
         // excel 다운로드
@@ -56,8 +109,8 @@ var OrderApp = function () {
         	alert("excel 다운로드");
         });
         
-        $('#selectOrderCls').on('change',function() {
-        	// alert(this.value);
+        $('#itemCls').on('change',function() {
+        	console.log(this.value);
         	var targetView = ".orderCls" + this.value;
         	$(".orderViewPart").hide();
         	$(targetView).show();
@@ -127,44 +180,51 @@ var OrderViewHandler = function(transaction){
 	    tr_tag = tr_tag + "";
 		tr_tag = tr_tag + "</tr>";
 		
-		for ( var vo in volist) {
-//		for (var i = 0; i < 10; i++) {
+		volist.forEach(function(vo,idx,arr2){
+			//첫번쨰 인수는 배열의 각각의 item 
+			//두번쨰 인수는 배열의 index 
+			//세번째 인수는 배열 그자체
 			tr_tag = tr_tag + "<tr style='display:table-row'>";
 			tr_tag = tr_tag + "	<td rowspan = '2'>";
 			tr_tag = tr_tag + "		1";
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "	<td style='text-align:left'>";
-			tr_tag = tr_tag + "		회사명: 개그콘서트 대박 완전 잼 있어요 <img src='../image/btn/icon_new.gif' alt='새로운글' title='새로운글' />";
+			tr_tag = tr_tag + "		회사명: " + vo.company;
 			tr_tag = tr_tag + "		<br>";
-			tr_tag = tr_tag + "		품명:";
+			tr_tag = tr_tag + "		품명: " + vo.itemNm;
 			tr_tag = tr_tag + "		<br>";
-			tr_tag = tr_tag + "		규격:";
+			tr_tag = tr_tag + "		규격: " + vo.itemSpec;
 			tr_tag = tr_tag + "		<br>";
-			tr_tag = tr_tag + "		용지:";
+			tr_tag = tr_tag + "		용지: " + vo.paper1;
 			tr_tag = tr_tag + "";		
 			tr_tag = tr_tag + "	</td>";										
 			tr_tag = tr_tag + "	<td>";
-			tr_tag = tr_tag + "		2012.02.02 11:12:23";
+			tr_tag = tr_tag +  vo.newDate + "<br>" + vo.newTime;
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "	<td>";
-			tr_tag = tr_tag + "		2012.02.02";
+			tr_tag = tr_tag +  vo.dueDate;
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "	<td>";
-			tr_tag = tr_tag + "		<img src= '../image/btn/icon_modify03.jpg'><br><img src= '../image/btn/btn_cancel.jpg'><br>2012.02.02 11:12:23";
+			tr_tag = tr_tag + "		<button class='modbutton' data-orderid='"+vo.orderId+"'><img src= '/resources/image/btn/icon_modify03.jpg'></button><br>"
+			tr_tag = tr_tag + "     <button class='delbutton' data-orderid='"+vo.orderId+"'><img src= '/resources/image/btn/btn_cancel.jpg'></button><br>"
+			tr_tag = tr_tag +  vo.newDate + "<br>" + vo.newTime;
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "	<td style=' text-align:center'>";
-			tr_tag = tr_tag + "		<img src= '../image/btn/box-closed-blue.png'><br><br><img src= '../image/btn/box-closed-blue.png'>";
+			tr_tag = tr_tag + "		<img src= '/resources/image/btn/box-closed-blue.png'><br><br><img src= '/resources/image/btn/box-closed-blue.png'>";
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "	<td>";
-			tr_tag = tr_tag + "		<img src= '../image/btn/btn_print.jpg'>";
+			tr_tag = tr_tag + "		<img src= '/resources/image/btn/btn_print.jpg'>";
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "</tr>";
 			tr_tag = tr_tag + "<tr>";
 			tr_tag = tr_tag + "	<td colspan='6'  style=' text-align:left'>";
-			tr_tag = tr_tag + "		1";
+			tr_tag = tr_tag + "		<textarea style='width:90%;height:90%;resize: none;' readonly='readonly'>";
+			tr_tag = tr_tag + vo.description;
+			tr_tag = tr_tag + "		</textarea>";
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "</tr>";
-		}
+			
+		});
 		
 		$("#orderlist").html(tr_tag);
 	};
@@ -184,7 +244,6 @@ var OrderViewHandler = function(transaction){
                 cursor: 'auto' 
             } 
         }); 
-        console.log("check")
     	$(".orderViewPart").hide();
     	$(".orderCls01").show();
 	};
@@ -200,7 +259,7 @@ var OrderViewHandler = function(transaction){
 		initCalendar : initCalendar,
 		orderFormPopup : orderFormPopup,
 		tableHandler : tableHandler,
-		pagingHandler : pagingHandler
+		pagingHandler : pagingHandler,
 	};
 };
 
@@ -280,15 +339,15 @@ var OrderModel = function (){
 			itemCls     : $("#itemCls").val(),
 			company     : $("#company").val(),
 			
-			itemNm      : $("#itemNm02").val(),
-			itemSpec    : $("#itemSpec02").val(),
-			totalQty    : $("#totalQty02").val(),
-			paper1      : $("#paper102").val(),
-			paper2      : $("#paper202").val(),
-			paper3      : $("#paper302").val(),
-			paper4      : $("#paper402").val(),
-			parerRoll   : $("#parerRoll02").val(),
-			rollQty     : $("#rollQty02").val(),
+			itemNm      : "",//$("#itemNm02").val(),
+			itemSpec    : "",//$("#itemSpec02").val(),
+			totalQty    : 0, //$("#totalQty02").val(),
+			paper1      : "",//$("#paper102").val(),
+			paper2      : "",//$("#paper202").val(),
+			paper3      : "",//$("#paper302").val(),
+			paper4      : "",//$("#paper402").val(),
+			parerRoll   : "",//$("#parerRoll02").val(),
+			rollQty     : 0, //$("#rollQty02").val(),
 			dueDate     : $("#dueDate02").val(),
 			delivery    : $("#delivery02").val(),
 			
@@ -312,15 +371,15 @@ var OrderModel = function (){
 		$("#itemCls").val(vo.itemCls);
 		$("#company").val(vo.company);
 		
-		$("#itemNm02").val(vo.itemNm);
-		$("#itemSpec02").val(vo.itemSpec);
-		$("#totalQty02").val(vo.totalQty);
-		$("#paper102").val(vo.paper1);
-		$("#paper202").val(vo.paper2);
-		$("#paper302").val(vo.paper3);
-		$("#paper402").val(vo.paper4);
-		$("#parerRoll02").val(vo.parerRoll);
-		$("#rollQty02").val(vo.rollQty);
+//		$("#itemNm02").val(vo.itemNm);
+//		$("#itemSpec02").val(vo.itemSpec);
+//		$("#totalQty02").val(vo.totalQty);
+//		$("#paper102").val(vo.paper1);
+//		$("#paper202").val(vo.paper2);
+//		$("#paper302").val(vo.paper3);
+//		$("#paper402").val(vo.paper4);
+//		$("#parerRoll02").val(vo.parerRoll);
+//		$("#rollQty02").val(vo.rollQty);
 		$("#dueDate02").val(vo.dueDate);
 		$("#delivery02").val(vo.delivery);
 		
@@ -339,6 +398,8 @@ var OrderModel = function (){
 		$("#modTime").val(vo.modTime);
 	};
 	
+	
+	// 리본
 	var getOrderType03 = function (){
 		return {
 			orderId     : $("#orderId").val(),
@@ -380,12 +441,12 @@ var OrderModel = function (){
 		$("#itemNm03").val(vo.itemNm);
 		$("#itemSpec03").val(vo.itemSpec);
 		$("#totalQty03").val(vo.totalQty);
-		$("#paper103").val(vo.paper1);
-		$("#paper203").val(vo.paper2);
-		$("#paper303").val(vo.paper3);
-		$("#paper403").val(vo.paper4);
+//		$("#paper103").val(vo.paper1);
+//		$("#paper203").val(vo.paper2);
+//		$("#paper303").val(vo.paper3);
+//		$("#paper403").val(vo.paper4);
 		$("#parerRoll03").val(vo.parerRoll);
-		$("#rollQty03").val(vo.rollQty);
+//		$("#rollQty03").val(vo.rollQty);
 		$("#dueDate03").val(vo.dueDate);
 		$("#delivery03").val(vo.delivery);
 		
@@ -404,6 +465,8 @@ var OrderModel = function (){
 		$("#modTime").val(vo.modTime);
 	};
 	
+	
+	//실사
 	var getOrderType04 = function (){
 		return {
 			orderId     : $("#orderId").val(),
@@ -445,12 +508,12 @@ var OrderModel = function (){
 		$("#itemNm04").val(vo.itemNm);
 		$("#itemSpec04").val(vo.itemSpec);
 		$("#totalQty04").val(vo.totalQty);
-		$("#paper104").val(vo.paper1);
-		$("#paper204").val(vo.paper2);
+//		$("#paper104").val(vo.paper1);
+//		$("#paper204").val(vo.paper2);
 		$("#paper304").val(vo.paper3);
 		$("#paper404").val(vo.paper4);
-		$("#parerRoll04").val(vo.parerRoll);
-		$("#rollQty04").val(vo.rollQty);
+//		$("#parerRoll04").val(vo.parerRoll);
+//		$("#rollQty04").val(vo.rollQty);
 		$("#dueDate04").val(vo.dueDate);
 		$("#delivery04").val(vo.delivery);
 		
@@ -469,6 +532,8 @@ var OrderModel = function (){
 		$("#modTime").val(vo.modTime);
 	};
 	
+	
+	// 기타
 	var getOrderType05 = function (){
 		return {
 			orderId     : $("#orderId").val(),
@@ -534,6 +599,28 @@ var OrderModel = function (){
 		$("#modTime").val(vo.modTime);
 	};
 	
+	var setOrderInit = function (){
+		$("#orderId").val("");
+		$("#itemCls").val("01");
+		$("#company").val("");
+		
+		$("#itemNm05").val("");
+		$("#itemSpec05").val("");
+		$("#totalQty05").val("");
+		$("#paper105").val("");
+		$("#paper205").val("");
+		$("#paper305").val("");
+		$("#paper405").val("");
+		$("#parerRoll05").val("");
+		$("#rollQty05").val("");
+		$("#dueDate05").val("");
+		$("#delivery05").val("");
+		
+		$("#description").val("");
+		$("#file1").val("");
+		$("#file2").val("");
+	};
+	
 	return {
 		setOrderType01 : setOrderType01,
 		getOrderType01 : getOrderType01,
@@ -549,6 +636,8 @@ var OrderModel = function (){
 		
 		setOrderType05 : setOrderType05,
 		getOrderType05 : getOrderType05,
+		
+		setOrderInit   : setOrderInit,
 	}
 };
 
@@ -586,7 +675,7 @@ var OrderTransaction = function(){
         var deferred = $.Deferred();
         try {
             $.ajax({
-                url : '/fac/fca/saveOrder',
+                url : '/order/modItem',
                 method : 'POST',
                 contentType : 'application/json',
                 dataType : 'text',
@@ -612,7 +701,7 @@ var OrderTransaction = function(){
         try {
             $.ajax({
                 type : "POST",
-                url : "/fac/fca/deleteOrder",
+                url : "/order/delItem",
                 data : param,
                 dataType : "text",
                 success : function (data) {

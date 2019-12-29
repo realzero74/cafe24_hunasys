@@ -216,7 +216,7 @@
 						<th>구분</th>
 						<td><select name="searchChk" class="select02"
 							id="itemCls">
-								<option value="01" selected="">라벨</option>
+								<option value="01" selected="selected">라벨</option>
 								<option value="02">장비</option>
 								<option value="03">리본</option>
 								<option value="04">실사</option>
@@ -255,7 +255,7 @@
 								<option value="11">모조지</option>
 								<option value="12">꼬리표</option>
 						</select> 
-						<select id="paper101" name="searchChk" class="select02">
+						<select id="paper201" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">그라</option>
 								<option value="03">미색(황박)</option>
@@ -288,9 +288,9 @@
 					<!-- 장비 -->
 					<tr class="orderViewPart orderCls02" style="display: none;">
 						<th>납기일</th>
-						<td><input type="text" class="input01 usedatepicker"></td>
+						<td><input id="dueDate02" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
-						<td colspan="3"><select name="searchChk" class="select02">
+						<td colspan="3"><select id="delivery02" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">직납</option>
 								<option value="03">방문</option>
@@ -301,16 +301,16 @@
 					<!-- 리본 -->
 					<tr class="orderViewPart orderCls03" style="display: none;">
 						<th>품명</th>
-						<td><input type="text" class="input03"></td>
+						<td><input id="itemNm03" type="text" class="input03"></td>
 						<th>규격</th>
-						<td><input type="text" class="input01"></td>
+						<td><input id="itemSpec03" type="text" class="input01"></td>
 						<th>수량</th>
-						<td><input type="text" class="input01"></td>
+						<td><input id="totalQty03" type="text" class="input01"></td>
 					</tr>
 
 					<tr class="orderViewPart orderCls03" style="display: none;">
 						<th>지관</th>
-						<td><select name="searchChk" class="select02">
+						<td><select id="parerRoll03" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">40지관</option>
 								<option value="03">40지관(플라스틱)</option>
@@ -318,9 +318,9 @@
 								<option value="05">75지관(플라스틱)</option>
 						</select></td>
 						<th>납기일</th>
-						<td><input type="text" class="input01 usedatepicker"></td>
+						<td><input id="dueDate03" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
-						<td><select name="searchChk" class="select02">
+						<td><select id="delivery03" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">직납</option>
 								<option value="03">방문</option>
@@ -331,28 +331,30 @@
 					<!-- 실사 -->
 					<tr class="orderViewPart orderCls04" style="display: none;">
 						<th>품명</th>
-						<td><input type="text" class="input03"></td>
+						<td><input id="itemNm04" type="text" class="input03"></td>
 						<th>규격</th>
-						<td><input type="text" class="input01"></td>
+						<td><input id="itemSpec04" type="text" class="input01"></td>
 						<th>수량</th>
-						<td><input type="text" class="input01"></td>
+						<td><input id="totalQty04" type="text" class="input01"></td>
 					</tr>
 					<tr class="orderViewPart orderCls04" style="display: none;">
 						<th>실사용지</th>
-						<td><select name="searchChk" class="select02">
+						<td>
+							<select id="paper304" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">유포지</option>
 								<option value="03">캘지</option>
-						</select> <select name="searchChk" class="select02">
+							</select>
+							<select id="paper404"name="searchChk" class="select02">
 								<option value="01" selected="">코팅선택</option>
 								<option value="02">코팅없음</option>
 								<option value="03">무광코팅</option>
 								<option value="04">유광코팅</option>
-						</select></td>
+							</select></td>
 						<th>납기일</th>
-						<td><input type="text" class="input01 usedatepicker"></td>
+						<td><input id="dueDate04" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
-						<td><select name="searchChk" class="select02">
+						<td><select id="delivery04" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">직납</option>
 								<option value="03">방문</option>
@@ -364,9 +366,9 @@
 					<!-- 기타 -->
 					<tr class="orderViewPart orderCls05" style="display: none;">
 						<th>납기일</th>
-						<td><input type="text" class="input01 usedatepicker"></td>
+						<td><input id="dueDate05" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
-						<td colspan="3"><select name="searchChk" class="select02">
+						<td colspan="3"><select id="delivery05" name="searchChk" class="select02">
 								<option value="01" selected="">선택</option>
 								<option value="02">직납</option>
 								<option value="03">방문</option>
