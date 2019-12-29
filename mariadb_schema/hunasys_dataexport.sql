@@ -13,10 +13,12 @@
 
 
 -- hunasys 데이터베이스 구조 내보내기
+DROP DATABASE IF EXISTS `hunasys`;
 CREATE DATABASE IF NOT EXISTS `hunasys` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `hunasys`;
 
 -- 테이블 hunasys.CODES 구조 내보내기
+DROP TABLE IF EXISTS `CODES`;
 CREATE TABLE IF NOT EXISTS `CODES` (
   `group_cd` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `group_nm` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -64,6 +66,7 @@ INSERT INTO `CODES` (`group_cd`, `group_nm`, `item_cd`, `item_nm`, `ordered`) VA
 /*!40000 ALTER TABLE `CODES` ENABLE KEYS */;
 
 -- 테이블 hunasys.FILES 구조 내보내기
+DROP TABLE IF EXISTS `FILES`;
 CREATE TABLE IF NOT EXISTS `FILES` (
   `file_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `original_file_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '원본파일명',
@@ -79,6 +82,7 @@ DELETE FROM `FILES`;
 /*!40000 ALTER TABLE `FILES` ENABLE KEYS */;
 
 -- 테이블 hunasys.ORDERS 구조 내보내기
+DROP TABLE IF EXISTS `ORDERS`;
 CREATE TABLE IF NOT EXISTS `ORDERS` (
   `order_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'idx',
   `item_cls` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '구분',
@@ -104,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `ORDERS` (
   PRIMARY KEY (`order_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 테이블 데이터 hunasys.ORDERS:~2 rows (대략적) 내보내기
+-- 테이블 데이터 hunasys.ORDERS:~4 rows (대략적) 내보내기
 DELETE FROM `ORDERS`;
 /*!40000 ALTER TABLE `ORDERS` DISABLE KEYS */;
 INSERT INTO `ORDERS` (`order_id`, `item_cls`, `company`, `item_nm`, `item_spec`, `total_qty`, `paper1`, `paper2`, `paper3`, `paper4`, `parer_roll`, `roll_qty`, `due_date`, `delivery`, `description`, `file1`, `file2`, `user_id`, `new_datetime`, `mod_datetime`, `end_datetime`) VALUES
@@ -115,6 +119,7 @@ INSERT INTO `ORDERS` (`order_id`, `item_cls`, `company`, `item_nm`, `item_spec`,
 /*!40000 ALTER TABLE `ORDERS` ENABLE KEYS */;
 
 -- 테이블 hunasys.USERS 구조 내보내기
+DROP TABLE IF EXISTS `USERS`;
 CREATE TABLE IF NOT EXISTS `USERS` (
   `user_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '아이디',
   `user_pw` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '비밀번호',
