@@ -29,7 +29,31 @@
 			, date_format(END_DATETIME,'%H:%i:%S') as "endTime"
 		FROM
 			ORDERS
+		<where>
+			<!-- 주문일 -->
+			<if test="searchString1 != null and searchString2 != null and 
+			          searchString1 != '' and searchString2 != ''">
+			    AND date_format(NEW_DATETIME,'%Y-%m-%d') <![CDATA[ >= ]]> #{searchString1}
+			    AND date_format(NEW_DATETIME,'%Y-%m-%d') <![CDATA[ <= ]]> #{searchString2}
+			</if>
+			
+			<!-- 납기일 -->
+			<if test="searchString3 != null and searchString4 != null and 
+			          searchString3 != '' and searchString4 != ''">
+			    AND date_format(NEW_DATETIME,'%Y-%m-%d') <![CDATA[ >= ]]> #{searchString3}
+			    AND date_format(NEW_DATETIME,'%Y-%m-%d') <![CDATA[ <= ]]> #{searchString4}
+			</if>
 
+			<!-- 회사명 -->
+			<if test="searchString5 != null and searchString5 != ''">
+				AND COMPANY like '%'||#{searchString5}||'%'
+			</if>
+			
+			<!-- 품명 -->
+			<if test="searchString6 != null and searchString6 != ''">  
+				AND COMPANY like '%'||#{searchString6}||'%'
+			</if>
+		</where>
 		ORDER BY NEW_DATETIME DESC
 		LIMIT 10 OFFSET 0
 	</select>

@@ -39,9 +39,8 @@ public class OrdersRestApiController {
 
     @RequestMapping(value = "/order/regItem", method = RequestMethod.POST)
     public String newItem(@RequestBody OrdersVo vo) {
-        logger.info("request /order/newItem");
+        logger.info("request /order/regItem");
         logger.info(vo.toString());
-//        return "";
         return service.newItem(vo);
     }
 

@@ -29,9 +29,8 @@
 
 #container #contents{margin:0px auto; width:100%; height:100%;; margin-bottom:10px; text-align:center; border:0px solid #000;}
 
-
-#container #contents #conts01 { display:inline-block; position:relative; text-align:center; width:938px; height:320px; background-image: url( /resources/image/layout/main_midBg.jpg); border:0px solid #000; margin-top: 10px; margin-bottom: 10px}
-#container #contents #conts02 { display:inline-block; position:relative; text-align:center; width:938px; height:100%; border:0px solid #000;}
+#container #contents #conts01 {display: flex;position:relative;text-align:center;width:938px;border:0px solid #000;margin: 10px auto;}
+#container #contents #conts02 {display: block;position:relative;text-align:center;width:938px;height:100%;border:0px solid #000;margin: 0px auto;}
 #container #contents #conts02 .mpTitle01{ float:right; display:inline-block; width:100%; height:30px; text-align:right; padding-top:10px; border:0px solid #e1e1e1;}
 #container #contents #conts02 .mpTitle02{ float:right; display:inline-block; width:100%; height:40px; text-align:right; padding-top:5px; border:0px solid #e1e1e1;}
 
@@ -39,11 +38,12 @@
 #container #contents #conts02 .mpResult .contTxt{ float:left;  position: relative; display:inline-block; width:100%; height:100%; text-align:left; padding:10px 10px 10px 10px; background-color:#eff5e6; border:3px solid #000;}
 
 
-#container #contents #conts01 #left_conts01 { float:left; display:inline-block; position:relative; width:552px; height:100%; border:0px solid #cecdca;}
 
-#container #contents #conts01 #right_conts01 { float:left; display:inline-block; position:relative; width:370px; height:100%; padding-left:10px; margin-left:0px; border:0px solid #cecdca;}
+#container #contents #conts01 #left_conts01 {float:left;display:inline-block;position:relative;/* width: 555px; *//* height:100%; */border: 5px solid #e62c2d;}
 
-#container #contents #conts01 #left_conts01 #calendarView {margin:0px auto; width:100%; height:100%; margin-bottom:10px; text-align:center; border:0px solid #000;}
+#container #contents #conts01 #right_conts01 {float:left;display: block;position:relative;width:370px;/* height:100%; */padding-left:10px;margin-left: 5px;border: 5px solid #e62c2d;}
+
+#container #contents #conts01 #left_conts01 #calendarView {margin:0px auto;width:100%;/* height:100%; */margin-bottom:10px;text-align:center;border:0px solid #000;}
 
 
 #container #contents #regConts01 { display:inline-block; position:relative; text-align:center; width:932px; height:100%; border:3px solid #6b6f81; margin-top: 10px; margin-bottom: 10px}

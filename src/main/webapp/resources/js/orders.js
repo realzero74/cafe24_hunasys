@@ -17,6 +17,8 @@ var OrderApp = function () {
     		"searchString2" : "",
     		"searchString3" : "",
     		"searchString4" : "",
+    		"searchString5" : "",
+    		"searchString6" : "",
     	}
     	transaction.getList(param).done(function (resultdata) {
     		view.tableHandler(resultdata);
@@ -24,6 +26,23 @@ var OrderApp = function () {
     };
 
     var regEventHandler = function() {
+    	// 검색
+        $('#btn_searchOrder').click(function() { 
+        	var param = {
+    			"searchString1" : $("#searchString1").val(),
+	    		"searchString2" : $("#searchString2").val(),
+	    		"searchString3" : $("#searchString3").val(),
+	    		"searchString4" : $("#searchString4").val(),
+	    		"searchString5" : $("#searchString5").val(),
+	    		"searchString6" : $("#searchString6").val(),
+        	};
+        	$("#calendarView > div > table > tbody > tr > td > a").removeClass('ui-state-active');
+        	transaction.getList(param).done(function (resultdata) {
+        		view.tableHandler(resultdata);
+            });
+        });
+    	
+    	
     	// 사용자 등록 페이지로 이동
         $('#btn_userReg').click(function() {
         	location.href="/users"
@@ -40,6 +59,30 @@ var OrderApp = function () {
         	console.log(this);
         	console.log($(this).attr("data-orderid"));
         	var orderid = $(this).attr("data-orderid");
+        	
+        	transaction.getItem(orderid).done(function (resultdata) {
+        		console.log(resultdata);
+        		if(resultdata.itemCls == "01"){
+        			model.setOrderType01(resultdata);
+        			view.orderFormPopup("01");
+        		}
+        		else if(resultdata.itemCls == "02"){
+        			model.setOrderType02(resultdata);
+        			view.orderFormPopup("02");
+        		}
+        		else if(resultdata.itemCls == "03"){
+        			model.setOrderType03(resultdata);
+        			view.orderFormPopup("03");
+        		}
+        		else if(resultdata.itemCls == "04"){
+        			model.setOrderType04(resultdata);
+        			view.orderFormPopup("04");
+        		}
+        		else if(resultdata.itemCls == "05"){
+        			model.setOrderType05(resultdata);
+        			view.orderFormPopup("05");
+        		}
+            });
         });
         
         // 삭제
@@ -52,10 +95,12 @@ var OrderApp = function () {
             transaction.delOrder(param).done(function (resultdata) {
                 $.unblockUI();
             	var param = {
-            		"searchString1" : "",
-            		"searchString2" : "",
-            		"searchString3" : "",
-            		"searchString4" : "",
+        			"searchString1" : $("#searchString1").val(),
+		    		"searchString2" : $("#searchString2").val(),
+		    		"searchString3" : $("#searchString3").val(),
+		    		"searchString4" : $("#searchString4").val(),
+		    		"searchString5" : $("#searchString5").val(),
+		    		"searchString6" : $("#searchString6").val(),
             	}
             	transaction.getList(param).done(function (resultdata) {
             		view.tableHandler(resultdata);
@@ -90,18 +135,43 @@ var OrderApp = function () {
 			else if(itemcls == "05") {
 				param = model.getOrderType05();
 			}
-            transaction.regOrder(param).done(function (resultdata) {
-                $.unblockUI();
-            	var param = {
-            		"searchString1" : "",
-            		"searchString2" : "",
-            		"searchString3" : "",
-            		"searchString4" : "",
-            	}
-            	transaction.getList(param).done(function (resultdata) {
-            		view.tableHandler(resultdata);
-                });
-            });
+    		var orderId = $("#orderId").val();
+    		
+    		if(orderId){
+    			console.log("수정");
+    			transaction.modOrder(param).done(function (resultdata) {
+    				$.unblockUI();
+    				var param = {
+    						"searchString1" : $("#searchString1").val(),
+    			    		"searchString2" : $("#searchString2").val(),
+    			    		"searchString3" : $("#searchString3").val(),
+    			    		"searchString4" : $("#searchString4").val(),
+    			    		"searchString5" : $("#searchString5").val(),
+    			    		"searchString6" : $("#searchString6").val(),
+    				}
+    				transaction.getList(param).done(function (resultdata) {
+    					view.tableHandler(resultdata);
+    				});
+    			});
+
+    		}
+    		else {
+    			console.log("신규등록");
+    			transaction.regOrder(param).done(function (resultdata) {
+    				$.unblockUI();
+    				var param = {
+    			    		"searchString1" : $("#searchString1").val(),
+    			    		"searchString2" : $("#searchString2").val(),
+    			    		"searchString3" : $("#searchString3").val(),
+    			    		"searchString4" : $("#searchString4").val(),
+    			    		"searchString5" : $("#searchString5").val(),
+    			    		"searchString6" : $("#searchString6").val(),
+    				}
+    				transaction.getList(param).done(function (resultdata) {
+    					view.tableHandler(resultdata);
+    				});
+    			});
+    		}
         });
         
         // excel 다운로드
@@ -234,7 +304,10 @@ var OrderViewHandler = function(transaction){
 	};
 	
 	//layer popup : 등록/수정 폼
-	var orderFormPopup = function (){
+	var orderFormPopup = function (itemCls){
+		if(!itemCls){
+			itemCls = "01";
+		}
         $.blockUI({ 
             message: $('#orderForm'), 
             css: { 
@@ -245,12 +318,31 @@ var OrderViewHandler = function(transaction){
             } 
         }); 
     	$(".orderViewPart").hide();
-    	$(".orderCls01").show();
+    	$(".orderCls"+ itemCls).show();
 	};
 	
 	// calendar 핸들러
 	var initCalendar = function (){
-		$("#calendarView").datepicker();
+		$("#calendarView").datepicker({
+            onSelect: function (dateText, inst) {
+                // 일자 선택된 후 이벤트 발생
+            	console.log(dateText);
+            	
+				var param = {
+			    		"searchString1" : dateText,
+			    		"searchString2" : dateText,
+			    		"searchString3" : "",
+			    		"searchString4" : "",
+			    		"searchString5" : "",
+			    		"searchString6" : "",
+				}
+				$("#searchString1").val(dateText);
+				$("#searchString2").val(dateText);
+				transaction.getList(param).done(function (resultdata) {
+					tableHandler(resultdata);
+				});            	
+            }
+		});
 	};
 	
 	
@@ -366,7 +458,7 @@ var OrderModel = function (){
 			modTime	    : $("#modTime").val(),
 		};
 	};
-	var setOrderType02 = function (){
+	var setOrderType02 = function (vo){
 		$("#orderId").val(vo.orderId);
 		$("#itemCls").val(vo.itemCls);
 		$("#company").val(vo.company);
@@ -433,7 +525,7 @@ var OrderModel = function (){
 			modTime	    : $("#modTime").val(),
 		};
 	};
-	var setOrderType03 = function (){
+	var setOrderType03 = function (vo){
 		$("#orderId").val(vo.orderId);
 		$("#itemCls").val(vo.itemCls);
 		$("#company").val(vo.company);
@@ -500,7 +592,7 @@ var OrderModel = function (){
 			modTime	    : $("#modTime").val(),
 		};
 	};
-	var setOrderType04 = function (){
+	var setOrderType04 = function (vo){
 		$("#orderId").val(vo.orderId);
 		$("#itemCls").val(vo.itemCls);
 		$("#company").val(vo.company);
@@ -567,7 +659,7 @@ var OrderModel = function (){
 			modTime	    : $("#modTime").val(),
 		};
 	};
-	var setOrderType05 = function (){
+	var setOrderType05 = function (vo){
 		$("#orderId").val(vo.orderId);
 		$("#itemCls").val(vo.itemCls);
 		$("#company").val(vo.company);
@@ -736,10 +828,34 @@ var OrderTransaction = function(){
         return deferred.promise();
     };
     
+    var getItem = function (param) {
+        console.log("getOrderItem");
+
+        var deferred = $.Deferred();
+        try {
+            $.ajax({
+                type : "GET",
+                url : "/order/getItem",
+                data : {
+                	"orderId" : param,
+                },
+                dataType : "json",
+                success : function (data) {
+                    console.log(data);
+                    deferred.resolve(data);
+                }
+            });
+        } catch (err) {
+            deferred.reject(err);
+        }
+        return deferred.promise();
+    };
+    
     return {
     	regOrder     : regOrder,
     	modOrder     : modOrder,
     	delOrder     : delOrder,
-    	getList      : getList
+    	getList      : getList,
+    	getItem      : getItem,
     }
 };

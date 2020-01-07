@@ -48,24 +48,24 @@
 								</tr>
 								<tr height="40px">
 									<td>주문일</td>
-									<td colspan="3" style="text-align: left"><input
-										type="text" class="input01 usedatepicker"> - <input
+									<td colspan="3" style="text-align: left"><input id="searchString1"
+										type="text" class="input01 usedatepicker"> - <input  id="searchString2"
 										type="text" class="input01 usedatepicker"></td>
 								</tr>
 								<tr height="40px">
 									<td>납기일</td>
-									<td colspan="3" style="text-align: left"><input
-										type="text" class="input01 usedatepicker"> - <input
+									<td colspan="3" style="text-align: left"><input id="searchString3"
+										type="text" class="input01 usedatepicker"> - <input id="searchString4"
 										type="text" class="input01 usedatepicker"></td>
 								</tr>
 								<tr height="40px">
 									<td>회사명</td>
-									<td colspan="3" style="text-align: left"><input
+									<td colspan="3" style="text-align: left"><input id="searchString5"
 										type="text" class="input02"></td>
 								</tr>
 								<tr height="40px">
 									<td>품명</td>
-									<td colspan="3" style="text-align: left"><input
+									<td colspan="3" style="text-align: left"><input id="searchString6"
 										type="text" class="input02"></td>
 								</tr>
 								<tr height="25px">
@@ -73,7 +73,7 @@
 								</tr>
 								<tr>
 									<td colspan="4" style="text-align: center">
-										<button>
+										<button id="btn_searchOrder" type="button">
 											<img src="/resources/image/btn/btn_sch.gif">
 										</button>
 									</td>
@@ -210,7 +210,7 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<td colspan="6"><input id="orderId" type="text" readonly="readonly"></td>
+						<td colspan="6"><input id="orderId" type="hidden" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>구분</th>
