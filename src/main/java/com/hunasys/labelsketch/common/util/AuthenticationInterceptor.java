@@ -17,9 +17,10 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		logger.info("dispatcher 이후 : controller 요청 전");
 
 		String requestUri = request.getRequestURI();
+		logger.info("dispatcher 이후 : controller 요청 전" + requestUri);
+		
 		if (requestUri.contains("/resources")) {
 			return true;
 		}
