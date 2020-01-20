@@ -6,14 +6,14 @@
 <head>
 <title>휴나닉 주문관리 서비스 - 관리자</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="/resources/css/common.css" type="text/css">
-<link rel="stylesheet" href="/resources/lib/jqueryui.css" type="text/css">
-<link rel="stylesheet" href="/resources/css/inlineCalendar.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/lib/jqueryui.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/inlineCalendar.css" type="text/css">
 
-<script type="text/javascript" src="/resources/lib/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/resources/lib/jqueryui.js"></script>
-<script type="text/javascript" src="/resources/lib/jquery.blockui.js"></script>
-<script type="text/javascript" src="/resources/js/orders.js?ver=201912151623"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jqueryui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.blockui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/orders.js?ver=201912151623"></script>
 </head>
 
 <body>
@@ -74,7 +74,7 @@
 								<tr>
 									<td colspan="4" style="text-align: center">
 										<button id="btn_searchOrder" type="button">
-											<img src="/resources/image/btn/btn_sch.gif">
+											<img src="${pageContext.request.contextPath}/resources/image/btn/btn_sch.gif">
 										</button>
 									</td>
 
@@ -89,13 +89,13 @@
 				<div id="conts02">
 					<div class="mpTitle02">
 						<button type="button" id="btn_userReg">
-							<img src="/resources/image/btn/btn_userReg.gif">
+							<img src="${pageContext.request.contextPath}/resources/image/btn/btn_userReg.gif">
 						</button>
 						<button type="button" id="btn_orderReg">
-							<img src="/resources/image/btn/btn_reg.gif">
+							<img src="${pageContext.request.contextPath}/resources/image/btn/btn_reg.gif">
 						</button>
 						<button type="button" id="btn_excel">
-							<img src="/resources/image/btn/btn_excel.jpg">
+							<img src="${pageContext.request.contextPath}/resources/image/btn/btn_excel.jpg">
 						</button>
 
 					</div>
@@ -113,79 +113,14 @@
 							</colgroup>
 							<tbody id="orderlist">
 								<tr>
-									<th>번호</th>
-									<th>기본정보</th>
-
-									<th>주문일</th>
-									<th>납기일</th>
-									<th>완료</th>
-									<th>파일</th>
-									<th>인쇄</th>
-
-								</tr>
-								<tr>
-									<td rowspan="2">1</td>
-									<td style="text-align: left">
-										<div>
-											회사명: 개그콘서트 대박 완전 잼 있어요 <img src="/resources/image/btn/icon_new.gif" alt="새로운글" title="새로운글">
-										</div>
-										<div>품명:</div>
-										<div>규격:</div>
-										<div>용지:</div>
-
-									</td>
-									<td>
-										<div>2012.02.02</div>
-										<div>11:12:23</div>
-									</td>
-									<td>
-										<div>2012.02.02</div>
-									</td>
-									<td>
-										<div>
-											<img src="/resources/image/btn/btn_finish.jpg">
-										</div>
-										<div>
-											<img src="/resources/image/btn/icon_modify03.jpg">
-										</div>
-										<div>
-											<img src="/resources/image/btn/btn_cancel.jpg">
-										</div>
-										<div>2012.02.02</div>
-										<div>11:12:23</div>
-									</td>
-									<td style="text-align: center">
-										<div>
-											<img src="/resources/image/btn/box-closed-blue.png">
-										</div>
-										<div>
-											<img src="/resources/image/btn/box-closed-blue.png">
-										</div>
-									</td>
-									<td><img src="/resources/image/btn/btn_print.jpg"></td>
+									<td colspan="7">목록이 없습니다.</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 
-                    <div class="paginate">
+                    <div class="paginate" id="paginate">
 						<!-- paginate -->
-
-						<a href="#none" class="none"><img src="/resources/image/btn/btn_front.gif" alt="처음"></a>
-						<a href="#none" class="none"><img src="/resources/image/btn/btn_pre.gif" alt="이전"></a>
-						<a href="#none"><strong>1</strong></a>
-						<a href="#none">2</a>
-						<a href="#none">3</a>
-						<a href="#none">4</a>
-						<a href="#none">5</a>
-						<a href="#none">6</a>
-						<a href="#none">7</a>
-						<a href="#none">8</a>
-						<a href="#none">9</a>
-						<a href="#none">10</a>
-						<a href="#none" class="none"><img src="/resources/image/btn/btn_nxt.gif" alt="다음"></a> 
-						<a href="#none" class="none"><img src="/resources/image/btn/btn_end.gif" alt="끝"></a>
-
 					</div>
 
 				</div>
@@ -388,12 +323,12 @@
 					<tr>
 						<th>첨부파일1</th>
 						<td colspan="5"><input id="file1" type="text" class="input05"> <img
-							src="/resources/image/btn/btn_find.gif" alt="파일찾기" title="파일찾기"></td>
+							src="${pageContext.request.contextPath}/resources/image/btn/btn_find.gif" alt="파일찾기" title="파일찾기"></td>
 					</tr>
 					<tr>
 						<th>첨부파일2</th>
 						<td colspan="5"><input id="file2" type="text" class="input05"> <img
-							src="/resources/image/btn/btn_find.gif" alt="파일찾기" title="파일찾기"></td>
+							src="${pageContext.request.contextPath}/resources/image/btn/btn_find.gif" alt="파일찾기" title="파일찾기"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -404,10 +339,10 @@
 
 		<div class="contBtnSave" style="margin: 10px auto;">
 			<button id="btn_cancelOrder" type="button">
-				<img src="/resources/image/btn/btn_c_cancel.gif" alt="취소" title="취소">
+				<img src="${pageContext.request.contextPath}/resources/image/btn/btn_c_cancel.gif" alt="취소" title="취소">
 			</button>
 			<button id="btn_submitOrder" type="button">
-				<img src="/resources/image/btn/btn_reg.gif" alt="등록하기" title="등록하기">
+				<img src="${pageContext.request.contextPath}/resources/image/btn/btn_reg.gif" alt="등록하기" title="등록하기">
 			</button>
 		</div>
 
@@ -417,6 +352,7 @@
 <script>
 	'use strict';
 	console.log("in orders list pages");
+	var __contextPath__ = "${pageContext.request.contextPath}"; 
 	var _loginUser = "${userId}";
 	var _loginCls = "${userCls}";
 	var orderApp = new OrderApp();

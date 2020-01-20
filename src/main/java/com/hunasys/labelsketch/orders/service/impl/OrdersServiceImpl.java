@@ -17,7 +17,12 @@ public class OrdersServiceImpl implements OrdersService {
     private OrdersDao ordersdao;
     
     @Override
-    public List<OrdersVo> getList(Map<String, String> param) {
+    public int getListCnt(Map<String, Object> param) {
+    	return ordersdao.selectOrdersCount(param);
+    }
+
+    @Override
+    public List<OrdersVo> getList(Map<String, Object> param) {
     	return ordersdao.selectOrders(param);
     }
 
@@ -40,5 +45,6 @@ public class OrdersServiceImpl implements OrdersService {
     public String delItem(long idx) {
     	return ordersdao.deleteOrder(idx);
     }
+
 
 }

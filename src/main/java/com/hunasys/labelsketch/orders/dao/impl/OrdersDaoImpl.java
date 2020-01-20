@@ -19,9 +19,13 @@ public class OrdersDaoImpl implements OrdersDao {
     @Resource(name = "sqlSession")
     private SqlSessionTemplate sqlsession;
     
-
+	@Override
+	public int selectOrdersCount(Map<String, Object> param) {
+		return sqlsession.selectOne("sqlmaps.OrdersSql.selectOrdersCount", param);
+	}
+	
     @Override
-    public List<OrdersVo> selectOrders(Map<String, String> param) {
+    public List<OrdersVo> selectOrders(Map<String, Object> param) {
         return sqlsession.selectList("sqlmaps.OrdersSql.selectOrders", param);
     }
 
@@ -59,4 +63,5 @@ public class OrdersDaoImpl implements OrdersDao {
 			return "fail";
 		}    	
     }
+
 }

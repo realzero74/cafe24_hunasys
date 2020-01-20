@@ -1,5 +1,6 @@
 package com.hunasys.labelsketch.orders.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,10 +25,28 @@ public class OrdersRestApiController {
     OrdersService service; 
 
     @RequestMapping(value = "/order/getList", method = RequestMethod.GET)
-    public List<OrdersVo> getList(@RequestParam Map<String, String> param) {
+    public Map<String, Object> getList(@RequestParam Map<String, Object> param) {
         logger.info("request /order/getList");
         logger.info(param.toString());
-        return service.getList(param);
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+        
+        int curpage = 1;
+        
+        if(param.get("currentPage")==null) {
+        	curpage = 1;
+        	param.put("offset", 0);
+        }
+        else {
+        	curpage = Integer.parseInt((String)param.get("currentPage"));
+        	param.put("offset", (curpage-1) *10);
+        }
+        
+        map.put("currentPage", curpage);
+        map.put("totalCnt", service.getListCnt(param));
+        map.put("datalist", service.getList(param));
+        
+        return map;
     }
 
     @RequestMapping(value = "/order/getItem", method = RequestMethod.GET)

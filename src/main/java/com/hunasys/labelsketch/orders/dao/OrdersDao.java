@@ -7,7 +7,9 @@ import com.hunasys.labelsketch.orders.vo.OrdersVo;
 
 public interface OrdersDao {
     
-    public List<OrdersVo> selectOrders(Map<String, String> param);
+	public int selectOrdersCount(Map<String, Object> param);
+	
+    public List<OrdersVo> selectOrders(Map<String, Object> param);
     
     public OrdersVo selectOrder(long idx);
     

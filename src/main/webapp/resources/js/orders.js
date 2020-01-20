@@ -19,9 +19,11 @@ var OrderApp = function () {
     		"searchString4" : "",
     		"searchString5" : "",
     		"searchString6" : "",
+    		"curentPage"    : "1" ,
     	}
     	transaction.getList(param).done(function (resultdata) {
     		view.tableHandler(resultdata);
+    		view.pagingHandler(resultdata.totalCnt, resultdata.currentPage);
         });
     };
 
@@ -39,9 +41,34 @@ var OrderApp = function () {
         	$("#calendarView > div > table > tbody > tr > td > a").removeClass('ui-state-active');
         	transaction.getList(param).done(function (resultdata) {
         		view.tableHandler(resultdata);
+        		view.pagingHandler(resultdata.totalCnt, resultdata.currentPage);
             });
         });
     	
+        
+        $(document).on("click",".paginate>a",function(){
+        	if($(this).hasClass("curpage") !== true) {
+        		var currentPage = $(this).attr("data-page");
+//        		alert(currentPage + "페이지로 이동");
+        		
+        		var param = {
+        				"searchString1" : $("#searchString1").val(),
+        				"searchString2" : $("#searchString2").val(),
+        				"searchString3" : $("#searchString3").val(),
+        				"searchString4" : $("#searchString4").val(),
+        				"searchString5" : $("#searchString5").val(),
+        				"searchString6" : $("#searchString6").val(),
+        				"currentPage"   : currentPage,
+        		};
+        		$("#calendarView > div > table > tbody > tr > td > a").removeClass('ui-state-active');
+        		transaction.getList(param).done(function (resultdata) {
+        			view.tableHandler(resultdata);
+        			view.pagingHandler(resultdata.totalCnt, resultdata.currentPage);
+        		});
+        	}
+        });
+        
+        
     	
     	// 사용자 등록 페이지로 이동
         $('#btn_userReg').click(function() {
@@ -104,6 +131,7 @@ var OrderApp = function () {
             	}
             	transaction.getList(param).done(function (resultdata) {
             		view.tableHandler(resultdata);
+            		view.pagingHandler(resultdata.totalCnt, resultdata.currentPage);
                 });
             });
         });
@@ -151,6 +179,7 @@ var OrderApp = function () {
     				}
     				transaction.getList(param).done(function (resultdata) {
     					view.tableHandler(resultdata);
+    					view.pagingHandler(resultdata.totalCnt, resultdata.currentPage);
     				});
     			});
 
@@ -169,6 +198,7 @@ var OrderApp = function () {
     				}
     				transaction.getList(param).done(function (resultdata) {
     					view.tableHandler(resultdata);
+    					view.pagingHandler(resultdata.totalCnt, resultdata.currentPage);
     				});
     			});
     		}
@@ -206,7 +236,7 @@ var OrderViewHandler = function(transaction){
 	        ,changeYear: true //콤보박스에서 년 선택 가능
 	        ,changeMonth: true //콤보박스에서 월 선택 가능                
 	        ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-	        ,buttonImage: "/resources/image/layout/icon_cal.gif" //버튼 이미지 경로
+	        ,buttonImage: "/hunaorder/resources/image/layout/icon_cal.gif" //버튼 이미지 경로
 	        ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
 	        ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
 	        ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
@@ -222,7 +252,7 @@ var OrderViewHandler = function(transaction){
 	};
 	
 	//테이블 핸들러
-	var tableHandler = function(volist){
+	var tableHandler = function(data){
 		var tr_tag = "";
 		tr_tag = tr_tag + "<tr style='display:table-row'>";
 		tr_tag = tr_tag + "	<th>";
@@ -250,13 +280,16 @@ var OrderViewHandler = function(transaction){
 	    tr_tag = tr_tag + "";
 		tr_tag = tr_tag + "</tr>";
 		
-		volist.forEach(function(vo,idx,arr2){
+		data.datalist.forEach(function(vo,idx,arr2){
 			//첫번쨰 인수는 배열의 각각의 item 
 			//두번쨰 인수는 배열의 index 
 			//세번째 인수는 배열 그자체
+			
+			
+			
 			tr_tag = tr_tag + "<tr style='display:table-row'>";
 			tr_tag = tr_tag + "	<td rowspan = '2'>";
-			tr_tag = tr_tag + "		1";
+			tr_tag = tr_tag + "		"+((data.currentPage-1)*10 + (idx + 1));
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "	<td style='text-align:left'>";
 			tr_tag = tr_tag + "		회사명: " + vo.company;
@@ -266,7 +299,6 @@ var OrderViewHandler = function(transaction){
 			tr_tag = tr_tag + "		규격: " + vo.itemSpec;
 			tr_tag = tr_tag + "		<br>";
 			tr_tag = tr_tag + "		용지: " + vo.paper1;
-			tr_tag = tr_tag + "";		
 			tr_tag = tr_tag + "	</td>";										
 			tr_tag = tr_tag + "	<td>";
 			tr_tag = tr_tag +  vo.newDate + "<br>" + vo.newTime;
@@ -275,15 +307,15 @@ var OrderViewHandler = function(transaction){
 			tr_tag = tr_tag +  vo.dueDate;
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "	<td>";
-			tr_tag = tr_tag + "		<button class='modbutton' data-orderid='"+vo.orderId+"'><img src= '/resources/image/btn/icon_modify03.jpg'></button><br>"
-			tr_tag = tr_tag + "     <button class='delbutton' data-orderid='"+vo.orderId+"'><img src= '/resources/image/btn/btn_cancel.jpg'></button><br>"
+			tr_tag = tr_tag + "		<button class='modbutton' data-orderid='"+vo.orderId+"'><img src= '"+__contextPath__+"/resources/image/btn/icon_modify03.jpg'></button><br>"
+			tr_tag = tr_tag + "     <button class='delbutton' data-orderid='"+vo.orderId+"'><img src= '"+__contextPath__+"/resources/image/btn/btn_cancel.jpg'></button><br>"
 			tr_tag = tr_tag +  vo.newDate + "<br>" + vo.newTime;
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "	<td style=' text-align:center'>";
-			tr_tag = tr_tag + "		<img src= '/resources/image/btn/box-closed-blue.png'><br><br><img src= '/resources/image/btn/box-closed-blue.png'>";
+			tr_tag = tr_tag + "		<img src= '"+__contextPath__+"/resources/image/btn/box-closed-blue.png'><br><br><img src= '"+__contextPath__+"/resources/image/btn/box-closed-blue.png'>";
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "	<td>";
-			tr_tag = tr_tag + "		<img src= '/resources/image/btn/btn_print.jpg'>";
+			tr_tag = tr_tag + "		<img src= '"+__contextPath__+"/resources/image/btn/btn_print.jpg'>";
 			tr_tag = tr_tag + "	</td>";
 			tr_tag = tr_tag + "</tr>";
 			tr_tag = tr_tag + "<tr>";
@@ -299,8 +331,63 @@ var OrderViewHandler = function(transaction){
 		$("#orderlist").html(tr_tag);
 	};
 	//페이징 핸들러
-	var pagingHandler = function(page){
+	var pagingHandler = function(totalCnt, curPage){
 		
+		//보여줄 전체 페이지수
+		var totalPageCnt = Math.ceil(totalCnt / 10);
+		//보여줄 전체 블럭수
+		var totalBlockCnt = Math.ceil(totalPageCnt / 10);
+		//현재 블럭
+		var curBlock = Math.ceil(curPage / 10);
+		//블럭 시작
+		var startBlock = ((curBlock-1)*10)+1;
+		//블럭 마지막
+		var endBlock = curBlock * 10 > totalPageCnt ? totalPageCnt : curBlock * 10;
+		
+		var first = 1
+		
+//		var prev = startBlock - 10 < 0 ? startBlock : startBlock - 10;
+		var prev = startBlock - 1 == 0 ? startBlock : startBlock - 1;
+			
+//		var next = endBlock + 10 > totalPageCnt ? totalPageCnt : endBlock + 10
+		var next = endBlock + 1 > totalPageCnt ? totalPageCnt : endBlock + 1;
+			
+		var last = totalPageCnt
+		
+		console.log("totalCnt : ",totalCnt);
+		console.log("curPage  : ",curPage);
+		console.log("totalPageCnt : ",totalPageCnt);
+		console.log("totalBlockCnt : ",totalBlockCnt);
+		console.log("curBlock : ",curBlock);
+		console.log("startBlock : ",startBlock);
+		console.log("endBlock : ",endBlock);
+		
+		var strLog = "";
+		
+		strLog = strLog + first;
+		strLog = strLog + " | " + prev;
+		for (var i = startBlock; i <= endBlock; i++) {
+			strLog = strLog + " | " + i;
+		}
+		strLog = strLog + " | " + next;
+		strLog = strLog + " | " + last;
+		
+		console.log("strPageLog : ",strLog);
+		
+		var strPageTag = "<a data-page='1'><img src='/hunaorder/resources/image/btn/btn_front.gif' alt='처음'></a>";
+		strPageTag += "<a data-page='"+prev+"'><img src='/hunaorder/resources/image/btn/btn_pre.gif' alt='이전'></a>";
+		for (var i = startBlock; i <= endBlock; i++) {
+			if(i == curPage){
+				strPageTag += "<a data-page='"+i+"' class='curpage'>"+i+"</a>";
+			}
+			else {
+				strPageTag += "<a data-page='"+i+"'>"+i+"</a>";
+			}
+		}
+		strPageTag +="<a data-page='"+next+"'><img src='/hunaorder/resources/image/btn/btn_nxt.gif' alt='다음'></a>";
+		strPageTag +="<a data-page='"+last+"'><img src='/hunaorder/resources/image/btn/btn_end.gif' alt='끝'></a>";
+		
+		$("#paginate").html(strPageTag);
 	};
 	
 	//layer popup : 등록/수정 폼
@@ -340,6 +427,8 @@ var OrderViewHandler = function(transaction){
 				$("#searchString2").val(dateText);
 				transaction.getList(param).done(function (resultdata) {
 					tableHandler(resultdata);
+					pagingHandler(resultdata.totalCnt, resultdata.currentPage);
+					
 				});            	
             }
 		});
@@ -744,7 +833,7 @@ var OrderTransaction = function(){
         var deferred = $.Deferred();
         try {
             $.ajax({
-                url : '/order/regItem',
+                url : __contextPath__ + '/order/regItem',
                 method : 'POST',
                 contentType : 'application/json',
                 dataType : 'text',
@@ -767,7 +856,7 @@ var OrderTransaction = function(){
         var deferred = $.Deferred();
         try {
             $.ajax({
-                url : '/order/modItem',
+                url : __contextPath__ + '/order/modItem',
                 method : 'POST',
                 contentType : 'application/json',
                 dataType : 'text',
@@ -793,7 +882,7 @@ var OrderTransaction = function(){
         try {
             $.ajax({
                 type : "POST",
-                url : "/order/delItem",
+                url : __contextPath__ + "/order/delItem",
                 data : param,
                 dataType : "text",
                 success : function (data) {
@@ -814,7 +903,7 @@ var OrderTransaction = function(){
         try {
             $.ajax({
                 type : "GET",
-                url : "/order/getList",
+                url : __contextPath__ + "/order/getList",
                 data : param,
                 dataType : "json",
                 success : function (data) {
@@ -835,7 +924,7 @@ var OrderTransaction = function(){
         try {
             $.ajax({
                 type : "GET",
-                url : "/order/getItem",
+                url : __contextPath__ + "/order/getItem",
                 data : {
                 	"orderId" : param,
                 },

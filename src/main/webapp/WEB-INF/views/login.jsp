@@ -5,9 +5,9 @@
 <head>
 	<title>휴나몰입니다.</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="/resources/css/common.css" type="text/css">
-	<script type="text/javascript" src="/resources/lib/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript" src="/resources/lib/jquery.blockui.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.blockui.js"></script>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
 		<div id="container">
 			<div id="logincont">
 				<div class="contStep01">
-					<img src="/resources/image/layout/login_topImg.jpg" alt="logo" title="logo" />
+					<img src="${pageContext.request.contextPath}/resources/image/layout/login_topImg.jpg" alt="logo" title="logo" />
 				</div>
 				<!-- contStep01 끝 -->
 
@@ -40,7 +40,7 @@
 												<tr>
 													<td rowspan="3"></td>
 													<td><input id="user_id" type="text" class="input02" placeholder="아이디" tabindex="1"></td>
-													<td rowspan="2" style="text-align: center;"><button type="button" id="login_btn"><img src="/resources/image/btn/btn_login.jpg" /></button></td>
+													<td rowspan="2" style="text-align: center;"><button type="button" id="login_btn"><img src="${pageContext.request.contextPath}/resources/image/btn/btn_login.jpg" /></button></td>
 													<td rowspan="3"></td>
 												</tr>
 												<tr>
@@ -50,7 +50,7 @@
 										</table>
 
 									</td>
-									<td><img src="/resources/image/layout/namecard.jpg"	alt="바코드솔루션 전문기업 휴나몰" title="바코드솔루션 전문기업 휴나몰" /></td>
+									<td><img src="${pageContext.request.contextPath}/resources/image/layout/namecard.jpg"	alt="바코드솔루션 전문기업 휴나몰" title="바코드솔루션 전문기업 휴나몰" /></td>
 								</tr>
 							</tbody>
 						</table>
@@ -58,7 +58,7 @@
 				</div>
 
 				<div class="contStep03">
-					<img src="/resources/image/layout/login_bomImg.jpg" alt="bar" title="bar" />
+					<img src="${pageContext.request.contextPath}/resources/image/layout/login_bomImg.jpg" alt="bar" title="bar" />
 				</div>
 				<!-- contStep01 끝 -->
 				
@@ -83,7 +83,7 @@
 
 		var ajaxLogin = function(){
 			$.ajax({ 
-				url: "/login_check", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+				url: "/hunaorder/login_check", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
 				data: { // HTTP 요청과 함께 서버로 보낼 데이터 
 					"user_id" : $("#user_id").val(),
 					"user_pw" : $("#user_pw").val()
@@ -97,7 +97,7 @@
 			        $.blockUI({ 
 			            message: '<h1>로그인되었습니다.</h1>', 
 			            timeout: 2000,
-			            onUnblock : function (){ location.href="/orders"; }  
+			            onUnblock : function (){ location.href="${pageContext.request.contextPath}/orders"; }  
 			        });
 				}
 				else {

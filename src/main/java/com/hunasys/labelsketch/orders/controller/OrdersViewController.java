@@ -29,6 +29,6 @@ public class OrdersViewController {
 		model.addAttribute("userId", uservo.getUserId());
 		model.addAttribute("userCls", uservo.getUserCls());
 		
-		return "orderList";
+		return "orders";
 	}
 }

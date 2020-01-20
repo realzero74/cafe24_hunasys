@@ -18,29 +18,37 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
+		logger.info("dispatcher 이후 : controller 요청 전 : " + request.getRequestURI());
 		String requestUri = request.getRequestURI();
-		logger.info("dispatcher 이후 : controller 요청 전" + requestUri);
 		
 		if (requestUri.contains("/resources")) {
+			logger.info("resources 포함 : " + request.getRequestURI());
 			return true;
 		}
 		if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+			logger.info("ajax 호출 : " + request.getRequestURI());
 			return true;
 		}
-		if (requestUri.equals("/")) {
-			return true;
-		}
-		if (requestUri.equals("/login_check")) {
-			return true;
-		}
-		// session 객체를 가져옴
-		HttpSession session = request.getSession();
-		// login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴
-		Object obj = session.getAttribute("login");
 
-		if (obj != null) { // 세션이 있는 경우
+		if (requestUri.equals("/hunaorder/login")
+				||requestUri.equals("/hunaorder/login_check")
+				||requestUri.equals("/hunaorder/logout")) {
 			return true;
-		} 
+		}
+		if(requestUri.contains("/hunaorder")) {
+			// session 객체를 가져옴
+			HttpSession session = request.getSession();
+			// login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴
+			Object obj = session.getAttribute("login");
+			
+			if (obj != null) { // 세션이 있는 경우
+				return true;
+			}
+			else {
+				response.sendRedirect("/hunaorder/login");
+				return false;
+			}
+		}
 
 		// 로그인이 안되어 있는 상태임으로 로그인 폼으로 다시 돌려보냄(redirect)
 		// response.sendRedirect("/login");
@@ -48,9 +56,8 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 		// preHandle의 return은 컨트롤러 요청 uri로 가도 되냐 안되냐를 허가하는 의미임
 		// 따라서 true로하면 컨트롤러 uri로 가게 됨.
 		// return true;
-
-		response.sendRedirect("/");
-		return false;
+		
+		return true;
 	}
 
 	// 컨트롤러가 수행되고 화면이 보여지기 직전에 수행되는 메서드

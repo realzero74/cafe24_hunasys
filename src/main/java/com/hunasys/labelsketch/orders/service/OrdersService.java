@@ -7,7 +7,9 @@ import com.hunasys.labelsketch.orders.vo.OrdersVo;
 
 public interface OrdersService {
 
-    public List<OrdersVo> getList(Map<String, String> param);
+	public int getListCnt(Map<String, Object> param);
+	
+    public List<OrdersVo> getList(Map<String, Object> param);
     
     public OrdersVo getItem(long idx);
     
