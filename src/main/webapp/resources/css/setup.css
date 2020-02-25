@@ -35,16 +35,17 @@
 
 
 
-/* paginate */
+/* paginate 
 .paginate{width:300px; height:30px; padding:20px 0px; margin: 0px auto; overflow:hidden; text-align:center; border:0 solid #bbbbbb;}
 .paginate a{ padding:0 5px; color:#8f8f8f;display: table-cell; vertical-align: middle; cursor: pointer;}
 .paginate .curpage{ color: green; font-weight: bold;}
-/* .paginate a img{vertical-align:bottom; margin-bottom:0;} */
-
+*/
+.paginate{height:40px; margin-top:20px;}
+.paginate .numbering {float:right; position:relative; left:-50%;} 
+.paginate .numbering li {float:left; position:relative; margin-right:10px; left:50%;}
+.paginate .numbering li a {color:#8f8f8f; display: table-cell; vertical-align: middle; cursor: pointer;}
+.paginate .numbering li a.curpage{color: green; font-weight: bold;}
 /* //paginate */
-
-
-
 
 /* inputbox */
 .input01 {width:95px; height:20px; padding:3px 0 0 2px; color:#777878; border:1px solid #bbbbbb; background:#ffffff;}
@@ -52,8 +53,6 @@
 .input03 {width:250px; height:20px; padding:3px 0 0 2px; color:#777878; border:1px solid #bbbbbb; background:#ffffff;}
 .input04 {width:320px; height:20px; padding:3px 0 0 2px; color:#777878; border:1px solid #bbbbbb; background:#ffffff;}
 .input05 {width:450px; height:20px; padding:3px 0 0 2px; color:#777878; border:1px solid #bbbbbb; background:#ffffff;}
-
-
 /* // inputbox */
 
 /* selectbox  */
@@ -66,8 +65,99 @@
 /* textarea  */
 .textarea01 {width:330px; height:60px; border:1px solid #bbbbbb; background:#f5f5f5; overflow:auto; } 
 .textarea02 {width:700px; height:200px; padding:10px 10px 10px 10px; margin-top: 10px; margin-bottom: 10px; border:1px solid #bbbbbb; background:#f5f5f5; overflow:auto; } 
-
 /* //textarea */
 
+
+#fileupload1 { width: 0px; height: 0px; }
+#fileupload2 { width: 0px; height: 0px; }
+
+#file1_progress { height: 40px; position: absolute; z-index: 1000; right: 0px; width: 100%; top: -1px; }
+#file2_progress { height: 40px; position: absolute; z-index: 1000; right: 0px; width: 100%; top: -1px; }
+
+#fileName1, #fileName2 {
+    height: 15px;
+    position: absolute;
+    width: 80%;
+    top: 0px;
+    left: 0px;
+    padding: 12px 10px;
+    z-index: 1001;
+}
+.btn_cancelUpload { 
+	position: absolute;
+    z-index: 1001;
+    right: 5px;
+    top: 7px;
+    background: red;
+    width: 90px;
+    height: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    display: block;
+    padding: 5px;
+    border-radius: 2px;
+    color:white;
+}
+.btn_uploadfile {
+	position: absolute;
+    z-index: 1001;
+    right: 5px;
+    top: 7px;
+    background: skyblue;
+    width: 90px;
+    height: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    display: block;
+    padding: 5px;
+    border-radius: 2px;
+    color:black;
+}
+
+.bar { background-color: orange; height: inherit;}
+
+[data-tooltip-text]:hover {
+	position: relative;
+}
+
+[data-tooltip-text]:after {
+	-webkit-transition: bottom .3s ease-in-out, opacity .3s ease-in-out;
+	-moz-transition: bottom .3s ease-in-out, opacity .3s ease-in-out;
+	transition: bottom .3s ease-in-out, opacity .3s ease-in-out;
+
+	background-color: rgba(0, 0, 0, 0.8);
+
+  -webkit-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+	-moz-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+	box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+	
+  -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	
+  color: #FFFFFF;
+	font-size: 12px;
+	margin-bottom: 10px;
+	padding: 7px 12px;
+	position: absolute;
+	width: auto;
+	min-width: 100px;
+	max-width: 400px;
+	word-wrap: break-word;
+
+	z-index: 9999;
+
+	opacity: 0;
+	left: -9999px;
+    top: 90%;
+	
+	content: attr(data-tooltip-text);
+}
+
+[data-tooltip-text]:hover:after {
+	top: 130%;
+	left: 0;
+	opacity: 1;
+}
 
 

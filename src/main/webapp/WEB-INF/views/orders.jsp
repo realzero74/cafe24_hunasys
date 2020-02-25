@@ -13,6 +13,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jqueryui.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.blockui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.fileupload.js"></script>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/orders.js?ver=201912151623"></script>
 </head>
 
@@ -157,8 +160,8 @@
 								<option value="04">실사</option>
 								<option value="05">기타</option>
 						</select></td>
-						<th>발주회사</th>
-						<td colspan="3"><input id="company" type="text" class="input03"></td>
+						<th>품명</th>
+						<td colspan="3"><input id="itemNm" type="text" class="input03"></td>
 					</tr>
 					<tr>
 						<td colspan="6"></td>
@@ -167,8 +170,8 @@
 
 					<!-- 라벨 -->
 					<tr class="orderViewPart orderCls01" style="display: table-row;">
-						<th>품명</th>
-						<td><input id="itemNm01" type="text" class="input03"></td>
+						<th>발주회사</th>
+						<td><input id="company01" type="text" class="input03"></td>
 						<th>규격</th>
 						<td><input id="itemSpec01" type="text" class="input01"></td>
 						<th>수량</th>
@@ -222,6 +225,8 @@
 
 					<!-- 장비 -->
 					<tr class="orderViewPart orderCls02" style="display: none;">
+						<th>발주회사</th>
+						<td><input id="company02" type="text" class="input03"></td>
 						<th>납기일</th>
 						<td><input id="dueDate02" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
@@ -235,8 +240,8 @@
 
 					<!-- 리본 -->
 					<tr class="orderViewPart orderCls03" style="display: none;">
-						<th>품명</th>
-						<td><input id="itemNm03" type="text" class="input03"></td>
+						<th>발주회사</th>
+						<td><input id="company03" type="text" class="input03"></td>
 						<th>규격</th>
 						<td><input id="itemSpec03" type="text" class="input01"></td>
 						<th>수량</th>
@@ -265,8 +270,8 @@
 
 					<!-- 실사 -->
 					<tr class="orderViewPart orderCls04" style="display: none;">
-						<th>품명</th>
-						<td><input id="itemNm04" type="text" class="input03"></td>
+						<th>발주회사</th>
+						<td><input id="company04" type="text" class="input03"></td>
 						<th>규격</th>
 						<td><input id="itemSpec04" type="text" class="input01"></td>
 						<th>수량</th>
@@ -300,6 +305,8 @@
 
 					<!-- 기타 -->
 					<tr class="orderViewPart orderCls05" style="display: none;">
+						<th>발주회사</th>
+						<td><input id="company05" type="text" class="input03"></td>
 						<th>납기일</th>
 						<td><input id="dueDate05" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
@@ -322,13 +329,33 @@
 					</tr>
 					<tr>
 						<th>첨부파일1</th>
-						<td colspan="5"><input id="file1" type="text" class="input05"> <img
-							src="${pageContext.request.contextPath}/resources/image/btn/btn_find.gif" alt="파일찾기" title="파일찾기"></td>
+						<td colspan="5" style="position: relative; height: 30px; overflow: hidden;">
+							<!-- 파일 업로드 세팅  -->
+							<div id="file1_progress">
+								<div class="bar" style="width: 0%; height: inherit;"></div>
+							</div>
+							<div id="fileName1">&nbsp;</div>
+							<button id="btn_cancelUpload" class="btn_cancelUpload">취소</button>
+							<label for="fileupload1" class="btn_uploadfile">파일 업로드</label>
+							<input id="fileupload1" type="file" name="files1" data-url="${pageContext.request.contextPath}/fileUpload">
+							
+							<input type="hidden" id="file1">          
+						</td>
 					</tr>
 					<tr>
 						<th>첨부파일2</th>
-						<td colspan="5"><input id="file2" type="text" class="input05"> <img
-							src="${pageContext.request.contextPath}/resources/image/btn/btn_find.gif" alt="파일찾기" title="파일찾기"></td>
+						<td colspan="5" style="position: relative; height: 30px; overflow: hidden;">
+							<!-- 파일 업로드 세팅  -->
+							<div id="file2_progress">
+								<div class="bar" style="width: 0%; height: inherit;"></div>
+							</div>
+							<div id="fileName2">&nbsp;</div>
+							<button id="btn_cancelUpload" class="btn_cancelUpload">취소</button>
+							<label for="fileupload2" class="btn_uploadfile">파일 업로드</label>
+							<input id="fileupload2" type="file" name="files2" data-url="${pageContext.request.contextPath}/fileUpload">
+							
+							<input type="hidden" id="file2">          
+						</td>
 					</tr>
 				</tbody>
 			</table>

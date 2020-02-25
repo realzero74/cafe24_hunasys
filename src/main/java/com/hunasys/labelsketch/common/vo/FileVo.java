@@ -2,18 +2,17 @@ package com.hunasys.labelsketch.common.vo;
 
 public class FileVo {
 
-	private Long   idx;
+	private Long   fileId;
 	private String originalFileName;
-	private String originalFileExt;
 	private String savedFileName;
 	private String savedFilePath;
 
-	public Long getIdx() {
-		return idx;
+	public Long getFileId() {
+		return fileId;
 	}
 
-	public void setIdx(Long idx) {
-		this.idx = idx;
+	public void setFileId(Long fileId) {
+		this.fileId = fileId;
 	}
 
 	public String getOriginalFileName() {
@@ -22,14 +21,6 @@ public class FileVo {
 
 	public void setOriginalFileName(String originalFileName) {
 		this.originalFileName = originalFileName;
-	}
-
-	public String getOriginalFileExt() {
-		return originalFileExt;
-	}
-
-	public void setOriginalFileExt(String originalFileExt) {
-		this.originalFileExt = originalFileExt;
 	}
 
 	public String getSavedFileName() {
@@ -51,12 +42,10 @@ public class FileVo {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("FileVo [idx=");
-		builder.append(idx);
+		builder.append("FileVo [fileId=");
+		builder.append(fileId);
 		builder.append(", originalFileName=");
 		builder.append(originalFileName);
-		builder.append(", originalFileExt=");
-		builder.append(originalFileExt);
 		builder.append(", savedFileName=");
 		builder.append(savedFileName);
 		builder.append(", savedFilePath=");

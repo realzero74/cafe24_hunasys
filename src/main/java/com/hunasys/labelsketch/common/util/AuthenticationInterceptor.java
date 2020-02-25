@@ -25,10 +25,10 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 			logger.info("resources 포함 : " + request.getRequestURI());
 			return true;
 		}
-		if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
-			logger.info("ajax 호출 : " + request.getRequestURI());
-			return true;
-		}
+//		if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+//			logger.info("ajax 호출 : " + request.getRequestURI());
+//			return true;
+//		}
 
 		if (requestUri.equals("/hunaorder/login")
 				||requestUri.equals("/hunaorder/login_check")

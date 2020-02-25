@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hunasys.labelsketch.orders.service.OrdersService;
 import com.hunasys.labelsketch.orders.vo.OrdersVo;
+import com.hunasys.labelsketch.users.vo.UsersVo;
 
 @RestController
 public class OrdersRestApiController {
@@ -25,7 +29,7 @@ public class OrdersRestApiController {
     OrdersService service; 
 
     @RequestMapping(value = "/order/getList", method = RequestMethod.GET)
-    public Map<String, Object> getList(@RequestParam Map<String, Object> param) {
+    public Map<String, Object> getList(@RequestParam Map<String, Object> param, HttpServletRequest request) {
         logger.info("request /order/getList");
         logger.info(param.toString());
         
@@ -45,6 +49,13 @@ public class OrdersRestApiController {
         map.put("currentPage", curpage);
         map.put("totalCnt", service.getListCnt(param));
         map.put("datalist", service.getList(param));
+        
+        
+		HttpSession session = request.getSession();
+		UsersVo uservo = (UsersVo)session.getAttribute("login");
+		
+		map.put("userId", uservo.getUserId());
+		map.put("userCls", uservo.getUserCls());
         
         return map;
     }

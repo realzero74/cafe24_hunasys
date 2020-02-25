@@ -26,32 +26,24 @@ public class CommonDaoImpl implements CommonDao {
     }
 
 	@Override
-	public List<FileVo> selectFiles(Map<String, String> param) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public FileVo selectFile(long idx) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlsession.selectOne("sqlmaps.FilesSql.selectFile", idx);
 	}
 
 	@Override
-	public String insertFile(FileVo vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Long insertFile(FileVo vo) {
+		
+		System.out.println(vo.toString());
+		
+		int count = sqlsession.insert("sqlmaps.FilesSql.insertFile", vo);
+		
+		System.out.println(vo.toString());
+		
+		if (count > 0) {
+			return vo.getFileId();
+		} else {
+			return (long) 0;
+		}
 	}
 
-	@Override
-	public String updateFile(FileVo vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String deleteFile(long idx) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

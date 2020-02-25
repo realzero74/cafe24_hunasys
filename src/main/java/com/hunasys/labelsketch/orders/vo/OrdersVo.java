@@ -6,19 +6,27 @@ public class OrdersVo {
 
 	private long   orderId;
 	private String itemCls;
+	private String itemClsNm;
 	private String company;
 	private String itemNm;
 	private String itemSpec;
 	private int    totalQty;
 	private String paper1;
+	private String paper1Nm;
 	private String paper2;
+	private String paper2Nm;
 	private String paper3;
+	private String paper3Nm;
 	private String paper4;
+	private String paper4Nm;
 	private String parerRoll;
+	private String parerRollNm;
 	private int    rollQty;
 	private String dueDate;
 	private String delivery;
+	private String deliveryNm;
 	private String description;
+	
 	private long   file1;
 	private String file1Name;
 	private long   file2;
@@ -34,6 +42,7 @@ public class OrdersVo {
 	private String modDate;
 	private String modTime;
 
+	
 	public long getOrderId() {
 		return orderId;
 	}
@@ -48,6 +57,14 @@ public class OrdersVo {
 
 	public void setItemCls(String itemCls) {
 		this.itemCls = itemCls;
+	}
+
+	public String getItemClsNm() {
+		return itemClsNm;
+	}
+
+	public void setItemClsNm(String itemClsNm) {
+		this.itemClsNm = itemClsNm;
 	}
 
 	public String getCompany() {
@@ -90,12 +107,28 @@ public class OrdersVo {
 		this.paper1 = paper1;
 	}
 
+	public String getPaper1Nm() {
+		return paper1Nm;
+	}
+
+	public void setPaper1Nm(String paper1Nm) {
+		this.paper1Nm = paper1Nm;
+	}
+
 	public String getPaper2() {
 		return paper2;
 	}
 
 	public void setPaper2(String paper2) {
 		this.paper2 = paper2;
+	}
+
+	public String getPaper2Nm() {
+		return paper2Nm;
+	}
+
+	public void setPaper2Nm(String paper2Nm) {
+		this.paper2Nm = paper2Nm;
 	}
 
 	public String getPaper3() {
@@ -106,6 +139,14 @@ public class OrdersVo {
 		this.paper3 = paper3;
 	}
 
+	public String getPaper3Nm() {
+		return paper3Nm;
+	}
+
+	public void setPaper3Nm(String paper3Nm) {
+		this.paper3Nm = paper3Nm;
+	}
+
 	public String getPaper4() {
 		return paper4;
 	}
@@ -114,12 +155,28 @@ public class OrdersVo {
 		this.paper4 = paper4;
 	}
 
+	public String getPaper4Nm() {
+		return paper4Nm;
+	}
+
+	public void setPaper4Nm(String paper4Nm) {
+		this.paper4Nm = paper4Nm;
+	}
+
 	public String getParerRoll() {
 		return parerRoll;
 	}
 
 	public void setParerRoll(String parerRoll) {
 		this.parerRoll = parerRoll;
+	}
+
+	public String getParerRollNm() {
+		return parerRollNm;
+	}
+
+	public void setParerRollNm(String parerRollNm) {
+		this.parerRollNm = parerRollNm;
 	}
 
 	public int getRollQty() {
@@ -146,6 +203,14 @@ public class OrdersVo {
 		this.delivery = delivery;
 	}
 
+	public String getDeliveryNm() {
+		return deliveryNm;
+	}
+
+	public void setDeliveryNm(String deliveryNm) {
+		this.deliveryNm = deliveryNm;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -162,12 +227,28 @@ public class OrdersVo {
 		this.file1 = file1;
 	}
 
+	public String getFile1Name() {
+		return file1Name;
+	}
+
+	public void setFile1Name(String file1Name) {
+		this.file1Name = file1Name;
+	}
+
 	public long getFile2() {
 		return file2;
 	}
 
 	public void setFile2(long file2) {
 		this.file2 = file2;
+	}
+
+	public String getFile2Name() {
+		return file2Name;
+	}
+
+	public void setFile2Name(String file2Name) {
+		this.file2Name = file2Name;
 	}
 
 	public String getSetEnd() {
@@ -234,23 +315,7 @@ public class OrdersVo {
 		this.modTime = modTime;
 	}
 
-	public String getFile1Name() {
-		return file1Name;
-	}
 
-	public void setFile1Name(String file1Name) {
-		this.file1Name = file1Name;
-	}
-
-	public String getFile2Name() {
-		return file2Name;
-	}
-
-	public void setFile2Name(String file2Name) {
-		this.file2Name = file2Name;
-	}
-
-	
 	@Override
 	public String toString() {
 		String str = "";

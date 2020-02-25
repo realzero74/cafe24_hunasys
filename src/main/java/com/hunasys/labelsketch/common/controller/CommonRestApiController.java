@@ -45,7 +45,7 @@ public class CommonRestApiController {
 			HttpServletRequest request) {
 		logger.info("Welcome home! 로그인 체크");
 		
-		Map<String, String> param = new HashMap<String, String>();
+		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("userId", userid);
 		param.put("userPw", userpw);
 		
@@ -91,34 +91,16 @@ public class CommonRestApiController {
         return service.getCodeList(code);
     }
 
-    @RequestMapping(value = "/file/getList", method = RequestMethod.GET)
-    public List<FileVo> getFileList(@RequestParam Map<String, String> param) {
-        logger.info("request /file/list");
-        return service.getFileList(param);
-    }
-
     @RequestMapping(value = "/file/getItem", method = RequestMethod.GET)
     public FileVo getFileItem(@RequestParam long idx) {
         logger.info("request /file/getItem");
         return service.getFileItem(idx);
     }
 
-    @RequestMapping(value = "/file/newItem", method = RequestMethod.GET)
-    public String newFileItem(@RequestParam FileVo vo) {
-        logger.info("request /file/newItem");
-        return service.newFileItem(vo);
+    @RequestMapping(value = "/file/regItem", method = RequestMethod.POST)
+    public Long newFileItem(@RequestParam FileVo vo) {
+        logger.info("request /file/regItem");
+        return service.regFileItem(vo);
     }
 
-    @RequestMapping(value = "/file/modItem", method = RequestMethod.GET)
-    public String modFileItem(@RequestParam FileVo vo) {
-        logger.info("request /file/modItem");
-        return service.modFileItem(vo);
-    }
-
-    @RequestMapping(value = "/file/delItem", method = RequestMethod.GET)
-    public String delFileItem(@RequestParam long idx) {
-        logger.info("request /file/delItem");
-        return service.delFileItem(idx);
-    }    
-    
 }

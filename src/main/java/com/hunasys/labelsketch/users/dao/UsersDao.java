@@ -7,9 +7,11 @@ import com.hunasys.labelsketch.users.vo.UsersVo;
 
 public interface UsersDao {
 	
-    public List<UsersVo> selectUsers(Map<String, String> param);
+	public int selectUsersCount(Map<String, Object> param);
+	
+	public List<UsersVo> selectUsers(Map<String, Object> param);
     
-    public UsersVo selectUser(Map<String, String> param);
+    public UsersVo selectUser(Map<String, Object> param);
     
     public String insertUser(UsersVo vo);
     

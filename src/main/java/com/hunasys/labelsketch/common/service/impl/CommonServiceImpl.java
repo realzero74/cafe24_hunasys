@@ -23,32 +23,13 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public List<FileVo> getFileList(Map<String, String> param) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public FileVo getFileItem(long idx) {
-		// TODO Auto-generated method stub
-		return null;
+		return commondao.selectFile(idx);
 	}
 
 	@Override
-	public String newFileItem(FileVo vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Long regFileItem(FileVo vo) {
+		return commondao.insertFile(vo);
 	}
 
-	@Override
-	public String modFileItem(FileVo vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String delFileItem(long idx) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

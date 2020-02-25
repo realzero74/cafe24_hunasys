@@ -15,19 +15,22 @@ import com.hunasys.labelsketch.users.vo.UsersVo;
 @Repository
 public class UsersDaoImpl implements UsersDao {
 
-
     @Autowired
     @Resource(name = "sqlSession")
     private SqlSessionTemplate sqlsession;
-    
 
+	@Override
+	public int selectUsersCount(Map<String, Object> param) {
+	    return sqlsession.selectOne("sqlmaps.UsersSql.selectUsersCount", param);
+	}
+    
     @Override
-    public List<UsersVo> selectUsers(Map<String, String> param) {
+    public List<UsersVo> selectUsers(Map<String, Object> param) {
         return sqlsession.selectList("sqlmaps.UsersSql.selectUsers", param);
     }
 
     @Override
-    public UsersVo selectUser(Map<String, String> param) {
+    public UsersVo selectUser(Map<String, Object> param) {
         return sqlsession.selectOne("sqlmaps.UsersSql.selectUser", param);
     }
 
@@ -60,4 +63,5 @@ public class UsersDaoImpl implements UsersDao {
 			return "fail";
 		}    	
     }
+
 }

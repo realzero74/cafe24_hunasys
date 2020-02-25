@@ -11,14 +11,8 @@ public interface CommonService {
 	public List<CodeVo> getCodeList(String code);
 
 	
-    public List<FileVo> getFileList(Map<String, String> param);
-    
     public FileVo getFileItem(long idx);
     
-    public String newFileItem(FileVo vo);
+    public Long regFileItem(FileVo vo);
     
-    public String modFileItem(FileVo vo);
-    
-    public String delFileItem(long idx);
-	
 }

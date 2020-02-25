@@ -17,12 +17,18 @@ public class UsersServiceImpl implements UsersService {
 	UsersDao usersdao; 
 	
     @Override
-    public List<UsersVo> getList(Map<String, String> param) {
+    public int getListCnt(Map<String, Object> param) {
+    	return usersdao.selectUsersCount(param);
+    }
+	
+	
+    @Override
+    public List<UsersVo> getList(Map<String, Object> param) {
     	return usersdao.selectUsers(param);
     }
 
     @Override
-    public UsersVo getItem(Map<String, String> param) {
+    public UsersVo getItem(Map<String, Object> param) {
         return usersdao.selectUser(param);
     }
 

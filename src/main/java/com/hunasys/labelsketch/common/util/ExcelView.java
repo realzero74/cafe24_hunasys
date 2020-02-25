@@ -60,13 +60,14 @@ public class ExcelView extends AbstractXlsxView {
         
         left_style.setFillForegroundColor(IndexedColors.WHITE.getIndex());
         left_style.setFillPattern(FillPatternType.SOLID_FOREGROUND);  //배경색 설정
-        left_style.setAlignment(org.apache.poi.ss.usermodel.HorizontalAlignment.LEFT); // 글위치를 중앙으로 설정
+        left_style.setAlignment(org.apache.poi.ss.usermodel.HorizontalAlignment.LEFT); // 글위치를 왼쪽으로 설정
         
         right_style.setFillForegroundColor(IndexedColors.WHITE.getIndex());
         right_style.setFillPattern(FillPatternType.SOLID_FOREGROUND);  //배경색 설정
-        right_style.setAlignment(org.apache.poi.ss.usermodel.HorizontalAlignment.RIGHT); // 글위치를 중앙으로 설정
+        right_style.setAlignment(org.apache.poi.ss.usermodel.HorizontalAlignment.RIGHT); // 글위치를 오른쪽으로 설정
         
-        List<OrdersVo> listExcel = (List<OrdersVo>)modelMap.get("datalist");
+        @SuppressWarnings("unchecked")
+		List<OrdersVo> listExcel = (List<OrdersVo>)modelMap.get("datalist");
 
         // 새로운 sheet를 생성한다.
         worksheet = workbook.createSheet("주문목록");
@@ -90,25 +91,64 @@ public class ExcelView extends AbstractXlsxView {
         worksheet.setColumnWidth(12, 4000);
         worksheet.setColumnWidth(13, 4000);
         worksheet.setColumnWidth(14, 4000);
+        worksheet.setColumnWidth(15, 4000);
+        worksheet.setColumnWidth(16, 4000);
+        worksheet.setColumnWidth(17, 4000);
+        worksheet.setColumnWidth(18, 4000);
+        worksheet.setColumnWidth(19, 4000);
+        worksheet.setColumnWidth(20, 4000);
+        worksheet.setColumnWidth(21, 4000);
+        worksheet.setColumnWidth(22, 4000);
+        worksheet.setColumnWidth(23, 4000);
+        worksheet.setColumnWidth(24, 4000);
+        worksheet.setColumnWidth(25, 4000);
+        worksheet.setColumnWidth(26, 4000);
+        worksheet.setColumnWidth(27, 4000);
+        worksheet.setColumnWidth(28, 4000);
+        worksheet.setColumnWidth(29, 4000);
+        worksheet.setColumnWidth(30, 4000);
+        worksheet.setColumnWidth(31, 4000);
+        worksheet.setColumnWidth(32, 4000);
 
         // 헤더 설정
         row = worksheet.createRow(0);
-        row.createCell(0).setCellValue("자산코드");
-        row.createCell(1).setCellValue("자산명");
-        row.createCell(2).setCellValue("관리자");
-        row.createCell(3).setCellValue("단가");
-        row.createCell(4).setCellValue("수량");
-        row.createCell(5).setCellValue("금액");
-        row.createCell(6).setCellValue("내용연수");
-        row.createCell(7).setCellValue("상각방법");
-        row.createCell(8).setCellValue("상각률");
-        row.createCell(9).setCellValue("상각완료");
-        row.createCell(10).setCellValue("취득일자");
-        row.createCell(11).setCellValue("매각");
-        row.createCell(12).setCellValue("폐기");
-        row.createCell(13).setCellValue("임대");
-        row.createCell(14).setCellValue("반출");
+        
+        row.createCell(0).setCellValue("주문코드");     
+        row.createCell(1).setCellValue("주문구분");     
+        row.createCell(2).setCellValue("주문구분");     
+        row.createCell(3).setCellValue("발주회사");     
+        row.createCell(4).setCellValue("품명");       
+        row.createCell(5).setCellValue("규격");       
+        row.createCell(6).setCellValue("수량");       
+        row.createCell(7).setCellValue("용지1");
+        row.createCell(8).setCellValue("용지1");
+        row.createCell(9).setCellValue("용지2");
+        row.createCell(10).setCellValue("용지2");
+        row.createCell(11).setCellValue("용지3");
+        row.createCell(12).setCellValue("용지3");
+        row.createCell(13).setCellValue("용지4");
+        row.createCell(14).setCellValue("용지4");
+        row.createCell(15).setCellValue("지관");
+        row.createCell(16).setCellValue("지관");
+        row.createCell(17).setCellValue("1롤당 수량");
+        row.createCell(18).setCellValue("납기일");
+        row.createCell(19).setCellValue("납품방법");
+        row.createCell(20).setCellValue("납품방법");
+        row.createCell(21).setCellValue("기타설명");
+        row.createCell(22).setCellValue("첨부파일1");
+        row.createCell(23).setCellValue("첨부파일1");
+        row.createCell(24).setCellValue("첨부파일2");
+        row.createCell(25).setCellValue("첨부파일2");
 
+        row.createCell(26).setCellValue("완료일");
+        row.createCell(27).setCellValue("완료시각");
+        
+        row.createCell(28).setCellValue("작성자");
+        row.createCell(29).setCellValue("생성일/주문일");
+        row.createCell(30).setCellValue("생성시각/주문시각");
+        row.createCell(31).setCellValue("수정일");
+        row.createCell(32).setCellValue("수정시각");
+        
         row.getCell(0).setCellStyle(head_style);
         row.getCell(1).setCellStyle(head_style);
         row.getCell(2).setCellStyle(head_style);
@@ -124,37 +164,74 @@ public class ExcelView extends AbstractXlsxView {
         row.getCell(12).setCellStyle(head_style);
         row.getCell(13).setCellStyle(head_style);
         row.getCell(14).setCellStyle(head_style);
-
+        row.getCell(15).setCellStyle(head_style);
+        row.getCell(16).setCellStyle(head_style);
+        row.getCell(17).setCellStyle(head_style);
+        row.getCell(18).setCellStyle(head_style);
+        row.getCell(19).setCellStyle(head_style);
+        row.getCell(20).setCellStyle(head_style);
+        row.getCell(21).setCellStyle(head_style);
+        row.getCell(22).setCellStyle(head_style);
+        row.getCell(23).setCellStyle(head_style);
+        row.getCell(24).setCellStyle(head_style);
+        row.getCell(25).setCellStyle(head_style);
+        row.getCell(26).setCellStyle(head_style);
+        row.getCell(27).setCellStyle(head_style);
+        row.getCell(28).setCellStyle(head_style);
+        row.getCell(29).setCellStyle(head_style);
+        row.getCell(30).setCellStyle(head_style);
+        row.getCell(31).setCellStyle(head_style);
+        row.getCell(32).setCellStyle(head_style);
 
         int rowIndex = 1;
 
         for (OrdersVo item : listExcel) {
             row = worksheet.createRow(rowIndex);
-//            row.createCell(0).setCellValue(item.get);
-//            row.createCell(1).setCellValue(item.getvAssetsName());
-//            row.createCell(2).setCellValue(item.getvEmplNo());
-//            row.createCell(3).setCellValue(item.getnCost());
-//            row.createCell(4).setCellValue(item.getnQuantity());
-//            row.createCell(5).setCellValue(item.getnAmount());
-//            row.createCell(6).setCellValue(item.getvAssetsYear());
-//            row.createCell(7).setCellValue(item.getvDepreciationMethod());
-//            row.createCell(8).setCellValue(item.getnDepreciationRate());
-//            row.createCell(9).setCellValue(item.getvDepreciationEnd());
-//            row.createCell(10).setCellValue(item.getvAcquire());
-//            row.createCell(11).setCellValue(item.getvDisposal());
-//            row.createCell(12).setCellValue(item.getvDisuse());
-//            row.createCell(13).setCellValue(item.getvLease());
-//            row.createCell(14).setCellValue(item.getvAssetsCarry());
+            row.createCell(0).setCellValue(item.getOrderId());
+            row.createCell(1).setCellValue(item.getItemCls());
+            row.createCell(2).setCellValue(item.getItemClsNm());
+            row.createCell(3).setCellValue(item.getCompany());
+            row.createCell(4).setCellValue(item.getItemNm());
+            row.createCell(5).setCellValue(item.getItemSpec());
+            row.createCell(6).setCellValue(item.getTotalQty());
+            row.createCell(7).setCellValue(item.getPaper1());
+            row.createCell(8).setCellValue(item.getPaper1Nm());
+            row.createCell(9).setCellValue(item.getPaper2());
+            row.createCell(10).setCellValue(item.getPaper2Nm());
+            row.createCell(11).setCellValue(item.getPaper3());
+            row.createCell(12).setCellValue(item.getPaper3Nm());
+            row.createCell(13).setCellValue(item.getPaper4());
+            row.createCell(14).setCellValue(item.getPaper4Nm());
+            row.createCell(15).setCellValue(item.getParerRoll());
+            row.createCell(16).setCellValue(item.getParerRollNm());
+            row.createCell(17).setCellValue(item.getRollQty());
+            row.createCell(18).setCellValue(item.getDueDate());
+            row.createCell(19).setCellValue(item.getDelivery());
+            row.createCell(20).setCellValue(item.getDeliveryNm());
+            row.createCell(21).setCellValue(item.getDescription());
+            row.createCell(22).setCellValue(item.getFile1());
+            row.createCell(23).setCellValue(item.getFile1Name());
+            row.createCell(24).setCellValue(item.getFile2());
+            row.createCell(25).setCellValue(item.getFile2Name());
 
+            row.createCell(26).setCellValue(item.getEndDate());
+            row.createCell(27).setCellValue(item.getEndTime());
+            
+            row.createCell(28).setCellValue(item.getUserId());
+            row.createCell(29).setCellValue(item.getNewDate());
+            row.createCell(30).setCellValue(item.getNewTime());
+            row.createCell(31).setCellValue(item.getModDate());
+            row.createCell(32).setCellValue(item.getModTime());
+            
             
             //스타일 적용
-            row.getCell(0).setCellStyle(center_style); 
+            row.getCell(0).setCellStyle(center_style);
             row.getCell(1).setCellStyle(center_style);
             row.getCell(2).setCellStyle(center_style);
             row.getCell(3).setCellStyle(center_style);
             row.getCell(4).setCellStyle(center_style);
             row.getCell(5).setCellStyle(center_style);
-            row.getCell(6).setCellStyle(right_style);
+            row.getCell(6).setCellStyle(center_style);
             row.getCell(7).setCellStyle(center_style);
             row.getCell(8).setCellStyle(center_style);
             row.getCell(9).setCellStyle(center_style);
@@ -163,6 +240,24 @@ public class ExcelView extends AbstractXlsxView {
             row.getCell(12).setCellStyle(center_style);
             row.getCell(13).setCellStyle(center_style);
             row.getCell(14).setCellStyle(center_style);
+            row.getCell(15).setCellStyle(center_style);
+            row.getCell(16).setCellStyle(center_style);
+            row.getCell(17).setCellStyle(center_style);
+            row.getCell(18).setCellStyle(center_style);
+            row.getCell(19).setCellStyle(center_style);
+            row.getCell(20).setCellStyle(center_style);
+            row.getCell(21).setCellStyle(center_style);
+            row.getCell(22).setCellStyle(center_style);
+            row.getCell(23).setCellStyle(center_style);
+            row.getCell(24).setCellStyle(center_style);
+            row.getCell(25).setCellStyle(center_style);
+            row.getCell(26).setCellStyle(center_style);
+            row.getCell(27).setCellStyle(center_style);
+            row.getCell(28).setCellStyle(center_style);
+            row.getCell(29).setCellStyle(center_style);
+            row.getCell(30).setCellStyle(center_style);
+            row.getCell(31).setCellStyle(center_style);
+            row.getCell(32).setCellStyle(center_style);
             
             rowIndex++;
         }

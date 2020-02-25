@@ -24,12 +24,17 @@
 
 			<!-- 회사명 -->
 			<if test="searchString5 != null and searchString5 != ''">
-				AND COMPANY like '%'||#{searchString5}||'%'
+				AND COMPANY like '%${searchString5}%'
 			</if>
 			
 			<!-- 품명 -->
 			<if test="searchString6 != null and searchString6 != ''">  
-				AND COMPANY like '%'||#{searchString6}||'%'
+				AND ITEM_NM like '%${searchString6}%'
+			</if>
+			
+			<!-- 사용자 -->
+			<if test="userCls != null and userCls != '' and userCls != 'admin'">  
+				AND USER_ID = #{userId}
 			</if>
 		</where>	
 	</select>
@@ -39,22 +44,41 @@
 		SELECT
 			  ORDER_ID                                      as "orderId"
 			, ITEM_CLS                                      as "itemCls"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '01' AND ITEM_CD = ITEM_CLS),"")
+			                                                as "itemClsNm"
 			, COMPANY                                       as "company"
 			, ITEM_NM                                       as "itemNm"
 			, ITEM_SPEC                                     as "itemSpec"
 			, TOTAL_QTY                                     as "totalQty"
 			, PAPER1                                        as "paper1"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '02' AND ITEM_CD = PAPER1),"")
+			                                                as "paper1Nm"
 			, PAPER2                                        as "paper2"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '03' AND ITEM_CD = PAPER2),"")
+			                                                as "paper2Nm"			
 			, PAPER3                                        as "paper3"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '04' AND ITEM_CD = PAPER3),"")
+			                                                as "paper3Nm"	
 			, PAPER4                                        as "paper4"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '05' AND ITEM_CD = PAPER4),"")
+			                                                as "paper4Nm"	
 			, PARER_ROLL                                    as "parerRoll"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '06' AND ITEM_CD = PARER_ROLL),"")
+			                                                as "parerRollNm"	
 			, ROLL_QTY                                      as "rollQty"
 			, DUE_DATE                                      as "dueDate"
 			, DELIVERY                                      as "delivery"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '07' AND ITEM_CD = DELIVERY),"")
+			                                                as "deliveryNm"
 			, DESCRIPTION                                   as "description"
 			, FILE1                                         as "file1"
-			, FILE2                                         as "file2"
+			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE1),"파일없음")                                         
+																			as "file1Name"
+			, FILE1                                         as "file1"
+			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE2),"파일없음")
+																			as "file2Name"
 			, USER_ID                                       as "userId"
+			
 			, date_format(NEW_DATETIME,'%Y-%m-%d') as "newDate"
 			, date_format(NEW_DATETIME,'%H:%i:%S') as "newTime"
 			, date_format(MOD_DATETIME,'%Y-%m-%d') as "modDate"
@@ -80,38 +104,64 @@
 
 			<!-- 회사명 -->
 			<if test="searchString5 != null and searchString5 != ''">
-				AND COMPANY like '%'||#{searchString5}||'%'
+				AND COMPANY like '%${searchString5}%'
 			</if>
 			
 			<!-- 품명 -->
 			<if test="searchString6 != null and searchString6 != ''">  
-				AND COMPANY like '%'||#{searchString6}||'%'
+				AND ITEM_NM like '%${searchString6}%'
+			</if>
+			
+			<!-- 사용자 -->
+			<if test="userCls != null and userCls != '' and userCls != 'admin'">  
+				AND USER_ID = #{userId}
 			</if>
 		</where>
 		ORDER BY NEW_DATETIME DESC
-		LIMIT 10 OFFSET #{offset}
+		<if test="offset != null">
+			LIMIT 10 OFFSET #{offset}
+		</if>
 	</select>
 
 	<select id="selectOrder" parameterType="long" resultType="com.hunasys.labelsketch.orders.vo.OrdersVo">
 		SELECT
 			  ORDER_ID                                      as "orderId"
 			, ITEM_CLS                                      as "itemCls"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '01' AND ITEM_CD = ITEM_CLS),"")
+			                                                as "itemClsNm"
 			, COMPANY                                       as "company"
 			, ITEM_NM                                       as "itemNm"
 			, ITEM_SPEC                                     as "itemSpec"
 			, TOTAL_QTY                                     as "totalQty"
 			, PAPER1                                        as "paper1"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '02' AND ITEM_CD = PAPER1),"")
+			                                                as "paper1Nm"
 			, PAPER2                                        as "paper2"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '03' AND ITEM_CD = PAPER2),"")
+			                                                as "paper2Nm"			
 			, PAPER3                                        as "paper3"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '04' AND ITEM_CD = PAPER3),"")
+			                                                as "paper3Nm"	
 			, PAPER4                                        as "paper4"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '05' AND ITEM_CD = PAPER4),"")
+			                                                as "paper4Nm"	
 			, PARER_ROLL                                    as "parerRoll"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '06' AND ITEM_CD = PARER_ROLL),"")
+			                                                as "parerRollNm"	
 			, ROLL_QTY                                      as "rollQty"
 			, DUE_DATE                                      as "dueDate"
 			, DELIVERY                                      as "delivery"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '07' AND ITEM_CD = DELIVERY),"")
+			                                                as "deliveryNm"
 			, DESCRIPTION                                   as "description"
 			, FILE1                                         as "file1"
-			, FILE2                                         as "file2"
+			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE1),"파일없음")                                         
+																			as "file1Name"
+			, FILE1                                         as "file1"
+			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE2),"파일없음")
+																			as "file2Name"
 			, USER_ID                                       as "userId"
+			
 			, date_format(NEW_DATETIME,'%Y-%m-%d') as "newDate"
 			, date_format(NEW_DATETIME,'%H:%i:%S') as "newTime"
 			, date_format(MOD_DATETIME,'%Y-%m-%d') as "modDate"

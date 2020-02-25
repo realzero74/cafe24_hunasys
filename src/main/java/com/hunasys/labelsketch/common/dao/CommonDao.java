@@ -7,16 +7,11 @@ import com.hunasys.labelsketch.common.vo.CodeVo;
 import com.hunasys.labelsketch.common.vo.FileVo;
 
 public interface CommonDao {
+
 	public List<CodeVo> selectCodeList(String code);
 	
-    public List<FileVo> selectFiles(Map<String, String> param);
-    
     public FileVo selectFile(long idx);
     
-    public String insertFile(FileVo vo);
+    public Long insertFile(FileVo vo);
     
-    public String updateFile(FileVo vo);
-    
-    public String deleteFile(long idx);
-	
 }

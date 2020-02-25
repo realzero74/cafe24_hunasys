@@ -2,6 +2,8 @@ package com.hunasys.labelsketch.users.vo;
 
 public class UsersVo {
 	
+	private String editflag;
+	
 	private String userId; 
 	private String userPw; 
 	private String userComp; 
@@ -9,6 +11,12 @@ public class UsersVo {
 	private String newDt; 
 	private String modDt;
 	
+	public String getEditflag() {
+		return editflag;
+	}
+	public void setEditflag(String editflag) {
+		this.editflag = editflag;
+	}	
 	public String getUserId() {
 		return userId;
 	}
@@ -64,4 +72,5 @@ public class UsersVo {
 		builder.append("]");
 		return builder.toString();
 	}
+
 }

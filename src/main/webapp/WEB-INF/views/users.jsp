@@ -1,11 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>휴나닉 주문관리 서비스입니다</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="../css/common.css" type="text/css">
+<title>휴나닉 주문관리 서비스 - 관리자</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/lib/jqueryui.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/inlineCalendar.css" type="text/css">
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jqueryui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.blockui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/users.js?ver=202002081623"></script>
 </head>
 
 <body>
@@ -22,152 +30,29 @@
 			<div id="contents">
 
 				<div id="conts02">
-					<div class="mpTitle02">
-
-						사용자 아이디 <input type="text" class="input01"> &nbsp; &nbsp; &nbsp; &nbsp;비밀번호 <input type="text"
-							class="input01"> &nbsp; &nbsp; &nbsp; &nbsp; <a href="memberPopup.html"
-							onclick="window.open(this.href, '_blank', 'width=300px,height=300px,toolbars=no,scrollbars=no'); return false;">
-							<img src="../image/btn/btn_reg.gif"></a>
+					<div id="rbtn_area" style="text-align: right; margin-top: 10px;">
+						<button id="regbutton"><img src="${pageContext.request.contextPath}/resources/image/btn/btn_reg.gif"></button>
 					</div>
 					<div class="mpResult">
-						<table cellspacing="0" class="tbl_type01">
-							<tbody>
-								<tr>
-									<td>
-										<table cellspacing="0" class="tbl_type42">
-											<colgroup>
-												<col width="5%" />
-												<col width="20%" />
-												<col width="15%" />
-												<col width="15%" />
-												<col width="15%" />
-												<col width="15%" />
-												<col width="15%" />
-											</colgroup>
-											<tbody>
-												<tr>
-													<th>
-														번호
-													</th>
-													<th>
-														사용자ID
-													</th>
-													<th>
-														구분
-													</th>
-													<th>
-														가입일
-													</th>
-													<th>
-														비밀번호 수정일
-													</th>
-													<th>
-														비밀번호 변경
-													</th>
-													<th>
-														사용자 삭제
-													</th>
-
-												</tr>
-												<tr>
-													<td>
-														1
-													</td>
-													<td style=" text-align:left">user01
-													</td>
-													<td>
-														슈퍼유저
-													</td>
-													<td>
-														2012.02.02 11:12:23
-													</td>
-													<td>
-														2012.02.02 11:12:23
-													</td>
-													<td>
-														<a href="mModifyPopup.html"
-															onclick="window.open(this.href, '_blank', 'width=300px,height=300px,toolbars=no,scrollbars=no'); return false;"><img
-																src="../image/btn/btn_chagne.gif"></a>
-													</td>
-													<td>
-														<a href="mDeletePopup.html"
-															onclick="window.open(this.href, '_blank', 'width=300px,height=300px,toolbars=no,scrollbars=no'); return false;"><img
-																src="../image/btn/btn_delete.gif"></a>
-													</td>
-												</tr>
-												<tr>
-													<td>
-														2
-													</td>
-													<td style=" text-align:left">user02
-													</td>
-													<td>
-														정회원
-													</td>
-													<td>
-														2012.02.02 11:12:23
-													</td>
-													<td>
-														2012.02.02 11:12:23
-													</td>
-													<td>
-														<img src="../image/btn/btn_chagne.gif">
-													</td>
-													<td>
-														<img src="../image/btn/btn_delete.gif">
-													</td>
-												</tr>
-												<tr>
-													<td>
-														3
-													</td>
-													<td style=" text-align:left">user03
-													</td>
-													<td>
-														비회원
-													</td>
-													<td>
-														2012.02.02 11:12:23
-													</td>
-													<td>
-														2012.02.02 11:12:23
-													</td>
-													<td>
-														<img src="../image/btn/btn_chagne.gif">
-													</td>
-													<td>
-														<img src="../image/btn/btn_delete.gif">
-													</td>
-												</tr>
-
-											</tbody>
-										</table>
-									</td>
-								</tr>
+						<table cellspacing="0" class='tbl_type42'>
+							<colgroup>
+								<col width="5%" />
+								<col width="10%" />
+								<col width="20%" />
+								<col width="15%" />
+								<col width="15%" />
+								<col width="15%" />
+								<col width="10%" />
+								<col width="10%" />
+							</colgroup>
+							<tbody id="userlist">
 							</tbody>
 						</table>
 					</div><!-- mpResult 끝 -->
 
-					<div class="paginate">
+                    <div class="paginate" id="paginate">
 						<!-- paginate -->
-
-						<a href="#none" class="none"><img src="../image/btn/btn_front.gif" alt="처음" /></a>
-						<a href="#none" class="none"><img src="../image/btn/btn_pre.gif" alt="이전" /></a>
-						<a href="#none"><strong>1</strong></a>
-						<a href="#none">2</a>
-						<a href="#none">3</a>
-						<a href="#none">4</a>
-						<a href="#none">5</a>
-						<a href="#none">6</a>
-						<a href="#none">7</a>
-						<a href="#none">8</a>
-						<a href="#none">9</a>
-						<a href="#none">10</a>
-						<a href="#none" class="none"><img src="../image/btn/btn_nxt.gif" alt="다음" /></a>
-						<a href="#none" class="none"><img src="../image/btn/btn_end.gif" alt="끝" /></a>
-
 					</div>
-					<!--//paginate -->
 
 				</div><!-- conts02 끝 -->
 
@@ -177,6 +62,35 @@
 
 	</div>
 
-</body>
 
+	<!-- popup 시작 -->
+	<div id="userForm" style="width:300px; display: none;">
+		<div style="text-align: right; margin: 10px auto; width:180px">
+			<input id="editflag" type="hidden">
+			<div style="margin: 10px 0;"><label for="userId">ID</label><input id="userId" type="text" class="input01" style="margin-left: 10px"></div>
+			<div style="margin: 10px 0;"><label for="userPw">비밀번호</label><input id="userPw" type="password" class="input01" style="margin-left: 10px"></div>
+			<div style="margin: 10px 0;"><label for="userComp">사용자(회사)</label><input id="userComp" type="text" class="input01" style="margin-left: 10px"></div>
+		</div>
+		
+		<div class="contBtnSave" style="margin: 10px auto;">
+			<button id="userFrmCancel" type="button">
+				<img src="${pageContext.request.contextPath}/resources/image/btn/btn_c_cancel.gif" alt="취소" title="취소">
+			</button>
+			<button id="userFrmSave" type="button">
+				<img src="${pageContext.request.contextPath}/resources/image/btn/btn_reg.gif" alt="등록하기" title="등록하기">
+			</button>
+		</div>
+	</div>
+
+
+</body>
+<script>
+	'use strict';
+	console.log("in users list pages");
+	var __contextPath__ = "${pageContext.request.contextPath}"; 
+	var _loginUser = "${userId}";
+	var _loginCls = "${userCls}";
+	var userApp = new UserApp();
+	userApp.initApp();
+</script>
 </html>
