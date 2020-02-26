@@ -91,16 +91,17 @@
 				<!-- conts01 끝 -->
 				<div id="conts02">
 					<div class="mpTitle02">
-						<button type="button" id="btn_userReg">
-							<img src="${pageContext.request.contextPath}/resources/image/btn/btn_userReg.gif">
-						</button>
+						<c:if test="${userCls eq 'admin'}">
+							<button type="button" id="btn_userReg">
+								<img src="${pageContext.request.contextPath}/resources/image/btn/btn_userReg.gif">
+							</button>
+						</c:if>
 						<button type="button" id="btn_orderReg">
 							<img src="${pageContext.request.contextPath}/resources/image/btn/btn_reg.gif">
 						</button>
 						<button type="button" id="btn_excel">
 							<img src="${pageContext.request.contextPath}/resources/image/btn/btn_excel.jpg">
 						</button>
-
 					</div>
 
 					<div class="mpResult">
@@ -175,7 +176,7 @@
 						<th>규격</th>
 						<td><input id="itemSpec01" type="text" class="input01"></td>
 						<th>수량</th>
-						<td><input id="totalQty01" type="text" class="input01"></td>
+						<td><input id="totalQty01" type="text" class="input01" numberOnly></td>
 					</tr>
 					<tr class="orderViewPart orderCls01" style="display: table-row;">
 						<th>용지</th>
@@ -208,7 +209,7 @@
 								<option value="05">75지관(플라스틱)</option>
 						</select></td>
 						<th>1롤 수량</th>
-						<td><input id="rollQty01" type="text" class="input01"></td>
+						<td><input id="rollQty01" type="text" class="input01" numberOnly></td>
 					</tr>
 					<tr class="orderViewPart orderCls01" style="display: table-row;">
 						<th>납기일</th>
@@ -245,7 +246,7 @@
 						<th>규격</th>
 						<td><input id="itemSpec03" type="text" class="input01"></td>
 						<th>수량</th>
-						<td><input id="totalQty03" type="text" class="input01"></td>
+						<td><input id="totalQty03" type="text" class="input01" numberOnly></td>
 					</tr>
 
 					<tr class="orderViewPart orderCls03" style="display: none;">
@@ -275,7 +276,7 @@
 						<th>규격</th>
 						<td><input id="itemSpec04" type="text" class="input01"></td>
 						<th>수량</th>
-						<td><input id="totalQty04" type="text" class="input01"></td>
+						<td><input id="totalQty04" type="text" class="input01" numberOnly></td>
 					</tr>
 					<tr class="orderViewPart orderCls04" style="display: none;">
 						<th>실사용지</th>
@@ -375,6 +376,29 @@
 
 	</div>
 
+	<div id="confirmExcel" style="display: none">
+		<div>현재 목록을 엑셀로 저장하시겠습니까?</div>
+		<div>
+			<Button id="btn_confirmExcel_ok">엑셀다운</Button>
+			<Button id="btn_confirmExcel_no">취소</Button>
+		</div>
+	</div>
+	
+	<div id="confirmDelete" style="display: none">
+		<div>선택한 주문을 삭제 처리 하시겠습니까?</div>
+		<div>
+			<Button id="btn_confirmDelete_ok">주문삭제</Button>
+			<Button id="btn_confirmDelete_no">취소</Button>
+		</div>
+	</div>
+	
+	<div id="confirmComplete" style="display: none">
+		<div>선택한 주문을 완료 처리 하시겠습니까? <br>완료처리된 주문은 수정 및 삭제가 불가능합니다.</div>
+		<div>
+			<Button id="btn_confirmComplete_ok">주문 완료</Button>
+			<Button id="btn_confirmComplete_no">취소</Button>
+		</div>
+	</div>
 </body>
 <script>
 	'use strict';

@@ -47,7 +47,7 @@ public class CodeVo {
 	public void setOrdered(Integer ordered) {
 		this.ordered = ordered;
 	}
-
+ 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

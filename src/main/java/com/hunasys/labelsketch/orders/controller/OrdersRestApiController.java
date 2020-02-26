@@ -33,7 +33,6 @@ public class OrdersRestApiController {
         logger.info("request /order/getList");
         logger.info(param.toString());
         
-        Map<String, Object> map = new HashMap<String, Object>();
         
         int curpage = 1;
         
@@ -45,17 +44,17 @@ public class OrdersRestApiController {
         	curpage = Integer.parseInt((String)param.get("currentPage"));
         	param.put("offset", (curpage-1) *10);
         }
+        HttpSession session = request.getSession();
+        UsersVo uservo = (UsersVo)session.getAttribute("login");
         
+        param.put("userId", uservo.getUserId());
+        param.put("userCls", uservo.getUserCls());
+        
+        //결과 세팅
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("currentPage", curpage);
         map.put("totalCnt", service.getListCnt(param));
         map.put("datalist", service.getList(param));
-        
-        
-		HttpSession session = request.getSession();
-		UsersVo uservo = (UsersVo)session.getAttribute("login");
-		
-		map.put("userId", uservo.getUserId());
-		map.put("userCls", uservo.getUserCls());
         
         return map;
     }

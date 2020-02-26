@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -211,7 +212,7 @@ body {
 								<th>규격</th>
 								<td>${order.itemSpec}</td>
 								<th>수량</th>
-								<td>${order.totalQty}</td>
+								<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${order.totalQty}" /></td>
 							</tr>
 							<tr>
 								<th>용지</th>
@@ -219,7 +220,7 @@ body {
 								<th>지관</th>
 								<td>${order.parerRollNm}</td>
 								<th>1롤 수량</th>
-								<td>${order.rollQty}</td>
+								<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${order.rollQty}" /></td>
 							</tr>
 							<tr>
 								<th>실사용지</th>
