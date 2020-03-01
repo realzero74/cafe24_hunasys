@@ -74,7 +74,7 @@
 			, FILE1                                         as "file1"
 			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE1),"파일없음")                                         
 																			as "file1Name"
-			, FILE1                                         as "file1"
+			, FILE2                                         as "file2"
 			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE2),"파일없음")
 																			as "file2Name"
 			, USER_ID                                       as "userId"
@@ -156,10 +156,10 @@
 			, DESCRIPTION                                   as "description"
 			, FILE1                                         as "file1"
 			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE1),"파일없음")                                         
-																			as "file1Name"
-			, FILE1                                         as "file1"
+															as "file1Name"
+			, FILE2                                         as "file2"
 			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE2),"파일없음")
-																			as "file2Name"
+															as "file2Name"
 			, USER_ID                                       as "userId"
 			
 			, date_format(NEW_DATETIME,'%Y-%m-%d') as "newDate"

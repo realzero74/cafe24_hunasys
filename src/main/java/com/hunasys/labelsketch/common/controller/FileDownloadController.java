@@ -41,7 +41,7 @@ public class FileDownloadController {
         logger.debug("fileDownload request : ", fileId);
 
         FileVo vo = commonService.getFileItem(fileId);
-        String fullPath = vo.getSavedFilePath() + File.pathSeparator + vo.getSavedFileName();
+        String fullPath = vo.getSavedFilePath() + File.separator + vo.getSavedFileName();
         String originalFileName = vo.getOriginalFileName();
         
         

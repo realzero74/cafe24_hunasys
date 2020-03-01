@@ -181,32 +181,32 @@
 					<tr class="orderViewPart orderCls01" style="display: table-row;">
 						<th>용지</th>
 						<td><select id="paper101" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">아트지</option>
-								<option value="03">감열지</option>
-								<option value="04">투명PET</option>
-								<option value="05">백색PET</option>
-								<option value="06">은무데도롱지</option>
-								<option value="07">은광데도롱지</option>
-								<option value="08">VOID</option>
-								<option value="09">유포지(PPT)</option>
-								<option value="10">PVC(캘지)</option>
-								<option value="11">모조지</option>
-								<option value="12">꼬리표</option>
+								<option value="" selected="">선택</option>
+								<option value="01">아트지</option>
+								<option value="02">감열지</option>
+								<option value="03">투명PET</option>
+								<option value="04">백색PET</option>
+								<option value="05">은무데도롱지</option>
+								<option value="06">은광데도롱지</option>
+								<option value="07">VOID</option>
+								<option value="08">유포지(PPT)</option>
+								<option value="09">PVC(캘지)</option>
+								<option value="10">모조지</option>
+								<option value="11">꼬리표</option>
 						</select> 
 						<select id="paper201" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">그라</option>
-								<option value="03">미색(황박)</option>
-								<option value="04">무접</option>
+								<option value="" selected="">선택</option>
+								<option value="01">그라</option>
+								<option value="02">미색(황박)</option>
+								<option value="03">무접</option>
 						</select></td>
 						<th>지관</th>
 						<td><select id="parerRoll01" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">40지관</option>
-								<option value="03">40지관(플라스틱)</option>
-								<option value="04">75지관</option>
-								<option value="05">75지관(플라스틱)</option>
+								<option value="" selected="">선택</option>
+								<option value="01">40지관</option>
+								<option value="02">40지관(플라스틱)</option>
+								<option value="03">75지관</option>
+								<option value="04">75지관(플라스틱)</option>
 						</select></td>
 						<th>1롤 수량</th>
 						<td><input id="rollQty01" type="text" class="input01" numberOnly></td>
@@ -216,10 +216,10 @@
 						<td><input id="dueDate01" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
 						<td colspan="3"><select id="delivery01" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">직납</option>
-								<option value="03">방문</option>
-								<option value="04">택배</option>
+								<option value="" selected="">선택</option>
+								<option value="01">직납</option>
+								<option value="02">방문</option>
+								<option value="03">택배</option>
 						</select></td>
 					</tr>
 
@@ -232,10 +232,10 @@
 						<td><input id="dueDate02" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
 						<td colspan="3"><select id="delivery02" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">직납</option>
-								<option value="03">방문</option>
-								<option value="04">택배</option>
+								<option value="" selected="">선택</option>
+								<option value="01">직납</option>
+								<option value="02">방문</option>
+								<option value="03">택배</option>
 						</select></td>
 					</tr>
 
@@ -252,20 +252,20 @@
 					<tr class="orderViewPart orderCls03" style="display: none;">
 						<th>지관</th>
 						<td><select id="parerRoll03" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">40지관</option>
-								<option value="03">40지관(플라스틱)</option>
-								<option value="04">75지관</option>
-								<option value="05">75지관(플라스틱)</option>
+								<option value="" selected="">선택</option>
+								<option value="01">40지관</option>
+								<option value="02">40지관(플라스틱)</option>
+								<option value="03">75지관</option>
+								<option value="04">75지관(플라스틱)</option>
 						</select></td>
 						<th>납기일</th>
 						<td><input id="dueDate03" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
 						<td><select id="delivery03" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">직납</option>
-								<option value="03">방문</option>
-								<option value="04">택배</option>
+								<option value="" selected="">선택</option>
+								<option value="01">직납</option>
+								<option value="02">방문</option>
+								<option value="03">택배</option>
 						</select></td>
 					</tr>
 
@@ -282,24 +282,24 @@
 						<th>실사용지</th>
 						<td>
 							<select id="paper304" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">유포지</option>
-								<option value="03">캘지</option>
+								<option value="" selected="">선택</option>
+								<option value="01">유포지</option>
+								<option value="02">캘지</option>
 							</select>
 							<select id="paper404"name="searchChk" class="select02">
-								<option value="01" selected="">코팅선택</option>
-								<option value="02">코팅없음</option>
-								<option value="03">무광코팅</option>
-								<option value="04">유광코팅</option>
+								<option value="" selected="">코팅선택</option>
+								<option value="01">코팅없음</option>
+								<option value="02">무광코팅</option>
+								<option value="03">유광코팅</option>
 							</select></td>
 						<th>납기일</th>
 						<td><input id="dueDate04" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
 						<td><select id="delivery04" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">직납</option>
-								<option value="03">방문</option>
-								<option value="04">택배</option>
+								<option value="" selected="">선택</option>
+								<option value="01">직납</option>
+								<option value="02">방문</option>
+								<option value="03">택배</option>
 						</select></td>
 					</tr>
 
@@ -312,10 +312,10 @@
 						<td><input id="dueDate05" type="text" class="input01 usedatepicker"></td>
 						<th>납품방법</th>
 						<td colspan="3"><select id="delivery05" name="searchChk" class="select02">
-								<option value="01" selected="">선택</option>
-								<option value="02">직납</option>
-								<option value="03">방문</option>
-								<option value="04">택배</option>
+								<option value="" selected="">선택</option>
+								<option value="01">직납</option>
+								<option value="02">방문</option>
+								<option value="03">택배</option>
 						</select></td>
 					</tr>
 
@@ -385,6 +385,7 @@
 	</div>
 	
 	<div id="confirmDelete" style="display: none">
+		<input id="delete_id" type="hidden">
 		<div>선택한 주문을 삭제 처리 하시겠습니까?</div>
 		<div>
 			<Button id="btn_confirmDelete_ok">주문삭제</Button>
@@ -393,12 +394,23 @@
 	</div>
 	
 	<div id="confirmComplete" style="display: none">
+		<input id="complete_id" type="hidden">
 		<div>선택한 주문을 완료 처리 하시겠습니까? <br>완료처리된 주문은 수정 및 삭제가 불가능합니다.</div>
 		<div>
 			<Button id="btn_confirmComplete_ok">주문 완료</Button>
 			<Button id="btn_confirmComplete_no">취소</Button>
 		</div>
 	</div>
+	
+	<div id="confirmFileDown" style="display: none">
+		<input id="filedown_id" type="hidden">
+		<div>파일을 다운로드 하시겠습니까?</div>
+		<div>
+			<Button id="btn_confirmFileDown_ok">파일 다운로드</Button>
+			<Button id="btn_confirmFileDown_no">취소</Button>
+		</div>
+	</div>
+	
 </body>
 <script>
 	'use strict';

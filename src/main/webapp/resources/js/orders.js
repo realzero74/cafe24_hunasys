@@ -146,122 +146,97 @@ var OrderApp = function() {
 			});
 		});
 
-		// 삭제
-		$(document)
-				.on(
-						"click",
-						".delbutton",
-						function() {
-							console.log(this);
-							console.log($(this).attr("data-orderid"));
-							var param = {
-								"orderId" : $(this).attr("data-orderid")
-							};
-							transaction
-									.delOrder(param)
-									.done(
-											function(resultdata) {
-												$.unblockUI();
-												var param = {
-													"searchString1" : $(
-															"#searchString1")
-															.val(),
-													"searchString2" : $(
-															"#searchString2")
-															.val(),
-													"searchString3" : $(
-															"#searchString3")
-															.val(),
-													"searchString4" : $(
-															"#searchString4")
-															.val(),
-													"searchString5" : $(
-															"#searchString5")
-															.val(),
-													"searchString6" : $(
-															"#searchString6")
-															.val(),
-												}
-												transaction
-														.getList(param)
-														.done(
-																function(
-																		resultdata) {
-																	view
-																			.tableHandler(resultdata);
-																	view
-																			.pagingHandler(
-																					resultdata.totalCnt,
-																					resultdata.currentPage);
-																});
-											});
-						});
-
+		// 취소 처리 - 삭제
+		$(document).on("click",".delbutton", function() {
+			$("#delete_id").val($(this).attr("data-orderid"));
+			$.blockUI({ message: $('#confirmDelete'), css: { width: '500px' } }); 
+		});
+		
+		$('#btn_confirmDelete_ok').on('click', function() {
+			var param = {
+				"orderId" : $("#delete_id").val()
+			};
+			transaction.delOrder(param).done(function(resultdata) {		
+				$.unblockUI();
+				var param = {
+						"searchString1" : $("#searchString1").val(),
+						"searchString2" : $("#searchString2").val(),
+						"searchString3" : $("#searchString3").val(),
+						"searchString4" : $("#searchString4").val(),
+						"searchString5" : $("#searchString5").val(),
+						"searchString6" : $("#searchString6").val(), 
+				} 
+				transaction.getList(param).done( function( resultdata) { 
+					view.tableHandler(resultdata); 
+					view.pagingHandler( resultdata.totalCnt, resultdata.currentPage); 
+				}); 
+			});
+			$.unblockUI();			
+		});
+        $('#btn_confirmDelete_no').on('click', function() { 
+            $.unblockUI(); 
+            return false; 
+        });
+				
+		
 		// 완료 처리
-		$(document)
-				.on(
-						"click",
-						".endbutton",
-						function() {
-							console.log(this);
-							console.log($(this).attr("data-orderid"));
-							var param = {
-								"orderId" : $(this).attr("data-orderid"),
-								"setEnd" : "Y",
-								"userId" : _loginUser,
-							};
-							transaction
-									.modOrder(param)
-									.done(
-											function(resultdata) {
-												$.unblockUI();
-												var param = {
-													"searchString1" : $(
-															"#searchString1")
-															.val(),
-													"searchString2" : $(
-															"#searchString2")
-															.val(),
-													"searchString3" : $(
-															"#searchString3")
-															.val(),
-													"searchString4" : $(
-															"#searchString4")
-															.val(),
-													"searchString5" : $(
-															"#searchString5")
-															.val(),
-													"searchString6" : $(
-															"#searchString6")
-															.val(),
-												}
-												transaction
-														.getList(param)
-														.done(
-																function(
-																		resultdata) {
-																	view
-																			.tableHandler(resultdata);
-																	view
-																			.pagingHandler(
-																					resultdata.totalCnt,
-																					resultdata.currentPage);
-																});
-											});
-						});
-
-		// 인쇄 처리
-		$(document).on(
-				"click",
-				".printbutton",
-				function() {
-					console.log(this);
-					console.log($(this).attr("data-orderid"));
-					var href = __contextPath__ + "/order/print/"
-							+ $(this).attr("data-orderid");
-					window.open(href, 'print',
-							'top=50px, left=500px, width=826px, height=869px');
+		$(document).on("click",".endbutton", function() {
+			$("#complete_id").val($(this).attr("data-orderid"));
+			$.blockUI({ message: $('#confirmComplete'), css: { width: '500px' } }); 
+		});
+		
+		$('#btn_confirmComplete_ok').on('click', function() {
+			var param = {
+					"orderId" : $("#complete_id").val(),
+					"setEnd" : "Y",
+					"userId" : _loginUser,
+			};
+			transaction.modOrder(param).done(function(resultdata) {
+				$.unblockUI();
+				var param = {
+					"searchString1" : $("#searchString1").val(),
+					"searchString2" : $("#searchString2").val(),
+					"searchString3" : $("#searchString3").val(),
+					"searchString4" : $("#searchString4").val(),
+					"searchString5" : $("#searchString5").val(),
+					"searchString6" : $("#searchString6").val(),
+				}
+				transaction.getList(param).done(function(resultdata) {
+					view.tableHandler(resultdata);
+					view.pagingHandler(resultdata.totalCnt,	resultdata.currentPage);
 				});
+			});
+			$.unblockUI();			
+		});
+        $('#btn_confirmComplete_no').on('click', function() { 
+            $.unblockUI(); 
+            return false; 
+        });
+		
+		// 파일 다운로드
+		$(document).on("click",".filedownbutton", function() {
+			if($(this).attr("data-fileid") != '' && $(this).attr("data-fileid") != '0'){
+				$("#filedown_id").val($(this).attr("data-fileid")); 
+				$.blockUI({ message: $('#confirmFileDown'), css: { width: '500px' } }); 
+			}
+		});
+		
+		$('#btn_confirmFileDown_ok').on('click', function() {
+			location.href = __contextPath__ + "/fileDownload/"+ $("#filedown_id").val();
+			$.unblockUI();			
+		});
+        $('#btn_confirmFileDown_no').on('click', function() { 
+            $.unblockUI(); 
+            return false; 
+        });
+        
+		// 인쇄 처리
+		$(document).on("click",".printbutton", function() {
+			console.log(this);
+			console.log($(this).attr("data-orderid"));
+			var href = __contextPath__ + "/order/print/"+ $(this).attr("data-orderid");
+			window.open(href, 'print','top=50px, left=500px, width=826px, height=869px');
+		});
 
 		// 등록 폼 취소
 		$('#btn_cancelOrder').click(function() {
@@ -327,7 +302,7 @@ var OrderApp = function() {
 
 		// excel 다운로드
 		$('#btn_excel').on('click',	function() {
-			$.blockUI({ message: $('#confirmExcel'), css: { width: '275px' } }); 
+			$.blockUI({ message: $('#confirmExcel'), css: { width: '500px' } }); 
 		});
 		$('#btn_confirmExcel_ok').on('click', function() {
 			location.href = __contextPath__
@@ -351,7 +326,9 @@ var OrderApp = function() {
             return false; 
         });
 		
-		$('#itemCls').on('change', function() {
+        
+        // 주문 구분 변경
+        $('#itemCls').on('change', function() {
 			console.log(this.value);
 			var targetView = ".orderCls" + this.value;
 			$(".orderViewPart").hide();
@@ -569,12 +546,12 @@ var OrderViewHandler = function(transaction) {
 						tr_tag = tr_tag + "</td>";
 						
 						tr_tag = tr_tag + "<td style=' text-align:center'>";
-						tr_tag = tr_tag	+ "     <button class='endbutton' data-orderid='"+ vo.orderId + "' data-tooltip-text='"	+ (vo.file1Name == ""?"파일 없음": vo.file1Name) + "'>";
+						tr_tag = tr_tag	+ "     <button class='filedownbutton' data-fileid='"+ vo.file1 + "' data-tooltip-text='"	+ (vo.file1Name == ""?"파일 없음": vo.file1Name) + "'>";
 						tr_tag = tr_tag + "			<img src= '"+__contextPath__+ "/resources/image/btn/box-closed-blue.png'>";
 						tr_tag = tr_tag + "     </button>"; 
 						tr_tag = tr_tag + "		<br>"; 
 						tr_tag = tr_tag + "		<br>"; 
-						tr_tag = tr_tag + "     <button class='endbutton' data-orderid='"+ vo.orderId + "' data-tooltip-text='" + (vo.file2Name == ""?"파일 없음": vo.file2Name) +"'>";
+						tr_tag = tr_tag + "     <button class='filedownbutton' data-fileid='"+ vo.file2 + "' data-tooltip-text='" + (vo.file2Name == ""?"파일 없음": vo.file2Name) +"'>";
 						tr_tag = tr_tag + "     	<img src= '" +__contextPath__+ "/resources/image/btn/box-closed-blue.png'>";
 						tr_tag = tr_tag +		"</button>";
 						tr_tag = tr_tag + "</td>";
@@ -688,6 +665,8 @@ var OrderViewHandler = function(transaction) {
 		});
 		$(".orderViewPart").hide();
 		$(".orderCls" + itemCls).show();
+		$("#file1_progress .bar").css("width","0%");
+		$("#file2_progress .bar").css("width","0%");
 	};
 
 	// calendar 핸들러
@@ -728,7 +707,13 @@ var OrderViewHandler = function(transaction) {
 			},
 			done : function(e, data) {
 				console.log(data);
-//				data.context.addClass("done").find("a").prop("href", data.result[0].fileId);
+				if(data.fileId == 0){
+					alert("파일 업로드에 실패 하였습니다.");
+				}
+				else {
+					$("#file1").val(data.result.fileId);
+					$("#fileName1").text(data.result.originalFileName);
+				}
 			}
 		});
 		
@@ -747,12 +732,12 @@ var OrderViewHandler = function(transaction) {
 					alert("파일 업로드에 실패 하였습니다.");
 				}
 				else {
-					$("#fileName2").val(data.originalFileName);
+					$("#file2").val(data.result.fileId);
+					$("#fileName2").text(data.result.originalFileName);
 				}
-//				data.context.addClass("done").find("a").prop("href", data.result[0].originalFileName);
 			}
 		});
-		
+		 
 	};
 	return {
 		initDatepicker : initDatepicker,
@@ -775,6 +760,7 @@ var OrderModel = function() {
 			itemNm : $("#itemNm").val(),
 
 			company : $("#company01").val(),
+			
 			itemSpec : $("#itemSpec01").val(),
 			totalQty : removeCommas($("#totalQty01").val()),
 			paper1 : $("#paper101").val(),
@@ -816,7 +802,9 @@ var OrderModel = function() {
 
 		$("#description").val(vo.description);
 		$("#file1").val(vo.file1);
+		$("#fileName1").text(vo.file1Name);
 		$("#file2").val(vo.file2);
+		$("#fileName2").text(vo.file2Name);
 
 		$("#setEnd").val(vo.setEnd);
 		$("#endDate").val(vo.endDate);
@@ -833,6 +821,8 @@ var OrderModel = function() {
 		return {
 			orderId : $("#orderId").val(),
 			itemCls : $("#itemCls").val(),
+			itemNm : $("#itemNm").val(),
+
 			company : $("#company02").val(),
 
 			dueDate : $("#dueDate02").val(),
@@ -856,6 +846,8 @@ var OrderModel = function() {
 	var setOrderType02 = function(vo) {
 		$("#orderId").val(vo.orderId);
 		$("#itemCls").val(vo.itemCls);
+		$("#itemNm").val(vo.itemNm);
+
 		$("#company02").val(vo.company);
 
 		$("#dueDate02").val(vo.dueDate);
@@ -863,7 +855,9 @@ var OrderModel = function() {
 
 		$("#description").val(vo.description);
 		$("#file1").val(vo.file1);
+		$("#fileName1").text(vo.file1Name);
 		$("#file2").val(vo.file2);
+		$("#fileName2").text(vo.file2Name);
 
 		$("#setEnd").val(vo.setEnd);
 		$("#endDate").val(vo.endDate);
@@ -884,6 +878,7 @@ var OrderModel = function() {
 			itemNm : $("#itemNm").val(),
 
 			company : $("#company03").val(),
+			
 			itemSpec : $("#itemSpec03").val(),
 			totalQty : removeCommas($("#totalQty03").val()),
 			parerRoll : $("#parerRoll03").val(),
@@ -911,6 +906,7 @@ var OrderModel = function() {
 		$("#itemNm").val(vo.itemNm);
 
 		$("#company03").val(vo.company);
+		
 		$("#itemSpec03").val(vo.itemSpec);
 		$("#totalQty03").val(addCommas(vo.totalQty));
 		$("#parerRoll03").val(vo.parerRoll);
@@ -919,7 +915,9 @@ var OrderModel = function() {
 
 		$("#description").val(vo.description);
 		$("#file1").val(vo.file1);
+		$("#fileName1").text(vo.file1Name);
 		$("#file2").val(vo.file2);
+		$("#fileName2").text(vo.file2Name);
 
 		$("#setEnd").val(vo.setEnd);
 		$("#endDate").val(vo.endDate);
@@ -940,6 +938,7 @@ var OrderModel = function() {
 			itemNm : $("#itemNm").val(),
 
 			company : $("#company04").val(),
+			
 			itemSpec : $("#itemSpec04").val(),
 			totalQty : removeCommas($("#totalQty04").val()),
 			paper3 : $("#paper304").val(),
@@ -969,6 +968,7 @@ var OrderModel = function() {
 		$("#itemNm").val(vo.itemNm);
 
 		$("#company04").val(vo.company);
+		
 		$("#itemSpec04").val(vo.itemSpec);
 		$("#totalQty04").val(addCommas(vo.totalQty));
 		$("#paper304").val(vo.paper3);
@@ -978,7 +978,9 @@ var OrderModel = function() {
 
 		$("#description").val(vo.description);
 		$("#file1").val(vo.file1);
+		$("#fileName1").text(vo.file1Name);
 		$("#file2").val(vo.file2);
+		$("#fileName2").text(vo.file2Name);
 
 		$("#setEnd").val(vo.setEnd);
 		$("#endDate").val(vo.endDate);
@@ -997,6 +999,8 @@ var OrderModel = function() {
 			orderId : $("#orderId").val(),
 			itemCls : $("#itemCls").val(),
 			itemNm : $("#itemNm").val(),
+
+			company : $("#company05").val(),
 
 			dueDate : $("#dueDate05").val(),
 			delivery : $("#delivery05").val(),
@@ -1021,12 +1025,16 @@ var OrderModel = function() {
 		$("#itemCls").val(vo.itemCls);
 		$("#itemNm").val(vo.itemNm);
 
+		$("#company05").val(vo.company);
+		
 		$("#dueDate05").val(vo.dueDate);
 		$("#delivery05").val(vo.delivery);
 
 		$("#description").val(vo.description);
 		$("#file1").val(vo.file1);
+		$("#fileName1").text(vo.file1Name);
 		$("#file2").val(vo.file2);
+		$("#fileName2").text(vo.file2Name);
 
 		$("#setEnd").val(vo.setEnd);
 		$("#endDate").val(vo.endDate);
@@ -1054,6 +1062,7 @@ var OrderModel = function() {
 		$("#dueDate01").val("");
 		$("#delivery01").val("");
 		
+		$("#company02").val("");
 		$("#dueDate02").val("");
 		$("#delivery02").val("");
 		
@@ -1072,6 +1081,7 @@ var OrderModel = function() {
 		$("#dueDate04").val("");
 		$("#delivery04").val("");
 		
+		$("#company05").val("");
 		$("#dueDate05").val("");
 		$("#delivery05").val("");
 
