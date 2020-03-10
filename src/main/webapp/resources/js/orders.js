@@ -60,25 +60,21 @@ var OrderApp = function() {
 		});
 		
 		// 검색
-		$('#btn_searchOrder').click(
-				function() {
-					var param = {
-						"searchString1" : $("#searchString1").val(),
-						"searchString2" : $("#searchString2").val(),
-						"searchString3" : $("#searchString3").val(),
-						"searchString4" : $("#searchString4").val(),
-						"searchString5" : $("#searchString5").val(),
-						"searchString6" : $("#searchString6").val(),
-					};
-					$("#calendarView > div > table > tbody > tr > td > a")
-							.removeClass('ui-state-active');
-					transaction.getList(param).done(
-							function(resultdata) {
-								view.tableHandler(resultdata);
-								view.pagingHandler(resultdata.totalCnt,
-										resultdata.currentPage);
-							});
-				});
+		$('#btn_searchOrder').click( function() {
+			var param = {
+				"searchString1" : $("#searchString1").val(),
+				"searchString2" : $("#searchString2").val(),
+				"searchString3" : $("#searchString3").val(),
+				"searchString4" : $("#searchString4").val(),
+				"searchString5" : $("#searchString5").val(),
+				"searchString6" : $("#searchString6").val(),
+			};
+			$("#calendarView > div > table > tbody > tr > td > a").removeClass('ui-state-active');
+			transaction.getList(param).done(function(resultdata) {
+				view.tableHandler(resultdata);
+				view.pagingHandler(resultdata.totalCnt, resultdata.currentPage);
+			});
+		});
 
 		$(document).on(
 				"click",
@@ -443,7 +439,7 @@ var OrderViewHandler = function(transaction) {
 							tr_tag = tr_tag + "		<p>회사명: " + vo.company +"</p>";
 							tr_tag = tr_tag + "		<p>품명: <b>" + vo.itemNm +"</b></p>";
 							tr_tag = tr_tag + "		<p><span style='width: 50%; display: inline-block;'>";
-							tr_tag = tr_tag + "		규격: " + vo.itemSpec;
+							tr_tag = tr_tag + "		규격: " + vo.itemSpecX + " x " + vo.itemSpecY;
 							tr_tag = tr_tag + "		</span><span style='width: 50%; display: inline-block;'>";;
 							tr_tag = tr_tag + "		용지: " + vo.paper1Nm +"/" + vo.paper2Nm;
 							tr_tag = tr_tag + "		</span></p>";
@@ -473,7 +469,7 @@ var OrderViewHandler = function(transaction) {
 							tr_tag = tr_tag + "		<p>회사명: " + vo.company +"</p>";
 							tr_tag = tr_tag + "		<p>품명: <b>" + vo.itemNm +"</b></p>";
 							tr_tag = tr_tag + "		<p><span style='width: 50%; display: inline-block;'>";
-							tr_tag = tr_tag + "		규격: " + vo.itemSpec;
+							tr_tag = tr_tag + "		규격: " + vo.itemSpecX + " x " + vo.itemSpecY;
 							tr_tag = tr_tag + "		</span><span style='width: 50%; display: inline-block;'>";;
 							tr_tag = tr_tag + "		수량: " + addCommas(vo.totalQty);
 							tr_tag = tr_tag + "		</span></p>";
@@ -489,7 +485,7 @@ var OrderViewHandler = function(transaction) {
 							tr_tag = tr_tag + "		<p>회사명: " + vo.company +"</p>";
 							tr_tag = tr_tag + "		<p>품명: <b>" + vo.itemNm +"</b></p>";
 							tr_tag = tr_tag + "		<p><span style='width: 50%; display: inline-block;'>";
-							tr_tag = tr_tag + "		규격: " + vo.itemSpec;
+							tr_tag = tr_tag + "		규격: " + vo.itemSpecX + " x " + vo.itemSpecY;
 							tr_tag = tr_tag + "		</span><span style='width: 50%; display: inline-block;'>";;
 							tr_tag = tr_tag + "		실사용지: " + vo.paper3Nm +"/" + vo.paper4Nm;
 							tr_tag = tr_tag + "		</span></p>";
@@ -761,7 +757,8 @@ var OrderModel = function() {
 
 			company : $("#company01").val(),
 			
-			itemSpec : $("#itemSpec01").val(),
+			itemSpecX : $("#itemSpecX01").val(),
+			itemSpecY : $("#itemSpecY01").val(),
 			totalQty : removeCommas($("#totalQty01").val()),
 			paper1 : $("#paper101").val(),
 			paper2 : $("#paper201").val(),
@@ -791,7 +788,8 @@ var OrderModel = function() {
 		$("#itemNm").val(vo.itemNm);
 
 		$("#company01").val(vo.company);
-		$("#itemSpec01").val(vo.itemSpec);
+		$("#itemSpecX01").val(vo.itemSpecX);
+		$("#itemSpecY01").val(vo.itemSpecY);
 		$("#totalQty01").val(addCommas(vo.totalQty));
 		$("#paper101").val(vo.paper1);
 		$("#paper201").val(vo.paper2);
@@ -879,7 +877,8 @@ var OrderModel = function() {
 
 			company : $("#company03").val(),
 			
-			itemSpec : $("#itemSpec03").val(),
+			itemSpecX : $("#itemSpecX03").val(),
+			itemSpecY : $("#itemSpecY03").val(),
 			totalQty : removeCommas($("#totalQty03").val()),
 			parerRoll : $("#parerRoll03").val(),
 			dueDate : $("#dueDate03").val(),
@@ -907,7 +906,8 @@ var OrderModel = function() {
 
 		$("#company03").val(vo.company);
 		
-		$("#itemSpec03").val(vo.itemSpec);
+		$("#itemSpecX03").val(vo.itemSpecX);
+		$("#itemSpecY03").val(vo.itemSpecY);
 		$("#totalQty03").val(addCommas(vo.totalQty));
 		$("#parerRoll03").val(vo.parerRoll);
 		$("#dueDate03").val(vo.dueDate);
@@ -939,7 +939,8 @@ var OrderModel = function() {
 
 			company : $("#company04").val(),
 			
-			itemSpec : $("#itemSpec04").val(),
+			itemSpecX : $("#itemSpecX04").val(),
+			itemSpecY : $("#itemSpecY04").val(),
 			totalQty : removeCommas($("#totalQty04").val()),
 			paper3 : $("#paper304").val(),
 			paper4 : $("#paper404").val(),
@@ -969,7 +970,8 @@ var OrderModel = function() {
 
 		$("#company04").val(vo.company);
 		
-		$("#itemSpec04").val(vo.itemSpec);
+		$("#itemSpecX04").val(vo.itemSpecX);
+		$("#itemSpecY04").val(vo.itemSpecY);
 		$("#totalQty04").val(addCommas(vo.totalQty));
 		$("#paper304").val(vo.paper3);
 		$("#paper404").val(vo.paper4);
@@ -1053,7 +1055,8 @@ var OrderModel = function() {
 		$("#company").val("");
 
 		$("#company01").val("");
-		$("#itemSpec01").val("");
+		$("#itemSpecX01").val("");
+		$("#itemSpecY01").val("");
 		$("#totalQty01").val("");
 		$("#paper101").val("");
 		$("#paper201").val("");
@@ -1067,14 +1070,16 @@ var OrderModel = function() {
 		$("#delivery02").val("");
 		
 		$("#company03").val("");
-		$("#itemSpec03").val("");
+		$("#itemSpecX03").val("");
+		$("#itemSpecY03").val("");
 		$("#totalQty03").val("");
 		$("#parerRoll03").val("");
 		$("#dueDate03").val("");
 		$("#delivery03").val("");
 		
 		$("#company04").val("");
-		$("#itemSpec04").val("");
+		$("#itemSpecX04").val("");
+		$("#itemSpecY04").val("");
 		$("#totalQty04").val("");
 		$("#paper304").val("");
 		$("#paper404").val("");

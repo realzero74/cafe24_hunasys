@@ -210,7 +210,7 @@ body {
 								<th>발주회사</th>
 								<td>${order.company}</td>
 								<th>규격</th>
-								<td>${order.itemSpec}</td>
+								<td>${order.itemSpecX} x ${order.itemSpecY}</td>
 								<th>수량</th>
 								<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${order.totalQty}" /></td>
 							</tr>
@@ -242,7 +242,6 @@ body {
 								<th>발주자 확인</th>
 								<td colspan="2">휴나닉(인)</td>
 							</tr>
-
 						</tbody>
 					</table>
 				</div>

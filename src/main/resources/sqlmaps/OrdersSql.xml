@@ -48,7 +48,8 @@
 			                                                as "itemClsNm"
 			, COMPANY                                       as "company"
 			, ITEM_NM                                       as "itemNm"
-			, ITEM_SPEC                                     as "itemSpec"
+			, ITEM_SPEC_X                                   as "itemSpecX"
+			, ITEM_SPEC_Y                                   as "itemSpecY"
 			, TOTAL_QTY                                     as "totalQty"
 			, PAPER1                                        as "paper1"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '02' AND ITEM_CD = PAPER1),"")
@@ -131,7 +132,8 @@
 			                                                as "itemClsNm"
 			, COMPANY                                       as "company"
 			, ITEM_NM                                       as "itemNm"
-			, ITEM_SPEC                                     as "itemSpec"
+			, ITEM_SPEC_X                                   as "itemSpecX"
+			, ITEM_SPEC_Y                                   as "itemSpecY"
 			, TOTAL_QTY                                     as "totalQty"
 			, PAPER1                                        as "paper1"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '02' AND ITEM_CD = PAPER1),"")
@@ -187,7 +189,8 @@
 				  ITEM_CLS   
 				, COMPANY    
 				, ITEM_NM    
-				, ITEM_SPEC  
+				, ITEM_SPEC_X
+				, ITEM_SPEC_Y  
 				, TOTAL_QTY  
 				, PAPER1     
 				, PAPER2     
@@ -208,7 +211,8 @@
 				  #{itemCls,jdbcType=VARCHAR}
 				, #{company,jdbcType=VARCHAR}
 				, #{itemNm,jdbcType=VARCHAR}
-				, #{itemSpec,jdbcType=VARCHAR}
+				, #{itemSpecX,jdbcType=INTEGER}
+				, #{itemSpecY,jdbcType=INTEGER}
 				, #{totalQty,jdbcType=INTEGER}
 				, #{paper1,jdbcType=VARCHAR}
 				, #{paper2,jdbcType=VARCHAR}
@@ -234,7 +238,8 @@
 			<if test="itemCls     != null">  ITEM_CLS      = #{itemCls}      , </if>
 			<if test="company     != null">  COMPANY       = #{company}      , </if>
 			<if test="itemNm      != null">  ITEM_NM       = #{itemNm}       , </if>
-			<if test="itemSpec    != null">  ITEM_SPEC     = #{itemSpec}     , </if>
+			<if test="itemSpecX   != null">  ITEM_SPEC_X   = #{itemSpecX}    , </if>
+			<if test="itemSpecY   != null">  ITEM_SPEC_Y   = #{itemSpecY}    , </if>
 			<if test="totalQty    != null">  TOTAL_QTY     = #{totalQty}     , </if>
 			<if test="paper1      != null">  PAPER1        = #{paper1}       , </if>
 			<if test="paper2      != null">  PAPER2        = #{paper2}       , </if>

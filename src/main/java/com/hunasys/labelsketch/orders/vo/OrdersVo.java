@@ -9,7 +9,8 @@ public class OrdersVo {
 	private String itemClsNm;
 	private String company;
 	private String itemNm;
-	private String itemSpec;
+	private int    itemSpecX;
+	private int    itemSpecY;
 	private int    totalQty;
 	private String paper1;
 	private String paper1Nm;
@@ -83,12 +84,20 @@ public class OrdersVo {
 		this.itemNm = itemNm;
 	}
 
-	public String getItemSpec() {
-		return itemSpec;
+	public int getItemSpecX() {
+		return itemSpecX;
 	}
 
-	public void setItemSpec(String itemSpec) {
-		this.itemSpec = itemSpec;
+	public void setItemSpecX(int itemSpecX) {
+		this.itemSpecX = itemSpecX;
+	}
+
+	public int getItemSpecY() {
+		return itemSpecY;
+	}
+
+	public void setItemSpecY(int itemSpecY) {
+		this.itemSpecY = itemSpecY;
 	}
 
 	public int getTotalQty() {

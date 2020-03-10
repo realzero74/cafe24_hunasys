@@ -162,7 +162,7 @@
 								<option value="05">기타</option>
 						</select></td>
 						<th>품명</th>
-						<td colspan="3"><input id="itemNm" type="text" class="input03"></td>
+						<td colspan="3"><input id="itemNm" type="text" class="input03" style="width : 300px;"></td>
 					</tr>
 					<tr>
 						<td colspan="6"></td>
@@ -174,7 +174,7 @@
 						<th>발주회사</th>
 						<td><input id="company01" type="text" class="input03"></td>
 						<th>규격</th>
-						<td><input id="itemSpec01" type="text" class="input01"></td>
+						<td><input id="itemSpecX01" type="text" class="input01" style="width: 40px" numberOnly> x <input id="itemSpecY01" type="text" class="input01" style="width: 40px" numberOnly></td>
 						<th>수량</th>
 						<td><input id="totalQty01" type="text" class="input01" numberOnly></td>
 					</tr>
@@ -244,7 +244,7 @@
 						<th>발주회사</th>
 						<td><input id="company03" type="text" class="input03"></td>
 						<th>규격</th>
-						<td><input id="itemSpec03" type="text" class="input01"></td>
+						<td><input id="itemSpecX03" type="text" class="input01" style="width: 40px" numberOnly> x <input id="itemSpecY03" type="text" class="input01" style="width: 40px" numberOnly></td>
 						<th>수량</th>
 						<td><input id="totalQty03" type="text" class="input01" numberOnly></td>
 					</tr>
@@ -274,7 +274,7 @@
 						<th>발주회사</th>
 						<td><input id="company04" type="text" class="input03"></td>
 						<th>규격</th>
-						<td><input id="itemSpec04" type="text" class="input01"></td>
+						<td><input id="itemSpecX04" type="text" class="input01" style="width: 40px" numberOnly> x <input id="itemSpecY04" type="text" class="input01" style="width: 40px" numberOnly></td>
 						<th>수량</th>
 						<td><input id="totalQty04" type="text" class="input01" numberOnly></td>
 					</tr>

@@ -192,7 +192,7 @@ public class ExcelView extends AbstractXlsxView {
             row.createCell(2).setCellValue(item.getItemClsNm());
             row.createCell(3).setCellValue(item.getCompany());
             row.createCell(4).setCellValue(item.getItemNm());
-            row.createCell(5).setCellValue(item.getItemSpec());
+            row.createCell(5).setCellValue(item.getItemSpecX());
             row.createCell(6).setCellValue(item.getTotalQty());
             row.createCell(7).setCellValue(item.getPaper1());
             row.createCell(8).setCellValue(item.getPaper1Nm());
