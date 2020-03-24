@@ -120,14 +120,16 @@
 #confirmFileDown,
 #confirmComplete,
 #confirmDelete,
-#confirmExcel {
+#confirmExcel,
+#confirmLogout {
 	/*height: 300px;*/
 }
 
 #confirmFileDown div,
 #confirmComplete div,
 #confirmDelete div,
-#confirmExcel div {
+#confirmExcel div,
+#confirmLogout div {
     font-size: 1.2em;
     font-weight: bold;
     margin: 10px auto;
@@ -135,7 +137,8 @@
 #confirmFileDown button,
 #confirmComplete button,
 #confirmDelete button,
-#confirmExcel button {
+#confirmExcel button,
+#confirmLogout button {
 	min-width: 80px;
     font-size: 1em;
     font-weight: bold;

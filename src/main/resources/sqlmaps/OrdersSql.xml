@@ -99,8 +99,8 @@
 			<!-- 납기일 -->
 			<if test="searchString3 != null and searchString4 != null and 
 			          searchString3 != '' and searchString4 != ''">
-			    AND date_format(NEW_DATETIME,'%Y-%m-%d') <![CDATA[ >= ]]> #{searchString3}
-			    AND date_format(NEW_DATETIME,'%Y-%m-%d') <![CDATA[ <= ]]> #{searchString4}
+			    AND date_format(DUE_DATE,'%Y-%m-%d') <![CDATA[ >= ]]> #{searchString3}
+			    AND date_format(DUE_DATE,'%Y-%m-%d') <![CDATA[ <= ]]> #{searchString4}
 			</if>
 
 			<!-- 회사명 -->

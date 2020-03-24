@@ -42,6 +42,19 @@ var OrderApp = function() {
 
 	var regEventHandler = function() {
 		
+		// 로그아웃
+		$('#btn_logout').on('click',	function() {
+			$.blockUI({ message: $('#confirmLogout'), css: { width: '500px' } }); 
+		});
+		$('#btn_confirmLogout_ok').on('click', function() {
+			location.href = __contextPath__	+ "/logout"
+			$.unblockUI();			
+		});
+        $('#btn_confirmLogout_no').on('click', function() { 
+            $.unblockUI(); 
+            return false; 
+        });
+		
 		$("input:text[numberOnly]").on("focus", function() {
 		    var x = $(this).val();
 		    x = removeCommas(x);
@@ -673,15 +686,15 @@ var OrderViewHandler = function(transaction) {
 				console.log(dateText);
 
 				var param = {
-					"searchString1" : dateText,
-					"searchString2" : dateText,
-					"searchString3" : "",
-					"searchString4" : "",
+					"searchString1" : "",
+					"searchString2" : "",
+					"searchString3" : dateText,
+					"searchString4" : dateText,
 					"searchString5" : "",
 					"searchString6" : "",
 				}
-				$("#searchString1").val(dateText);
-				$("#searchString2").val(dateText);
+				$("#searchString3").val(dateText);
+				$("#searchString4").val(dateText);
 				transaction.getList(param).done(function(resultdata) {
 					tableHandler(resultdata);
 					pagingHandler(resultdata.totalCnt, resultdata.currentPage);

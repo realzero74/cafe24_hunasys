@@ -2,6 +2,9 @@ package com.hunasys.labelsketch.common.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,15 @@ public class CommonViewController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		logger.info("Welcome hunaorder login!");
+		return "login";
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
+		logger.info("Welcome home! logout()");
+		HttpSession session = request.getSession();
+		session.removeAttribute("login");
+		
 		return "login";
 	}
 }

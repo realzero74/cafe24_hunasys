@@ -22,8 +22,10 @@
 
 		<div id="container">
 			<div id="header">
-				<div id="hdconts03">
-
+				<div id="hdconts03" style="position: relative;">
+					<button id="btn_gomain" type="button" style="right: 0px; position: absolute;top: 45px;">
+						<img src="${pageContext.request.contextPath}/resources/image/btn/btn_main.gif">
+					</button>
 				</div><!-- hdconts01 끝 -->
 			</div><!-- header 끝 -->
 

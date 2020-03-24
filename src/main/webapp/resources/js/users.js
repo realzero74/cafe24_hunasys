@@ -19,6 +19,11 @@ var UserApp = function () {
     };
     var regEventHandler = function(){
     	
+		// 로그아웃
+		$('#btn_gomain').on('click',	function() {
+			location.href = __contextPath__+"/orders";  
+		});
+    	
     	// 등록 폼 오픈
         $('#regbutton').click(function() {
         	model.setUserInit();

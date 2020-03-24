@@ -25,7 +25,11 @@
 
 		<div id="container">
 			<div id="header">
-				<div id="hdconts01"></div>
+				<div id="hdconts01" style="position: relative;">
+					<button id="btn_logout" type="button" style="right: 0px; position: absolute;top: 45px;">
+						<img src="${pageContext.request.contextPath}/resources/image/btn/btn_logout.gif">
+					</button>
+				</div>
 				<!-- hdconts01 끝 -->
 			</div>
 			<!-- header 끝 -->
@@ -410,6 +414,15 @@
 			<Button id="btn_confirmFileDown_no">취소</Button>
 		</div>
 	</div>
+	
+	<div id="confirmLogout" style="display: none">
+		<div>로그아웃 하시겠습니까?</div>
+		<div>
+			<Button id="btn_confirmLogout_ok">로그아웃</Button>
+			<Button id="btn_confirmLogout_no">취소</Button>
+		</div>
+	</div>
+	
 	
 </body>
 <script>

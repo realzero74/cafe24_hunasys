@@ -50,6 +50,7 @@ public class CommonRestApiController {
 		param.put("userPw", userpw);
 		
         UsersVo usersvo = usersService.getItem(param);
+        logger.info(usersvo.toString());
         if(usersvo != null && userid.equals(usersvo.getUserId()) && userpw.equals(usersvo.getUserPw())) {
         	
         	logger.info("Welcome home! 로그인 성공");
@@ -66,25 +67,6 @@ public class CommonRestApiController {
         
 	}
 	
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/logout", method = RequestMethod.POST)
-	public String logout(Locale locale, Model model) {
-		logger.info("Welcome home! logout()");
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		return "login";
-	}
-    
-    
     @RequestMapping(value = "/code/getList", method = RequestMethod.GET)
     public List<CodeVo> getList(@RequestParam(value = "code", required = true) String code) {
         logger.info("request /code/getList");
