@@ -522,9 +522,9 @@ var OrderViewHandler = function(transaction) {
 						tr_tag = tr_tag + "	<td>";
 						tr_tag = tr_tag + vo.newDate + "<br>" + vo.newTime;
 						tr_tag = tr_tag + "	</td>";
-						tr_tag = tr_tag + "	<td>";
+						tr_tag = tr_tag + "	<td><b>";
 						tr_tag = tr_tag + vo.dueDate;
-						tr_tag = tr_tag + "	</td>";
+						tr_tag = tr_tag + " </b></td>";
 						tr_tag = tr_tag + "	<td>";
 
 						if (vo.endDate != null && vo.endTime != null) {
@@ -1103,7 +1103,7 @@ var OrderModel = function() {
 		$("#dueDate05").val("");
 		$("#delivery05").val("");
 
-		$("#description").val("");
+		$("#description").val("요청업체 :");
 		$("#file1").val("");
 		$("#file2").val("");
 	};

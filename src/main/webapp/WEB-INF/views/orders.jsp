@@ -193,10 +193,11 @@
 								<option value="05">은무데도롱지</option>
 								<option value="06">은광데도롱지</option>
 								<option value="07">VOID</option>
-								<option value="08">유포지(PPT)</option>
+								<option value="08">유포지</option>
 								<option value="09">PVC(캘지)</option>
 								<option value="10">모조지</option>
 								<option value="11">꼬리표</option>
+								<option value="12">기타</option>
 						</select> 
 						<select id="paper201" name="searchChk" class="select02">
 								<option value="" selected="">선택</option>
@@ -211,6 +212,8 @@
 								<option value="02">40지관(플라스틱)</option>
 								<option value="03">75지관</option>
 								<option value="04">75지관(플라스틱)</option>
+								<option value="05">25지관</option>
+								<option value="06">낱장</option>
 						</select></td>
 						<th>1롤 수량</th>
 						<td><input id="rollQty01" type="text" class="input01" numberOnly></td>
@@ -261,6 +264,8 @@
 								<option value="02">40지관(플라스틱)</option>
 								<option value="03">75지관</option>
 								<option value="04">75지관(플라스틱)</option>
+								<option value="05">25지관</option>
+								<option value="06">낱장</option>
 						</select></td>
 						<th>납기일</th>
 						<td><input id="dueDate03" type="text" class="input01 usedatepicker"></td>
