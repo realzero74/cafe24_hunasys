@@ -66,6 +66,9 @@
 			, PARER_ROLL                                    as "parerRoll"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '06' AND ITEM_CD = PARER_ROLL),"")
 			                                                as "parerRollNm"	
+			, MATERIAL                                      as "material"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '08' AND ITEM_CD = MATERIAL),"")
+			                                                as "materialNm"	
 			, ROLL_QTY                                      as "rollQty"
 			, DUE_DATE                                      as "dueDate"
 			, DELIVERY                                      as "delivery"
@@ -149,7 +152,10 @@
 			                                                as "paper4Nm"	
 			, PARER_ROLL                                    as "parerRoll"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '06' AND ITEM_CD = PARER_ROLL),"")
-			                                                as "parerRollNm"	
+			                                                as "parerRollNm"
+			, MATERIAL                                      as "material"
+			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '08' AND ITEM_CD = MATERIAL),"")
+			                                                as "materialNm"	
 			, ROLL_QTY                                      as "rollQty"
 			, DUE_DATE                                      as "dueDate"
 			, DELIVERY                                      as "delivery"
@@ -197,6 +203,7 @@
 				, PAPER3     
 				, PAPER4     
 				, PARER_ROLL 
+				, MATERIAL
 				, ROLL_QTY   
 				, DUE_DATE   
 				, DELIVERY   
@@ -219,6 +226,7 @@
 				, #{paper3,jdbcType=VARCHAR}
 				, #{paper4,jdbcType=VARCHAR}
 				, #{parerRoll,jdbcType=VARCHAR}
+				, #{material,jdbcType=VARCHAR}
 				, #{rollQty,jdbcType=INTEGER}
 				, #{dueDate,jdbcType=VARCHAR}
 				, #{delivery,jdbcType=VARCHAR}
@@ -246,6 +254,7 @@
 			<if test="paper3      != null">  PAPER3        = #{paper3}       , </if>
 			<if test="paper4      != null">  PAPER4        = #{paper4}       , </if>
 			<if test="parerRoll   != null">  PARER_ROLL    = #{parerRoll}    , </if>
+			<if test="material    != null">  MATERIAL      = #{material}    , </if>
 			<if test="rollQty     != null">  ROLL_QTY      = #{rollQty}      , </if>
 			<if test="dueDate     != null">  DUE_DATE      = #{dueDate}      , </if>
 			<if test="delivery    != null">  DELIVERY      = #{delivery}     , </if>

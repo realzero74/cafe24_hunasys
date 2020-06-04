@@ -4,51 +4,53 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OrdersVo {
 
-	private long   orderId;
-	private String itemCls;
-	private String itemClsNm;
-	private String company;
-	private String itemNm;
-	private int    itemSpecX;
-	private int    itemSpecY;
-	private int    totalQty;
-	private String paper1;
-	private String paper1Nm;
-	private String paper2;
-	private String paper2Nm;
-	private String paper3;
-	private String paper3Nm;
-	private String paper4;
-	private String paper4Nm;
-	private String parerRoll;
-	private String parerRollNm;
-	private int    rollQty;
-	private String dueDate;
-	private String delivery;
-	private String deliveryNm;
-	private String description;
+	private Long    orderId;
+	private String  itemCls;
+	private String  itemClsNm;
+	private String  company;
+	private String  itemNm;
+	private Integer itemSpecX;
+	private Integer itemSpecY;
+	private Integer totalQty;
+	private String  paper1;
+	private String  paper1Nm;
+	private String  paper2;
+	private String  paper2Nm;
+	private String  paper3;
+	private String  paper3Nm;
+	private String  paper4;
+	private String  paper4Nm;
+	private String  parerRoll;
+	private String  parerRollNm;
+	private String  material;
+	private String  materialNm;
+	private Integer rollQty;
+	private String  dueDate;
+	private String  delivery;
+	private String  deliveryNm;
+	private String  description;
 	
-	private long   file1;
-	private String file1Name;
-	private long   file2;
-	private String file2Name;
+	private Long    file1;
+	private String  file1Name;
+	private Long    file2;
+	private String  file2Name;
 	
-	private String setEnd;
-	private String endDate;
-	private String endTime;
+	private String  setEnd;
+	private String  endDate;
+	private String  endTime;
 
-	private String userId;
-	private String newDate;
-	private String newTime;
-	private String modDate;
-	private String modTime;
+	private String  userId;
+	private String  newDate;
+	private String  newTime;
+	private String  modDate;
+	private String  modTime;
 
 	
-	public long getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(long orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 
@@ -84,27 +86,27 @@ public class OrdersVo {
 		this.itemNm = itemNm;
 	}
 
-	public int getItemSpecX() {
+	public Integer getItemSpecX() {
 		return itemSpecX;
 	}
 
-	public void setItemSpecX(int itemSpecX) {
+	public void setItemSpecX(Integer itemSpecX) {
 		this.itemSpecX = itemSpecX;
 	}
 
-	public int getItemSpecY() {
+	public Integer getItemSpecY() {
 		return itemSpecY;
 	}
 
-	public void setItemSpecY(int itemSpecY) {
+	public void setItemSpecY(Integer itemSpecY) {
 		this.itemSpecY = itemSpecY;
 	}
 
-	public int getTotalQty() {
+	public Integer getTotalQty() {
 		return totalQty;
 	}
 
-	public void setTotalQty(int totalQty) {
+	public void setTotalQty(Integer totalQty) {
 		this.totalQty = totalQty;
 	}
 
@@ -188,11 +190,27 @@ public class OrdersVo {
 		this.parerRollNm = parerRollNm;
 	}
 
-	public int getRollQty() {
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+	
+	public String getMaterialNm() {
+		return materialNm;
+	}
+
+	public void setMaterialNm(String materialNm) {
+		this.materialNm = materialNm;
+	}
+
+	public Integer getRollQty() {
 		return rollQty;
 	}
 
-	public void setRollQty(int rollQty) {
+	public void setRollQty(Integer rollQty) {
 		this.rollQty = rollQty;
 	}
 
@@ -228,11 +246,11 @@ public class OrdersVo {
 		this.description = description;
 	}
 
-	public long getFile1() {
+	public Long getFile1() {
 		return file1;
 	}
 
-	public void setFile1(long file1) {
+	public void setFile1(Long file1) {
 		this.file1 = file1;
 	}
 
@@ -244,11 +262,11 @@ public class OrdersVo {
 		this.file1Name = file1Name;
 	}
 
-	public long getFile2() {
+	public Long getFile2() {
 		return file2;
 	}
 
-	public void setFile2(long file2) {
+	public void setFile2(Long file2) {
 		this.file2 = file2;
 	}
 
@@ -335,4 +353,6 @@ public class OrdersVo {
 		}
 		return str;
 	}
+
+
 }

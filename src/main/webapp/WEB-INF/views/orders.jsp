@@ -257,15 +257,14 @@
 					</tr>
 
 					<tr class="orderViewPart orderCls03" style="display: none;">
-						<th>지관</th>
-						<td><select id="parerRoll03" name="searchChk" class="select02">
+						<th>재질</th>
+						<td><select id="material03" name="searchChk" class="select02">
 								<option value="" selected="">선택</option>
-								<option value="01">40지관</option>
-								<option value="02">40지관(플라스틱)</option>
-								<option value="03">75지관</option>
-								<option value="04">75지관(플라스틱)</option>
-								<option value="05">25지관</option>
-								<option value="06">낱장</option>
+								<option value="01">WAX</option>
+								<option value="02">WAX-REXIN</option>
+								<option value="03">REXIN</option>
+								<option value="04">특수리본</option>
+								<option value="05">기타</option>
 						</select></td>
 						<th>납기일</th>
 						<td><input id="dueDate03" type="text" class="input01 usedatepicker"></td>

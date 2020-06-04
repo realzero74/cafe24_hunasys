@@ -57,6 +57,7 @@ public class CommonRestApiController {
         	
         	HttpSession session = request.getSession();
         	session.setAttribute("login", usersvo);
+        	session.setMaxInactiveInterval(60*60*5); // 초 단위
 
         	return "success";
         }

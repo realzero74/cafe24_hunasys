@@ -134,8 +134,10 @@ var OrderApp = function() {
 			console.log($(this).attr("data-orderid"));
 			var orderid = $(this).attr("data-orderid");
 
+			
 			transaction.getItem(orderid).done(function(resultdata) {
 				console.log(resultdata);
+				model.setOrderInit();
 				if (resultdata.itemCls == "01") {
 					model.setOrderType01(resultdata);
 					view.orderFormPopup("01");
@@ -487,7 +489,7 @@ var OrderViewHandler = function(transaction) {
 							tr_tag = tr_tag + "		수량: " + addCommas(vo.totalQty);
 							tr_tag = tr_tag + "		</span></p>";
 							tr_tag = tr_tag + "		<p><span style='width: 50%; display: inline-block;'>";
-							tr_tag = tr_tag + "		지관: " + vo.parerRollNm;
+							tr_tag = tr_tag + "		재질: " + vo.materialNm;
 							tr_tag = tr_tag + "		</span><span style='width: 50%; display: inline-block;'>";;
 							tr_tag = tr_tag + "		납품방법: " + vo.deliveryNm;
 							tr_tag = tr_tag + "		</span></p>";	
@@ -555,13 +557,13 @@ var OrderViewHandler = function(transaction) {
 						tr_tag = tr_tag + "</td>";
 						
 						tr_tag = tr_tag + "<td style=' text-align:center'>";
-						tr_tag = tr_tag	+ "     <button class='filedownbutton' data-fileid='"+ vo.file1 + "' data-tooltip-text='"	+ (vo.file1Name == ""?"파일 없음": vo.file1Name) + "'>";
-						tr_tag = tr_tag + "			<img src= '"+__contextPath__+ "/resources/image/btn/box-closed-blue.png'>";
+						tr_tag = tr_tag	+ "     <button class='filedownbutton' data-fileid='"+ vo.file1 + "' data-tooltip-text='"	+ (vo.file1Name == ""?"파일없음": vo.file1Name) + "'>";
+						tr_tag = tr_tag + "			<img src= '"+__contextPath__+ "/resources/image/btn/box-closed-"	+ (vo.file1 == "0"?"gray": "blue") + ".png'>";
 						tr_tag = tr_tag + "     </button>"; 
 						tr_tag = tr_tag + "		<br>"; 
 						tr_tag = tr_tag + "		<br>"; 
-						tr_tag = tr_tag + "     <button class='filedownbutton' data-fileid='"+ vo.file2 + "' data-tooltip-text='" + (vo.file2Name == ""?"파일 없음": vo.file2Name) +"'>";
-						tr_tag = tr_tag + "     	<img src= '" +__contextPath__+ "/resources/image/btn/box-closed-blue.png'>";
+						tr_tag = tr_tag + "     <button class='filedownbutton' data-fileid='"+ vo.file2 + "' data-tooltip-text='" + (vo.file2Name == ""?"파일없음": vo.file2Name) +"'>";
+						tr_tag = tr_tag + "     	<img src= '" +__contextPath__+ "/resources/image/btn/box-closed-"	+ (vo.file2 == "0"?"gray": "blue") + ".png'>";
 						tr_tag = tr_tag +		"</button>";
 						tr_tag = tr_tag + "</td>";
 						
@@ -770,12 +772,13 @@ var OrderModel = function() {
 
 			company : $("#company01").val(),
 			
-			itemSpecX : $("#itemSpecX01").val(),
-			itemSpecY : $("#itemSpecY01").val(),
+			itemSpecX : removeCommas($("#itemSpecX01").val()),
+			itemSpecY : removeCommas($("#itemSpecY01").val()),
 			totalQty : removeCommas($("#totalQty01").val()),
 			paper1 : $("#paper101").val(),
 			paper2 : $("#paper201").val(),
 			parerRoll : $("#parerRoll01").val(),
+			
 			rollQty : removeCommas($("#rollQty01").val()),
 			dueDate : $("#dueDate01").val(),
 			delivery : $("#delivery01").val(),
@@ -889,11 +892,11 @@ var OrderModel = function() {
 			itemNm : $("#itemNm").val(),
 
 			company : $("#company03").val(),
-			
-			itemSpecX : $("#itemSpecX03").val(),
-			itemSpecY : $("#itemSpecY03").val(),
+
+			itemSpecX : removeCommas($("#itemSpecX03").val()),
+			itemSpecY : removeCommas($("#itemSpecY03").val()),
 			totalQty : removeCommas($("#totalQty03").val()),
-			parerRoll : $("#parerRoll03").val(),
+			material : $("#material03").val(),
 			dueDate : $("#dueDate03").val(),
 			delivery : $("#delivery03").val(),
 
@@ -922,7 +925,7 @@ var OrderModel = function() {
 		$("#itemSpecX03").val(vo.itemSpecX);
 		$("#itemSpecY03").val(vo.itemSpecY);
 		$("#totalQty03").val(addCommas(vo.totalQty));
-		$("#parerRoll03").val(vo.parerRoll);
+		$("#material03").val(vo.material),
 		$("#dueDate03").val(vo.dueDate);
 		$("#delivery03").val(vo.delivery);
 
@@ -952,8 +955,8 @@ var OrderModel = function() {
 
 			company : $("#company04").val(),
 			
-			itemSpecX : $("#itemSpecX04").val(),
-			itemSpecY : $("#itemSpecY04").val(),
+			itemSpecX : removeCommas($("#itemSpecX04").val()),
+			itemSpecY : removeCommas($("#itemSpecY04").val()),
 			totalQty : removeCommas($("#totalQty04").val()),
 			paper3 : $("#paper304").val(),
 			paper4 : $("#paper404").val(),
@@ -1065,7 +1068,7 @@ var OrderModel = function() {
 	var setOrderInit = function() {
 		$("#orderId").val("");
 		$("#itemCls").val("01");
-		$("#company").val("");
+		$("#itemNm").val("");
 
 		$("#company01").val("");
 		$("#itemSpecX01").val("");
@@ -1105,7 +1108,9 @@ var OrderModel = function() {
 
 		$("#description").val("요청업체 :");
 		$("#file1").val("");
+		$("#fileName1").text("");
 		$("#file2").val("");
+		$("#fileName2").text("");
 	};
 
 	return {

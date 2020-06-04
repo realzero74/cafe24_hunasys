@@ -41,6 +41,9 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
 			// login처리를 담당하는 사용자 정보를 담고 있는 객체를 가져옴
 			Object obj = session.getAttribute("login");
 			
+			logger.info("session 시간 " + session.getMaxInactiveInterval() + "/" + ((session.getLastAccessedTime() - session.getCreationTime())/1000));
+			
+			
 			if (obj != null) { // 세션이 있는 경우
 				return true;
 			}
