@@ -75,12 +75,12 @@
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '07' AND ITEM_CD = DELIVERY),"")
 			                                                as "deliveryNm"
 			, DESCRIPTION                                   as "description"
-			, FILE1                                         as "file1"
+			, IFNULL(FILE1,0)                               as "file1"
 			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE1),"파일없음")                                         
-																			as "file1Name"
-			, FILE2                                         as "file2"
+															as "file1Name"
+			, IFNULL(FILE2,0)                               as "file2"
 			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE2),"파일없음")
-																			as "file2Name"
+															as "file2Name"
 			, USER_ID                                       as "userId"
 			
 			, date_format(NEW_DATETIME,'%Y-%m-%d') as "newDate"
@@ -162,10 +162,10 @@
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '07' AND ITEM_CD = DELIVERY),"")
 			                                                as "deliveryNm"
 			, DESCRIPTION                                   as "description"
-			, FILE1                                         as "file1"
+			, IFNULL(FILE1,0)                               as "file1"
 			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE1),"파일없음")                                         
 															as "file1Name"
-			, FILE2                                         as "file2"
+			, IFNULL(FILE2,0)                               as "file2"
 			, IFNULL((SELECT original_file_name FROM FILES WHERE file_id = FILE2),"파일없음")
 															as "file2Name"
 			, USER_ID                                       as "userId"
