@@ -4,7 +4,8 @@
 
 //3자리 단위마다 콤마 생성
 function addCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	if(!x || x.length == 0) return "";
+	else return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
  
 //모든 콤마 제거

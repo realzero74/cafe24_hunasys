@@ -48,9 +48,9 @@
 			                                                as "itemClsNm"
 			, COMPANY                                       as "company"
 			, ITEM_NM                                       as "itemNm"
-			, ITEM_SPEC_X                                   as "itemSpecX"
-			, ITEM_SPEC_Y                                   as "itemSpecY"
-			, TOTAL_QTY                                     as "totalQty"
+			, IFNULL(ITEM_SPEC_X,0)                         as "itemSpecX"
+			, IFNULL(ITEM_SPEC_Y,0)                         as "itemSpecY"
+			, IFNULL(TOTAL_QTY,0)                           as "totalQty"
 			, PAPER1                                        as "paper1"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '02' AND ITEM_CD = PAPER1),"")
 			                                                as "paper1Nm"
@@ -69,7 +69,7 @@
 			, MATERIAL                                      as "material"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '08' AND ITEM_CD = MATERIAL),"")
 			                                                as "materialNm"	
-			, ROLL_QTY                                      as "rollQty"
+			, IFNULL(ROLL_QTY,0)                            as "rollQty"
 			, DUE_DATE                                      as "dueDate"
 			, DELIVERY                                      as "delivery"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '07' AND ITEM_CD = DELIVERY),"")
@@ -135,9 +135,9 @@
 			                                                as "itemClsNm"
 			, COMPANY                                       as "company"
 			, ITEM_NM                                       as "itemNm"
-			, ITEM_SPEC_X                                   as "itemSpecX"
-			, ITEM_SPEC_Y                                   as "itemSpecY"
-			, TOTAL_QTY                                     as "totalQty"
+			, IFNULL(ITEM_SPEC_X,0)                         as "itemSpecX"
+			, IFNULL(ITEM_SPEC_Y,0)                         as "itemSpecY"
+			, IFNULL(TOTAL_QTY,0)                           as "totalQty"
 			, PAPER1                                        as "paper1"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '02' AND ITEM_CD = PAPER1),"")
 			                                                as "paper1Nm"
@@ -152,11 +152,11 @@
 			                                                as "paper4Nm"	
 			, PARER_ROLL                                    as "parerRoll"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '06' AND ITEM_CD = PARER_ROLL),"")
-			                                                as "parerRollNm"
+			                                                as "parerRollNm"	
 			, MATERIAL                                      as "material"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '08' AND ITEM_CD = MATERIAL),"")
 			                                                as "materialNm"	
-			, ROLL_QTY                                      as "rollQty"
+			, IFNULL(ROLL_QTY,0)                            as "rollQty"
 			, DUE_DATE                                      as "dueDate"
 			, DELIVERY                                      as "delivery"
 			, IFNULL((SELECT ITEM_NM FROM CODES WHERE GROUP_CD = '07' AND ITEM_CD = DELIVERY),"")
