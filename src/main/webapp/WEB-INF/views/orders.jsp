@@ -16,7 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.fileupload.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/orders.js?ver=201912151623"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/orders.js?ver=202007201029"></script>
 </head>
 
 <body>

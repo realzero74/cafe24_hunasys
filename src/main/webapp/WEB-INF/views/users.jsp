@@ -13,7 +13,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jqueryui.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/lib/jquery.blockui.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/users.js?ver=202002081623"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/users.js?ver=202007201029"></script>
 </head>
 
 <body>
