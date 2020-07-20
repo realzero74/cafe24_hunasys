@@ -80,6 +80,9 @@
 								</tr>
 								<tr>
 									<td colspan="4" style="text-align: center">
+										<button id="btn_searchOrderAll" type="button">
+											<img src="${pageContext.request.contextPath}/resources/image/btn/btn_sch_all.gif">
+										</button>
 										<button id="btn_searchOrder" type="button">
 											<img src="${pageContext.request.contextPath}/resources/image/btn/btn_sch.gif">
 										</button>

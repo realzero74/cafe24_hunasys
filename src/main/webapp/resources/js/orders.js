@@ -89,6 +89,27 @@ var OrderApp = function() {
 				view.pagingHandler(resultdata.totalCnt, resultdata.currentPage);
 			});
 		});
+		$('#btn_searchOrderAll').click( function() {
+			$("#searchString1").val("");
+			$("#searchString2").val("");
+			$("#searchString3").val("");
+			$("#searchString4").val("");
+			$("#searchString5").val("");
+			$("#searchString6").val("");
+			var param = {
+				"searchString1" : $("#searchString1").val(),
+				"searchString2" : $("#searchString2").val(),
+				"searchString3" : $("#searchString3").val(),
+				"searchString4" : $("#searchString4").val(),
+				"searchString5" : $("#searchString5").val(),
+				"searchString6" : $("#searchString6").val(),
+			};
+			$("#calendarView > div > table > tbody > tr > td > a").removeClass('ui-state-active');
+			transaction.getList(param).done(function(resultdata) {
+				view.tableHandler(resultdata);
+				view.pagingHandler(resultdata.totalCnt, resultdata.currentPage);
+			});
+		});
 
 		$(document).on(
 				"click",
